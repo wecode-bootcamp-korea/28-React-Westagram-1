@@ -1,6 +1,6 @@
 # Style scss
 
-> 작성하실 scss 파일 안에서 `@import '<inndex.scss폴더>`
+> 사용하실 scss 파일 안에서 `@import '<index.scss폴더>`
 
 ## constant 폴더
 
