@@ -1,5 +1,7 @@
 # Style scss
 
+> 작성하실 scss 파일 안에서 `@import '<inndex.scss폴더>`
+
 ## constant 폴더
 
 ### z-index 관리
