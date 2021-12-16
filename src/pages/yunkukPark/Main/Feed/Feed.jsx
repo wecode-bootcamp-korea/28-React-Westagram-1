@@ -2,6 +2,33 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Feed = () => {
+  const feedContents = [
+    {
+      feedId: 0,
+      userName: 'seha_park._.',
+      feedImg: './assets/yunkuk/image/feedImage1.jpeg',
+      content: '가가가가가가가가가가가가가',
+    },
+    {
+      feedId: 1,
+      userName: 'ctrsound',
+      feedImg: './assets/yunkuk/image/feedImage02.jpg',
+      content: `<span>최고은 새 앨범 <br>[오늘의 난 미지근하게 축제] 음반 판매 오픈! 🎉<br><br>최고은의 새 앨범 '오늘의 난 미지근하게 축제' 실물 음반 판매가 시작되었습니다. 이번 음반은 단순 음원뿐만 아니라 에세이와 영상까지 합해진 '뮤키디오 𝙈𝙪𝙤𝙤𝙠𝙞𝙙𝙚𝙤 (music + book + video)' 형식으로 제작이 되었다고 하는데요. 수작업 방식으로 제작되어 특별함까지 더했다고 합니다❗️<br>이번 음반을 통해서만 지난 6월 전시된 reAL II의 라이브 클립을 감상하실 수 있어요. 엄청난 소장가치 💯<br>실물 음반에 포함된 책갈피에는 앨범을 감상하며 아침 숲🌳을 걷는 기분을 느낄 수 있도록 '우정스러움'과 맞닿는 향이 묻어있다고 합니다 💧 이 또한 이번 앨범을 위해 특별히 조향된 것이라고 하네요!<br>선착순 50분께는 싱어송라이터 최고은과 김소연 시인의 친필싸인본을 보내드리니 절대 놓치지 마세요 🧚‍♀️<br><br>▫️[앨범구매]<br>𝙂𝙤𝙣𝙣𝙚 𝘾𝙝𝙤𝙞 굿즈샵 : https://m.smartstore.naver.com/iamgonne (또는 프로필링크트리 ’𝙂𝙤𝙣𝙣𝙚 𝘾𝙝𝙤𝙞 굿즈샵’) **최고은&amp;김소연 싸인본 (50장 한정)<br><br>디자인 _ <a class="notranslate" href="/77pattern/" tabindex="0">@77pattern</a><br><br><a class=" xil3i" href="/explore/tags/오늘의난미지근하게축제/" tabindex="0">#오늘의난미지근하게축제</a> <a class=" xil3i" href="/explore/tags/최고은/" tabindex="0">#최고은</a> x <a class=" xil3i" href="/explore/tags/김소연/" tabindex="0">#김소연</a> <a class=" xil3i" href="/explore/tags/뮤키디오/" tabindex="0">#뮤키디오</a> <a class=" xil3i" href="/explore/tags/muookideo/" tabindex="0">#muookideo</a></span>`,
+    },
+    {
+      feedId: 2,
+      userName: 'ekekejuocx',
+      feedImg: 'images/ksh/feed3.jpg',
+      content: '다다다다다다다다다다다다',
+    },
+    {
+      feedId: 3,
+      userName: 'soso23',
+      feedImg: 'images/ksh/rabbitCat.jpg',
+      content: '라라라라라라라라라라라라라',
+    },
+  ];
+
   const [likeInfo, setLikeInfo] = useState({
     hit: 100,
     class: 'far fa-heart',
