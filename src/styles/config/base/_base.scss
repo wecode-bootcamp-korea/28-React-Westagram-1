@@ -53,3 +53,57 @@ ol {
   font-family: 'Lobster', cursive;
   letter-spacing: -0.05em;
 }
+
+/*add heewon*/
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body,
+button,
+input,
+textarea {
+  color: #262626;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img {
+  width: 100%;
+  vertical-align: top;
+}
+
+address,
+i,
+em {
+  font-style: normal;
+}
+
+textarea {
+  resize: none;
+  outline: none;
+  border: none;
+}
