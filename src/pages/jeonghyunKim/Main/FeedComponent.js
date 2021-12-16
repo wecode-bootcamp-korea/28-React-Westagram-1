@@ -23,6 +23,7 @@ export default function FeedComponent(props) {
   const feedItem = props.feedItem;
 
   const feedImgUlRef = useRef();
+
   useEffect(() => {
     const feedContentsReduce = async () => {
       const feedContentsCommentBody = document.getElementsByName(

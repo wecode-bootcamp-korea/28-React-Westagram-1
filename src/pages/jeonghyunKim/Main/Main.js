@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 
 import MainNavBar from './MainNavBar';
 import MainFeedFriends from './MainFeedFriends';
@@ -58,11 +59,7 @@ function Main(props) {
     document.querySelector('#navBtnsFloatingBox').classList.remove('active');
     document.querySelector('#hideContainer').classList.remove('active');
     const floatingArea = document.querySelector('#navBtnsFloatingArea');
-    if (floatingArea.hasChildNodes) {
-      for (let i = 0; i < floatingArea.children.length; i++) {
-        floatingArea.removeChild(floatingArea.children[i]);
-      }
-    }
+    ReactDOM.unmountComponentAtNode(floatingArea);
   };
 
   return (

@@ -76,7 +76,7 @@ export default function MainNavBar(props) {
     document.querySelector('#navBtnsFloatingBox').classList.add('active');
     document.querySelector('#hideContainer').classList.add('active');
     document.querySelector('#navBtnsArrowDiv').style.transform =
-      'translateX(2.3em) rotate(45deg)';
+      'translateX(1.8em) rotate(45deg)';
   };
 
   const navNewPost = event => {
@@ -88,7 +88,7 @@ export default function MainNavBar(props) {
     document.querySelector('#navBtnsFloatingBox').classList.add('active');
     document.querySelector('#hideContainer').classList.add('active');
     document.querySelector('#navBtnsArrowDiv').style.transform =
-      'translateX(4.2em) rotate(45deg)';
+      'translateX(3.7em) rotate(45deg)';
   };
 
   const navTripFeeds = event => {
@@ -100,7 +100,7 @@ export default function MainNavBar(props) {
     document.querySelector('#navBtnsFloatingBox').classList.add('active');
     document.querySelector('#hideContainer').classList.add('active');
     document.querySelector('#navBtnsArrowDiv').style.transform =
-      'translateX(6em) rotate(45deg)';
+      'translateX(5.5em) rotate(45deg)';
   };
 
   const navViewLikes = event => {
@@ -112,7 +112,7 @@ export default function MainNavBar(props) {
     document.querySelector('#navBtnsFloatingBox').classList.add('active');
     document.querySelector('#hideContainer').classList.add('active');
     document.querySelector('#navBtnsArrowDiv').style.transform =
-      'translateX(7.96em) rotate(45deg)';
+      'translateX(7.46em) rotate(45deg)';
   };
 
   const navViewProfile = event => {
@@ -124,7 +124,7 @@ export default function MainNavBar(props) {
     document.querySelector('#navBtnsFloatingBox').classList.add('active');
     document.querySelector('#hideContainer').classList.add('active');
     document.querySelector('#navBtnsArrowDiv').style.transform =
-      'translateX(9.9em) rotate(45deg)';
+      'translateX(9.4em) rotate(45deg)';
   };
   return (
     <article id="navContainer">
