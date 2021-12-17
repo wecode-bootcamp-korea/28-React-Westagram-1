@@ -6,28 +6,35 @@ function Login(props) {
   const [inputPWValue, setInputPW] = useState('');
 
   useEffect(() => {
-    window.addEventListener('resize', function (event) {
-      const imgBox = document.querySelector('#imgBox');
-      if (window.innerWidth <= 735) {
-        imgBox.style.display = 'none';
-      } else {
-        imgBox.style.display = 'block';
-      }
-    });
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
+
+  const handleResize = () => {
+    const imgBox = document.querySelector('#imgBox');
+    if (window.innerWidth <= 735) {
+      imgBox.style.display = 'none';
+    } else {
+      imgBox.style.display = 'block';
+    }
+  };
 
   useEffect(() => {
     const loginBtn = document.querySelector('.loginBtn');
 
-    if (inputIDValue.includes('@') && inputPWValue.length >= 5) {
-      loginBtn.style.backgroundColor = 'rgba(var(--d69,0,149,246),1)';
-      loginBtn.style.cursor = 'pointer';
-      loginBtn.removeAttribute('disabled');
-    } else {
-      loginBtn.style.backgroundColor = 'rgba(var(--d69,0,149,246),.3)';
-      loginBtn.style.cursor = 'inherit';
-      loginBtn.setAttribute('disabled', true);
-    }
+    inputIDValue.includes('@') && inputPWValue.length >= 5
+      ? (() => {
+          loginBtn.style.backgroundColor = 'rgba(var(--d69,0,149,246),1)';
+          loginBtn.style.cursor = 'pointer';
+          loginBtn.removeAttribute('disabled');
+        })()
+      : (() => {
+          loginBtn.style.backgroundColor = 'rgba(var(--d69,0,149,246),.3)';
+          loginBtn.style.cursor = 'inherit';
+          loginBtn.setAttribute('disabled', true);
+        })();
   }, [inputIDValue, inputPWValue]);
 
   const loginFunc = () => {
