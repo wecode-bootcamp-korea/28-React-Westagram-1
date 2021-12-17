@@ -57,7 +57,8 @@ const Story = () => {
     <div className="story-wrapper">
       <ul className="story-list">
         {storyItems.map(storyItem => {
-          return <StoryList {...storyItem} />;
+          const { key, ...otherProps } = storyItem;
+          return <StoryList key={key} {...otherProps} />;
         })}
       </ul>
     </div>
