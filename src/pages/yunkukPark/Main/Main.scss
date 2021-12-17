@@ -159,6 +159,7 @@
 
     &-content {
       position: absolute;
+      z-index: $drop-down-level;
       top: 37px;
       left: -175px;
       width: 225px;
@@ -198,10 +199,10 @@
       @include flexbox(start, center);
       height: 35px;
       padding: 0 15px;
+      font-size: 14px;
 
       i {
         position: relative;
-        top: 2px;
         width: 14px;
         height: 14px;
         margin-right: 10px;

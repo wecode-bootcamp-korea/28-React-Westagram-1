@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import NavMyMenu from './NavMyMenu';
 
 const Nav = () => {
+  const [isClick, setIsClick] = useState(false);
+  const handleClick = () => setIsClick(!isClick);
+  const myMenuButton = useRef();
+
+  //TODO: 버그 발견 console을 찍어보면 여러개 찍힘 & document를 찍으면 click이 계속해서 true로 남아있음 기능 동작은 잘됨
+  document.addEventListener('click', event => {
+    if (!isClick) return;
+    if (event.target !== myMenuButton.current) {
+      setIsClick(false);
+    }
+  });
+
   return (
     <nav className="global-nav-bar">
       <div className="global-nav-wrapper">
@@ -20,32 +33,20 @@ const Nav = () => {
             <i className="far fa-heart" />
           </div>
           <div className="user-action-item my-menu">
-            <button type="button" className="dropdown-button avatar avatar-26">
+            <button
+              onClick={handleClick}
+              type="button"
+              className={`dropdown-button avatar avatar-26 ${
+                isClick && 'is-active'
+              }`}
+            >
               <img
                 src="./assets/yunkuk/image/yunkuk-avatar.jpg"
                 alt="유저아바타"
+                ref={myMenuButton}
               />
             </button>
-
-            <div className="my-menu-content">
-              <ul className="my-menu-list">
-                <li className="my-menu-item">
-                  <i className="far fa-user-circle" />
-                  <Link to="#">프로필</Link>
-                </li>
-                <li className="my-menu-item">
-                  <i className="far fa-bookmark" />
-                  <Link to="#">저장됨</Link>
-                </li>
-                <li className="my-menu-item">
-                  <i className="fas fa-cog" />
-                  <Link to="#">설정</Link>
-                </li>
-                <li className="my-menu-item">
-                  <button type="button">로그아웃</button>
-                </li>
-              </ul>
-            </div>
+            {isClick && <NavMyMenu />}
           </div>
         </div>
       </div>
