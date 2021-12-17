@@ -15,12 +15,13 @@ import {
 
 import FeedCommentComponent from './FeedCommentComponent';
 
-export default function FeedComponent(props) {
+export default function FeedComponent({ feedItem }) {
   const [feedOriginContent, setFeedOriginContent] = useState();
   const [commentData, setCommentData] = useState([]);
   const [feedImgDotPosition, setFeedImgDotPosition] = useState(0);
+  const [viewAllCommentFlag, setViewAllCommentFlag] = useState(false);
+
   const feedImgDotContainerRef = useRef();
-  const feedItem = props.feedItem;
 
   const feedImgUlRef = useRef();
 
@@ -47,7 +48,19 @@ export default function FeedComponent(props) {
       await setFeedOriginState();
     };
     feedContentsReduce();
-  }, []);
+  }, [feedItem.feedID]);
+
+  useEffect(() => {
+    for (let i = 0; i < feedImgDotContainerRef.current.children.length; i++) {
+      if (feedImgDotPosition === i) {
+        feedImgDotContainerRef.current.children[i].children[0].style.color =
+          'rgba(var(--d69,0,149,246),1)';
+      } else {
+        feedImgDotContainerRef.current.children[i].children[0].style.color =
+          '#adadad';
+      }
+    }
+  }, [feedImgDotPosition]);
 
   const feedExtendContents = event => {
     event.preventDefault();
@@ -139,17 +152,13 @@ export default function FeedComponent(props) {
     }
   };
 
-  useEffect(() => {
-    for (let i = 0; i < feedImgDotContainerRef.current.children.length; i++) {
-      if (feedImgDotPosition === i) {
-        feedImgDotContainerRef.current.children[i].children[0].style.color =
-          'rgba(var(--d69,0,149,246),1)';
-      } else {
-        feedImgDotContainerRef.current.children[i].children[0].style.color =
-          '#adadad';
-      }
-    }
-  }, [feedImgDotPosition]);
+  const viewAllComments = () => {
+    setViewAllCommentFlag(true);
+  };
+
+  const hideComments = () => {
+    setViewAllCommentFlag(false);
+  };
 
   return (
     <section id="feeds">
@@ -256,14 +265,44 @@ export default function FeedComponent(props) {
       </section>
       <section id="feedComments">
         <div id="feedCommentsBox" name={'feedCommentsBox' + feedItem.feedID}>
-          {commentData.map(item => (
-            <FeedCommentComponent
-              key={item.commentID}
-              feedID={feedItem.feedID}
-              commentID={item.commentID}
-              commentText={item.commentText}
-            />
-          ))}
+          {commentData.length < 3 ? null : viewAllCommentFlag ? (
+            <div class="feedCommentsViewHideBtn" onClick={hideComments}>
+              Hide Comments
+            </div>
+          ) : (
+            <div class="feedCommentsViewHideBtn" onClick={viewAllComments}>
+              View All Comments
+            </div>
+          )}
+
+          {commentData.map((item, index) => {
+            if (viewAllCommentFlag) {
+              return (
+                <FeedCommentComponent
+                  feedID={feedItem.feedID}
+                  key={index}
+                  commentKey={index}
+                  commentEach={commentData[index]}
+                  commentData={commentData}
+                  setCommentData={setCommentData}
+                />
+              );
+            } else {
+              if (index >= commentData.length - 2) {
+                return (
+                  <FeedCommentComponent
+                    feedID={feedItem.feedID}
+                    key={index}
+                    commentKey={index}
+                    commentEach={commentData[index]}
+                    commentData={commentData}
+                    setCommentData={setCommentData}
+                  />
+                );
+              }
+            }
+            return '';
+          })}
         </div>
       </section>
       <section id="feedContentsTime">
