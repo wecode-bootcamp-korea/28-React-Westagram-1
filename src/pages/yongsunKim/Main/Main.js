@@ -42,43 +42,43 @@ export default function Main(props) {
                   <li class="story_list">
                     <div class="story_border">
                       <img src={myImg} class="story_profile" alt="내 스토리" />
-                      <a href="#">아이디</a>
+                      <a href="">아이디</a>
                     </div>
                   </li>
                   <li class="story_list">
                     <div class="story_border">
                       <img src={myImg} class="story_profile" alt="내 스토리" />
-                      <a href="#">아이디</a>
+                      <a href="">아이디</a>
                     </div>
                   </li>
                   <li class="story_list">
                     <div class="story_border">
                       <img src={myImg} class="story_profile" alt="내 스토리" />
-                      <a href="#">아이디</a>
+                      <a href="">아이디</a>
                     </div>
                   </li>
                   <li class="story_list">
                     <div class="story_border">
                       <img src={myImg} class="story_profile" alt="내 스토리" />
-                      <a href="#">아이디</a>
+                      <a href="">아이디</a>
                     </div>
                   </li>
                   <li class="story_list">
                     <div class="story_border">
                       <img src={myImg} class="story_profile" alt="내 스토리" />
-                      <a href="#">아이디</a>
+                      <a href="">아이디</a>
                     </div>
                   </li>
                   <li class="story_list">
                     <div class="story_border">
                       <img src={myImg} class="story_profile" alt="내 스토리" />
-                      <a href="#">아이디</a>
+                      <a href="">아이디</a>
                     </div>
                   </li>
                   <li class="story_list">
                     <div class="story_border">
                       <img src={myImg} class="story_profile" alt="내 스토리" />
-                      <a href="#">아이디</a>
+                      <a href="">아이디</a>
                     </div>
                   </li>
                 </ul>
@@ -90,7 +90,7 @@ export default function Main(props) {
                   <div class="post_header">
                     <div class="post_account">
                       <img src={myImg} class="post_profile" alt="프사" />
-                      <a href="#">rlaydtjs</a>
+                      <a href="">rlaydtjs</a>
                     </div>
                     <button class="post_info">
                       <i class="fas fa-ellipsis-h"></i>
@@ -126,9 +126,9 @@ export default function Main(props) {
                           <p>좋아요 2000개</p>
                         </div>
                         <div class="post_content">
-                          <a href="#">아이디</a>
+                          <a href="">아이디</a>
                           <p>내용내용내용내용</p>
-                          <a href="#">아이디</a>
+                          <a href="">아이디</a>
                           <p>내용내용내용내용</p>
                         </div>
                         <div class="post_reply">
@@ -156,7 +156,7 @@ export default function Main(props) {
                   <div class="post_header">
                     <div class="post_account">
                       <img src={myImg} class="post_profile" alt="프사" />
-                      <a href="#">rlaydtjs</a>
+                      <a href="">rlaydtjs</a>
                     </div>
                     <button class="post_info">
                       <i class="fas fa-ellipsis-h"></i>
@@ -192,9 +192,9 @@ export default function Main(props) {
                           <p>좋아요 2000개</p>
                         </div>
                         <div class="post_content">
-                          <a href="#">아이디</a>
+                          <a href="">아이디</a>
                           <p>내용내용내용내용</p>
-                          <a href="#">아이디</a>
+                          <a href="">아이디</a>
                           <p>내용내용내용내용</p>
                         </div>
                         <div class="post_reply">
@@ -222,7 +222,7 @@ export default function Main(props) {
                   <div class="post_header">
                     <div class="post_account">
                       <img src={myImg} class="post_profile" alt="프사" />
-                      <a href="#">rlaydtjs</a>
+                      <a href="">rlaydtjs</a>
                     </div>
                     <button class="post_info">
                       <i class="fas fa-ellipsis-h"></i>
@@ -258,9 +258,9 @@ export default function Main(props) {
                           <p>좋아요 2000개</p>
                         </div>
                         <div class="post_content">
-                          <a href="#">아이디</a>
+                          <a href="">아이디</a>
                           <p>내용내용내용내용</p>
-                          <a href="#">아이디</a>
+                          <a href="">아이디</a>
                           <p>내용내용내용내용</p>
                         </div>
                         <div class="post_reply">
@@ -315,7 +315,7 @@ export default function Main(props) {
                       />
                     </div>
                     <div class="recommend_id">
-                      <a href="#">아이디</a>
+                      <a href="">아이디</a>
                       <p>회원님을 위한 추천</p>
                     </div>
                     <div>
@@ -333,7 +333,7 @@ export default function Main(props) {
                       />
                     </div>
                     <div class="recommend_id">
-                      <a href="#">아이디</a>
+                      <a href="">아이디</a>
                       <p>회원님을 위한 추천</p>
                     </div>
                     <div>
