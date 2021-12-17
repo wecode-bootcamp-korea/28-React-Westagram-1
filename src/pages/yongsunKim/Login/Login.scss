@@ -1,0 +1,51 @@
+$theme-color: #f1f1f1;
+
+html,
+body {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.login {
+  .loginInner {
+    padding: 50px;
+    border: 1px solid #dbdbdb;
+    h1 {
+      font-size: 60px;
+      text-align: center;
+      font-family: 'Lobster', cursive;
+    }
+    .loginContent {
+      flex-direction: column;
+      display: flex;
+      margin: 60px 0 100px 0;
+      input {
+        padding: 15px;
+        width: 350px;
+        margin: 10px;
+        border: 1px solid #dbdbdb;
+        border-radius: 5px;
+        background-color: $theme-color;
+      }
+      input:focus {
+        outline: none;
+      }
+      button {
+        margin: 10px;
+        padding: 12px;
+        color: white;
+        background-color: #c0dffd;
+        border: none;
+        border-radius: 4px;
+        border: 1px solid #dbdbdb;
+      }
+    }
+    a {
+      text-decoration-line: none;
+      color: blue;
+    }
+  }
+}
