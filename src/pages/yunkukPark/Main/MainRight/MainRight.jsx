@@ -1,29 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Recommandation from '../Recommandation/Recommandation';
 import UserProfile from '../UserProfile/UserProfile';
 
 const MainRight = () => {
-  const setLayout = () => {
+  const INITIAL_X_OFFSET = 10000;
+  const [mainRightLeft, setMainRightLeft] = useState(INITIAL_X_OFFSET);
+
+  const handleLayout = () => {
     const mainLeft = document.querySelector('.main-left');
-    const mainRight = document.querySelector('.main-right');
     const mainLeftXoffset = mainLeft.offsetLeft;
     const mainLeftWidth = mainLeft.offsetWidth;
     const mainLeftMarginRight = 28;
-    const mainRightXoffset = `${
-      mainLeftXoffset + mainLeftWidth + mainLeftMarginRight
-    }px`;
-    mainRight.style.left = mainRightXoffset;
+    const mainRightXoffset =
+      mainLeftXoffset + mainLeftWidth + mainLeftMarginRight;
+    setMainRightLeft(mainRightXoffset);
   };
 
-  const init = () => {
-    window.addEventListener('load', setLayout);
-    window.addEventListener('resize', setLayout);
-  };
+  useEffect(() => {
+    handleLayout();
+    window.addEventListener('resize', handleLayout);
 
-  init();
+    return () => {
+      window.removeEventListener('resize', handleLayout);
+    };
+  }, []);
 
   return (
-    <aside className="main-right">
+    <aside className="main-right" style={{ left: `${mainRightLeft}px` }}>
       <UserProfile />
       <Recommandation />
     </aside>
