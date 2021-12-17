@@ -681,9 +681,13 @@ body {
             }
 
             .followOrNot {
+              width: 210px;
               font-size: 12px;
               color: rgba(var(--f52, 142, 142, 142), 1);
               margin-top: 3px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
             }
           }
         }

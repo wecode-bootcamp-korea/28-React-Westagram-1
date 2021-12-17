@@ -1,19 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 export default function MainSideBar(props) {
-  useEffect(() => {
-    const followOrNotReduce = () => {
-      const followOrNot = document.querySelectorAll('.followOrNot');
-      for (let i = 0; i < followOrNot.length; i++) {
-        if (followOrNot[i].innerHTML.length > 24) {
-          followOrNot[i].innerHTML =
-            followOrNot[i].innerHTML.slice(0, 25).trim() + '...';
-        }
-      }
-    };
-
-    followOrNotReduce();
-  }, []);
   return (
     <article id="sideWrapper">
       <section id="sideContainer">
@@ -38,39 +25,39 @@ export default function MainSideBar(props) {
                 <div className="recommendFriendImg" />
                 <div className="recommendFriendInfo">
                   <span className="recommendFriendID">friends1</span>
-                  <span className="followOrNot">
+                  <div className="followOrNot">
                     abcdefghijklmnop님 외 n명이 팔로우합니다.
-                  </span>
+                  </div>
                 </div>
               </li>
               <li id="recommendFriendListTag">
                 <div className="recommendFriendImg" />
                 <div className="recommendFriendInfo">
                   <span className="recommendFriendID">friends2</span>
-                  <span className="followOrNot">회원님을 팔로우합니다.</span>
+                  <div className="followOrNot">회원님을 팔로우합니다.</div>
                 </div>
               </li>
               <li id="recommendFriendListTag">
                 <div className="recommendFriendImg" />
                 <div className="recommendFriendInfo">
                   <span className="recommendFriendID">friends3</span>
-                  <span className="followOrNot">
+                  <div className="followOrNot">
                     strong_strawberry님 외 n명이 팔로우합니다.
-                  </span>
+                  </div>
                 </div>
               </li>
               <li id="recommendFriendListTag">
                 <div className="recommendFriendImg" />
                 <div className="recommendFriendInfo">
                   <span className="recommendFriendID">friends4</span>
-                  <span className="followOrNot">회원님을 팔로우합니다.</span>
+                  <div className="followOrNot">회원님을 팔로우합니다.</div>
                 </div>
               </li>
               <li id="recommendFriendListTag">
                 <div className="recommendFriendImg" />
                 <div className="recommendFriendInfo">
                   <span className="recommendFriendID">friends5</span>
-                  <span className="followOrNot">회원님을 팔로우합니다.</span>
+                  <div className="followOrNot">회원님을 팔로우합니다.</div>
                 </div>
               </li>
             </ul>
