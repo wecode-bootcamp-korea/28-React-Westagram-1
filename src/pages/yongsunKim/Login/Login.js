@@ -18,13 +18,20 @@ function Login() {
             id="id"
             type="text"
             placeholder="전화번호, 사용자 이름 또는 이메일"
+            onChange={this.handleIdInput}
           />
-          <input id="pw" type="text" placeholder="비밀번호" />
+          <input
+            id="pw"
+            type="text"
+            placeholder="비밀번호"
+            onchange={this.handlePwInput}
+          />
           <button className="btn" onClick={goToMain}>
             로그인
           </button>
         </div>
-        <a>비밀번호를 잊으셨나요?</a>
+        <a href="#!">비밀번호를 잊으셨나요?1</a>
+        <a href="{() => false}">비밀번호를 잊으셨나요?2</a>
       </div>
     </main>
   );

@@ -1,11 +1,28 @@
 // @import url('http://fonts.cdnfonts.com/css/billabong');
 // font-family : 'Billabong', sans-serif
 
-html {
-  width: 100%;
-  min-height: 100vh;
+html,
+main {
   height: 100%;
-  background-color: #fafafa;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+p {
+  margin: 0;
 }
 
 main {
@@ -43,7 +60,6 @@ main {
           width: 100%;
           max-width: 268px;
           height: 36px;
-          background-color: red;
           input#search.fontawesome {
             width: 100%;
             height: 100%;
@@ -106,7 +122,6 @@ main {
             .story_border {
               width: 60px;
               height: 60px;
-              margin: 0 auto;
               border-radius: 50%;
               background-color: #fff;
               justify-content: center;
@@ -179,8 +194,7 @@ main {
           width: 100%;
           height: 100%;
           .post_photo_wrap {
-            width: 100%;
-            height: 100px;
+            height: 20px;
             overflow: hidden;
             position: relative;
             .post_photo_container {
@@ -207,11 +221,13 @@ main {
               padding-left: 16px;
               padding-right: 16px;
               .post_likes {
+                text-align: left;
                 height: 27px;
                 font-size: 0.875rem;
                 font-weight: 600;
               }
               .post_content {
+                text-align: left;
                 a {
                   font-size: 0.8rem;
                   font-weight: 600;
@@ -222,6 +238,7 @@ main {
                 }
               }
               .post_created_at {
+                text-align: left;
                 padding: 8px 0 20px 0;
                 p {
                   font-size: 0.6rem;
@@ -265,9 +282,8 @@ main {
     height: 400px;
     top: 0;
     .aside_wrap {
-      position: fixed;
+      position: absolute;
       top: 15%;
-      // ??????
       width: inherit;
       .aside_account {
         margin-top: 16px;
@@ -292,6 +308,7 @@ main {
         .aside_id {
           width: 195px;
           p {
+            text-align: left;
             font-size: 0.8rem;
             width: 100%;
             padding-left: 12px;
@@ -352,6 +369,7 @@ main {
             }
           }
           .recommend_id {
+            text-align: left;
             width: 200px;
             font-size: 0.74rem;
             a {
@@ -359,6 +377,7 @@ main {
               margin-bottom: 4px;
             }
             p {
+              text-align: left;
               color: #8e8e8e;
             }
           }

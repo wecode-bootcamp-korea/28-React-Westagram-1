@@ -3,6 +3,7 @@ import './Main.scss';
 import '../../../styles/common.scss';
 import '../../../styles/index.scss';
 import myImg from '../../../assets/images/myImg.jpeg';
+// Import {FontAwesomeIcon} from ""
 
 // export default function Main(props) {
 //   return <></>;
