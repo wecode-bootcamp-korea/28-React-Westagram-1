@@ -27,9 +27,9 @@ export default function Main(props) {
               />
             </div>
             <div className="icons_box">
-              <i className="far fa-compass"></i>
-              <i className="far fa-heart"></i>
-              <i className="far fa-user"></i>
+              <i className="far fa-compass" />
+              <i className="far fa-heart" />
+              <i className="far fa-user" />
             </div>
           </div>
         </nav>
@@ -121,7 +121,7 @@ export default function Main(props) {
                     <a href="#!">rlaydtjs</a>
                   </div>
                   <button className="post_info">
-                    <i className="fas fa-ellipsis-h"></i>
+                    <i className="fas fa-ellipsis-h" />
                   </button>
                 </div>
                 <div className="post_body">
@@ -134,18 +134,18 @@ export default function Main(props) {
                     <div className="post_icons_wrap">
                       <div className="post_icons_box1">
                         <button className="post_icons_btn">
-                          <i className="far fa-heart"></i>
+                          <i className="far fa-heart" />
                         </button>
                         <button className="post_icons_btn">
-                          <i className="far fa-comment"></i>
+                          <i className="far fa-comment" />
                         </button>
                         <button className="post_icons_btn">
-                          <i className="far fa-paper-plane"></i>
+                          <i className="far fa-paper-plane" />
                         </button>
                       </div>
                       <div className="post_icons_box2">
                         <button className="post_icons_btn">
-                          <i className="far fa-bookmark"></i>
+                          <i className="far fa-bookmark" />
                         </button>
                       </div>
                     </div>
@@ -187,7 +187,7 @@ export default function Main(props) {
                     <a href="#!">rlaydtjs</a>
                   </div>
                   <button className="post_info">
-                    <i className="fas fa-ellipsis-h"></i>
+                    <i className="fas fa-ellipsis-h" />
                   </button>
                 </div>
                 <div className="post_body">
@@ -200,18 +200,18 @@ export default function Main(props) {
                     <div className="post_icons_wrap">
                       <div className="post_icons_box1">
                         <button className="post_icons_btn">
-                          <i className="far fa-heart"></i>
+                          <i className="far fa-heart" />
                         </button>
                         <button className="post_icons_btn">
-                          <i className="far fa-comment"></i>
+                          <i className="far fa-comment" />
                         </button>
                         <button className="post_icons_btn">
-                          <i className="far fa-paper-plane"></i>
+                          <i className="far fa-paper-plane" />
                         </button>
                       </div>
                       <div className="post_icons_box2">
                         <button className="post_icons_btn">
-                          <i className="far fa-bookmark"></i>
+                          <i className="far fa-bookmark" />
                         </button>
                       </div>
                     </div>
@@ -253,7 +253,7 @@ export default function Main(props) {
                     <a href="#!">rlaydtjs</a>
                   </div>
                   <button className="post_info">
-                    <i className="fas fa-ellipsis-h"></i>
+                    <i className="fas fa-ellipsis-h" />
                   </button>
                 </div>
                 <div className="post_body">
@@ -266,18 +266,18 @@ export default function Main(props) {
                     <div className="post_icons_wrap">
                       <div className="post_icons_box1">
                         <button className="post_icons_btn">
-                          <i className="far fa-heart"></i>
+                          <i className="far fa-heart" />
                         </button>
                         <button className="post_icons_btn">
-                          <i className="far fa-comment"></i>
+                          <i className="far fa-comment" />
                         </button>
                         <button className="post_icons_btn">
-                          <i className="far fa-paper-plane"></i>
+                          <i className="far fa-paper-plane" />
                         </button>
                       </div>
                       <div className="post_icons_box2">
                         <button className="post_icons_btn">
-                          <i className="far fa-bookmark"></i>
+                          <i className="far fa-bookmark" />
                         </button>
                       </div>
                     </div>
