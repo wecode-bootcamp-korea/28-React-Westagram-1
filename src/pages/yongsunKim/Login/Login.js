@@ -31,7 +31,6 @@ function Login() {
           </button>
         </div>
         <a href="#!">비밀번호를 잊으셨나요?1</a>
-        <a href="{() => false}">비밀번호를 잊으셨나요?2</a>
       </div>
     </main>
   );
