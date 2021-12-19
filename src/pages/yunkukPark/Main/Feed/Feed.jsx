@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import CommentInput from './CommentInput';
+import FeedDesc from './FeedDesc';
 
 const Feed = props => {
-  const { userName, userAvatar, feedImg, content, likeHit } = props;
-
+  const { userName, userAvatar, feedImg, content, likeHit, comments } = props;
   const [likeInfo, setLikeInfo] = useState({
     hit: likeHit,
     class: 'far fa-heart',
     animate: '',
   });
   const [like, setLike] = useState(false);
+  const [feedComments, setFeedComments] = useState(comments);
+  const commentLenght = feedComments.length;
 
   const handleLikeClick = () => {
     setLike(!like);
@@ -35,6 +38,18 @@ const Feed = props => {
       };
       setLikeInfo(myLikeInfo);
     }
+  };
+
+  const addNewComment = newComment => {
+    setFeedComments([...feedComments, newComment]);
+  };
+
+  const deleteComment = comment => {
+    const copyFeedComments = [...feedComments];
+    const comments = copyFeedComments.filter(
+      feedComment => feedComment.id !== comment.id
+    );
+    setFeedComments(comments);
   };
 
   return (
@@ -90,27 +105,18 @@ const Feed = props => {
               </dd>
             </dl>
           </div>
-          <div className="feed-desc-group">
-            <dl className="feed-desc">
-              <dt className="user-id">{userName}</dt>
-              <dd className="feed-content">{content}</dd>
-            </dl>
-            <ul className="feed-comment-list" />
-
-            <p className="comment-more">댓글 3개 모두 보기</p>
-            <p className="feed-uploaded">4시간 전</p>
-          </div>
+          <FeedDesc
+            userName={userName}
+            content={content}
+            comments={feedComments}
+            onDeleteButtonClick={deleteComment}
+          />
         </div>
       </section>
-      <section className="comment-wrapper">
-        <button type="button">
-          <i className="far fa-smile" />
-        </button>
-        <input name="comment" type="text" placeholder="댓글 달기..." />
-        <button className="comment-submit-button button-primary" disabled>
-          게시
-        </button>
-      </section>
+      <CommentInput
+        onButtonClick={addNewComment}
+        commentLenght={commentLenght}
+      />
     </div>
   );
 };
