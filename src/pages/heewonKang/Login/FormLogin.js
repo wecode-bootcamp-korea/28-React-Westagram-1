@@ -3,22 +3,38 @@ import { useNavigate } from 'react-router-dom';
 
 export default function FormLogin(props) {
   const navigate = useNavigate();
-  const goToMain = () => navigate('/Main-won');
   const [idValue, setId] = useState('');
   const [pwValue, setPw] = useState('');
+  const [activeBtn, setActiveBtn] = useState('.3');
+  const [disabledBtn, setDisabledBtn] = useState(true);
+
+  const goToMain = () => {
+    navigate('/Main-won');
+  };
 
   const handleIdInput = event => {
     setId(event.target.value);
-    console.log(idValue);
   };
 
   const handlePwInput = event => {
     setPw(event.target.value);
-    console.log(pwValue);
+  };
+
+  const activeLoginBtn = () => {
+    // idValue.includes('@') && pwValue.length >= 5
+    //   ? setActiveBtn('1')
+    //   : setActiveBtn('.3');
+    if (idValue.includes('@') && pwValue.length >= 5) {
+      setActiveBtn('1');
+      setDisabledBtn(false);
+    } else {
+      setActiveBtn('.3');
+      setDisabledBtn(true);
+    }
   };
 
   return (
-    <form action="" method="post">
+    <form action="" method="post" onKeyUp={activeLoginBtn}>
       <ul>
         <li>
           <input
@@ -37,7 +53,13 @@ export default function FormLogin(props) {
           />
         </li>
         <li className="login_btn">
-          <button type="button" id="login_btn" onClick={goToMain}>
+          <button
+            type="button"
+            id="login_btn"
+            onClick={goToMain}
+            disabled={disabledBtn}
+            style={{ opacity: activeBtn }}
+          >
             로그인
           </button>
         </li>
