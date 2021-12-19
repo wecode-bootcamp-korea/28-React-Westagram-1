@@ -9,10 +9,12 @@ export default function FormLogin(props) {
 
   const handleIdInput = event => {
     setId(event.target.value);
+    console.log(idValue);
   };
 
   const handlePwInput = event => {
     setPw(event.target.value);
+    console.log(pwValue);
   };
 
   return (
