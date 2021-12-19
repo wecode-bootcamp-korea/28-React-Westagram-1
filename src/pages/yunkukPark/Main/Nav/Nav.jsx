@@ -27,7 +27,7 @@ const Nav = () => {
         </div>
         <div className="user-action-group">
           <div className="user-action-item">
-            <i class="far fa-compass" />
+            <i className="far fa-compass" />
           </div>
           <div className="user-action-item is-new">
             <i className="far fa-heart" />

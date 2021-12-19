@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function NavMyMenu(props) {
+function NavMyMenu() {
   return (
     <>
       <div className="my-menu-layer" />
