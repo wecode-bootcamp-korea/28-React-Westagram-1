@@ -13,6 +13,8 @@ const CommentInput = props => {
   };
 
   const onClickSubmit = () => {
+    if (!newCommentContent) return;
+
     const newComment = {
       id: commentLenght + 1,
       userName: 'hello._.',
@@ -20,7 +22,13 @@ const CommentInput = props => {
     };
 
     onButtonClick(newComment);
+    setInputInit();
+  };
+
+  const setInputInit = () => {
     inputRef.current.value = '';
+    setNewCommentContent('');
+    setButtonSwitch(true);
   };
 
   return (
@@ -33,7 +41,7 @@ const CommentInput = props => {
         type="text"
         placeholder="댓글 달기..."
         onChange={e => onTextChange(e)}
-        onKeyDown={e => {
+        onKeyPress={e => {
           if (e.code === 'Enter') onClickSubmit();
         }}
         ref={inputRef}

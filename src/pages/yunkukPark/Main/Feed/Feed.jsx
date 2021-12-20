@@ -41,7 +41,7 @@ const Feed = props => {
   };
 
   const addNewComment = newComment => {
-    setFeedComments([...feedComments, newComment]);
+    setFeedComments([newComment, ...feedComments]);
   };
 
   const deleteComment = comment => {

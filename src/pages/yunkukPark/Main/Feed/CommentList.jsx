@@ -26,14 +26,14 @@ const CommentList = props => {
             }
           />
         </button>
-        <button type="button">
-          <i
-            className="fas fa-times"
-            onClick={() => {
-              // delete target comment
-              onDeleteButtonClick(comment);
-            }}
-          />
+        <button
+          type="button"
+          onClick={() => {
+            // delete target comment
+            onDeleteButtonClick(comment);
+          }}
+        >
+          <i className="fas fa-times" />
         </button>
       </div>
     </li>
