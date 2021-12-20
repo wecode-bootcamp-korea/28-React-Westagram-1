@@ -286,35 +286,24 @@ export default function FeedComponent({ feedItem }) {
               View All Comments
             </div>
           )}
-
-          {commentData.map((item, index) => {
-            if (viewAllCommentFlag) {
+          {commentData
+            .filter(function (element) {
+              return viewAllCommentFlag
+                ? element.id >= 0
+                : element.id >= commentData.length - 1;
+            })
+            .map((item, index) => {
               return (
                 <FeedCommentComponent
                   feedID={feedItem.feedID}
                   key={index}
-                  commentKey={commentData[index].id}
-                  commentEach={commentData[index]}
+                  commentKey={item.id}
+                  commentEach={item}
                   commentData={commentData}
                   setCommentData={setCommentData}
                 />
               );
-            } else {
-              if (index >= commentData.length - 2) {
-                return (
-                  <FeedCommentComponent
-                    feedID={feedItem.feedID}
-                    key={index}
-                    commentKey={commentData[index].id}
-                    commentEach={commentData[index]}
-                    commentData={commentData}
-                    setCommentData={setCommentData}
-                  />
-                );
-              }
-            }
-            return '';
-          })}
+            })}
         </div>
       </section>
       <section id="feedContentsTime">
