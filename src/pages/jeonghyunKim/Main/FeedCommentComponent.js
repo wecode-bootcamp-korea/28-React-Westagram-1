@@ -11,7 +11,7 @@ export default function FeedCommentComponent({
 }) {
   const likeClick = event => {
     event.preventDefault();
-    event.target.style.color = 'red';
+    event.target.parentNode.classList.toggle('active');
   };
 
   const removeComment = event => {
@@ -20,12 +20,23 @@ export default function FeedCommentComponent({
     removedCommentList.splice(event.target.parentNode.getAttribute('name'), 1);
     setCommentData(removedCommentList);
   };
-
   return (
     <span name={commentKey}>
-      <span id="feedCommentsBold">{commentEach.commentID}</span>
-      {commentEach.commentText}
-      <FontAwesomeIcon id="commentLikeBtn" icon={faHeart} onClick={likeClick} />
+      <span id="feedCommentsBold">{commentEach.userName}</span>
+      {commentEach.content}
+      {commentEach.isLiked ? (
+        <FontAwesomeIcon
+          className="commentLikeBtn active"
+          icon={faHeart}
+          onClick={likeClick}
+        />
+      ) : (
+        <FontAwesomeIcon
+          className="commentLikeBtn"
+          icon={faHeart}
+          onClick={likeClick}
+        />
+      )}{' '}
       <span id="removeBtn" onClick={removeComment}>
         삭제
       </span>

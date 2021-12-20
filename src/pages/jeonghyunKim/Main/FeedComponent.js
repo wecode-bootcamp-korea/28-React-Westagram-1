@@ -26,6 +26,16 @@ export default function FeedComponent({ feedItem }) {
   const feedImgUlRef = useRef();
 
   useEffect(() => {
+    fetch('http://localhost:3000/data/commentData.json', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => {
+        setCommentData(data);
+      });
+  }, []);
+
+  useEffect(() => {
     const feedContentsReduce = async () => {
       const feedContentsCommentBody = document.getElementsByName(
         'feedContentsCommentBody' + feedItem.feedID
@@ -110,8 +120,10 @@ export default function FeedComponent({ feedItem }) {
     if (inputComments.length > 0) {
       setCommentData(current => {
         const obj = {
-          commentID: 'test1',
-          commentText: inputComments,
+          id: commentData.length + 1,
+          userName: 'test1',
+          content: inputComments,
+          isLiked: false,
         };
         const newList = [...current, obj];
         return newList;
@@ -266,11 +278,11 @@ export default function FeedComponent({ feedItem }) {
       <section id="feedComments">
         <div id="feedCommentsBox" name={'feedCommentsBox' + feedItem.feedID}>
           {commentData.length < 3 ? null : viewAllCommentFlag ? (
-            <div class="feedCommentsViewHideBtn" onClick={hideComments}>
+            <div className="feedCommentsViewHideBtn" onClick={hideComments}>
               Hide Comments
             </div>
           ) : (
-            <div class="feedCommentsViewHideBtn" onClick={viewAllComments}>
+            <div className="feedCommentsViewHideBtn" onClick={viewAllComments}>
               View All Comments
             </div>
           )}
@@ -281,7 +293,7 @@ export default function FeedComponent({ feedItem }) {
                 <FeedCommentComponent
                   feedID={feedItem.feedID}
                   key={index}
-                  commentKey={index}
+                  commentKey={commentData[index].id}
                   commentEach={commentData[index]}
                   commentData={commentData}
                   setCommentData={setCommentData}
@@ -293,7 +305,7 @@ export default function FeedComponent({ feedItem }) {
                   <FeedCommentComponent
                     feedID={feedItem.feedID}
                     key={index}
-                    commentKey={index}
+                    commentKey={commentData[index].id}
                     commentEach={commentData[index]}
                     commentData={commentData}
                     setCommentData={setCommentData}
