@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const RecommnadationList = props => {
+const RecommendationList = props => {
   const { avatarImage, userName, recommandState } = props;
 
   return (
@@ -24,4 +24,4 @@ const RecommnadationList = props => {
   );
 };
 
-export default RecommnadationList;
+export default RecommendationList;

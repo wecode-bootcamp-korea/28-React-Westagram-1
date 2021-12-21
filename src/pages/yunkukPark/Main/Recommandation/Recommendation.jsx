@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../Footer/Footer';
-import RecommnadationList from './RecommnadationList';
+import RecommnadationList from './RecommendationList';
 
-const Recommandation = () => {
+const Recommendation = () => {
   const recommadations = [
     {
       key: 0,
@@ -55,4 +55,4 @@ const Recommandation = () => {
   );
 };
 
-export default Recommandation;
+export default Recommendation;

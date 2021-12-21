@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Recommandation from '../Recommandation/Recommandation';
+import Recommandation from '../Recommandation/Recommendation';
 import UserProfile from '../UserProfile/UserProfile';
 
 const MainRight = () => {
