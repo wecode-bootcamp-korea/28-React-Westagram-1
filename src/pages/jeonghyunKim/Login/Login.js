@@ -5,7 +5,7 @@ import './login.scss';
 function Login(props) {
   const [inputIDValue, setInputID] = useState('');
   const [inputPWValue, setInputPW] = useState('');
-
+  const [validateWhether, setValidateWhether] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,28 +24,15 @@ function Login(props) {
   };
 
   const handleResize = () => {
-    const imgBox = document.querySelector('#imgBox');
-    if (window.innerWidth <= 735) {
-      imgBox.style.display = 'none';
-    } else {
-      imgBox.style.display = 'block';
-    }
+    const imgBox = document.querySelector('.imgBox');
+
+    window.innerWidth <= 735
+      ? imgBox.classList.add('hide')
+      : imgBox.classList.remove('hide');
   };
 
   useEffect(() => {
-    const loginBtn = document.querySelector('.loginBtn');
-
-    checkInputValidate()
-      ? (() => {
-          loginBtn.style.backgroundColor = 'rgba(var(--d69,0,149,246),1)';
-          loginBtn.style.cursor = 'pointer';
-          loginBtn.removeAttribute('disabled');
-        })()
-      : (() => {
-          loginBtn.style.backgroundColor = 'rgba(var(--d69,0,149,246),.3)';
-          loginBtn.style.cursor = 'inherit';
-          loginBtn.setAttribute('disabled', true);
-        })();
+    checkInputValidate() ? setValidateWhether(false) : setValidateWhether(true);
   }, [inputIDValue, inputPWValue]);
 
   const loginFunc = () => {
@@ -76,7 +63,7 @@ function Login(props) {
   return (
     <main id="landingContainer">
       <article id="landingArticle">
-        <section id="imgBox" />
+        <section className="imgBox" />
         <section id="loginBox">
           <div id="inputBox">
             <header>Westagram</header>
@@ -99,7 +86,11 @@ function Login(props) {
               onChange={e => setInputPW(e.target.value)}
               onKeyPress={enterLoginValidate}
             />
-            <button className="loginBtn" onClick={loginFunc}>
+            <button
+              className="loginBtn"
+              onClick={loginFunc}
+              disabled={validateWhether}
+            >
               로그인
             </button>
             <section id="loginHrContainer">
