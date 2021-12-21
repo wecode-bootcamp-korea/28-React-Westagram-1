@@ -1,7 +1,47 @@
+import { useState } from 'react';
 import NavWon from '../Nav-won';
 import './Main.scss';
 
+import Comment from './Comment';
+
 export default function Main(props) {
+  const [inputComment, setInputComment] = useState('');
+  const [comment, setComment] = useState([
+    {
+      id: 1,
+      name: 'gmldnjslzzang',
+      comment: '우와 멋지다 💃🏻',
+    },
+    {
+      id: 2,
+      name: 'leejungglee',
+      comment: '✨',
+    },
+  ]);
+
+  const handleComment = e => {
+    const { value } = e.target;
+    setInputComment(value);
+  };
+
+  const commentEnter = e => {
+    if (e.key === 'Enter') addComment();
+  };
+
+  const addComment = () => {
+    setComment(current => {
+      const newList = [...current];
+      const newComment = {
+        id: newList.length + 1,
+        name: 'kimCode',
+        comment: inputComment,
+      };
+      newList.push(newComment);
+      setInputComment('');
+      return newList;
+    });
+  };
+
   return (
     <div id="container">
       <NavWon />
@@ -172,24 +212,9 @@ export default function Main(props) {
                     댓글 <b>120개</b> 모두 보기
                   </a>
                   <ul className="comment_list">
-                    <li>
-                      <div className="user_desc">
-                        <em>dlwlrmaa</em>
-                        <span>우와 멋지다!!</span>
-                      </div>
-                      <button>
-                        <i className="far fa-heart fa-xs" />
-                      </button>
-                    </li>
-                    <li>
-                      <div className="user_desc">
-                        <em>taeyeon_ss_</em>
-                        <span>✨</span>
-                      </div>
-                      <button>
-                        <i className="far fa-heart fa-xs" />
-                      </button>
-                    </li>
+                    {comment.map((item, index) => {
+                      return <Comment key={index} commentItem={item} />;
+                    })}
                   </ul>
                   <time className="before_post">1일 전</time>
                 </section>
@@ -201,8 +226,13 @@ export default function Main(props) {
                     id="post_comment_input"
                     type="text"
                     placeholder="댓글 달기..."
+                    onKeyPress={commentEnter}
+                    onChange={handleComment}
+                    value={inputComment}
                   />
-                  <button className="post_comment_btn">게시</button>
+                  <button className="post_comment_btn" onClick={addComment}>
+                    게시
+                  </button>
                 </section>
               </article>
             </section>

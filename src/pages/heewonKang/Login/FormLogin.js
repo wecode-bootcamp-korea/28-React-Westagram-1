@@ -5,8 +5,6 @@ export default function FormLogin(props) {
   const navigate = useNavigate();
   const [idValue, setId] = useState('');
   const [pwValue, setPw] = useState('');
-  const [activeBtn, setActiveBtn] = useState('.3');
-  const [disabledBtn, setDisabledBtn] = useState(true);
 
   const goToMain = () => {
     navigate('/Main-won');
@@ -14,27 +12,30 @@ export default function FormLogin(props) {
 
   const handleIdInput = event => {
     setId(event.target.value);
+    const loginBtn = document.querySelector('#login_btn');
+    if (event.target.value.includes('@') && pwValue.length > 5) {
+      loginBtn.style.opacity = 1;
+      loginBtn.style.cursor = 'pointer';
+    } else {
+      loginBtn.style.opacity = 0.3;
+      loginBtn.style.cursor = 'inherit';
+    }
   };
 
   const handlePwInput = event => {
     setPw(event.target.value);
-  };
-
-  const activeLoginBtn = () => {
-    // idValue.includes('@') && pwValue.length >= 5
-    //   ? setActiveBtn('1')
-    //   : setActiveBtn('.3');
-    if (idValue.includes('@') && pwValue.length >= 5) {
-      setActiveBtn('1');
-      setDisabledBtn(false);
+    const loginBtn = document.querySelector('#login_btn');
+    if (event.target.value.length > 5 && idValue.includes('@')) {
+      loginBtn.style.opacity = 1;
+      loginBtn.style.cursor = 'pointer';
     } else {
-      setActiveBtn('.3');
-      setDisabledBtn(true);
+      loginBtn.style.opacity = 0.3;
+      loginBtn.style.cursor = 'inherit';
     }
   };
 
   return (
-    <form action="" method="post" onKeyUp={activeLoginBtn}>
+    <form action="" method="post">
       <ul>
         <li>
           <input
@@ -42,6 +43,7 @@ export default function FormLogin(props) {
             type="text"
             placeholder="전화번호, 사용자 이름 또는 이메일"
             onChange={handleIdInput}
+            value={idValue}
           />
         </li>
         <li>
@@ -50,16 +52,11 @@ export default function FormLogin(props) {
             type="password"
             placeholder="비밀번호"
             onChange={handlePwInput}
+            value={pwValue}
           />
         </li>
         <li className="login_btn">
-          <button
-            type="button"
-            id="login_btn"
-            onClick={goToMain}
-            disabled={disabledBtn}
-            style={{ opacity: activeBtn }}
-          >
+          <button id="login_btn" onClick={goToMain}>
             로그인
           </button>
         </li>
