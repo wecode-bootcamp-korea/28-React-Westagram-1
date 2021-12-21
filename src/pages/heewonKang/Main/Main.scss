@@ -302,6 +302,10 @@ main {
             display: block;
             margin-bottom: 4px;
             color: $gray;
+
+            b {
+              font-weight: normal;
+            }
           }
 
           /* 댓글 리스트 */
@@ -354,8 +358,12 @@ main {
 
           .post_comment_btn {
             color: $blue;
-            opacity: 0.3;
+            opacity: 1;
             transition: opacity 0.3s;
+
+            &:disabled {
+              opacity: 0.3;
+            }
           }
         }
       }

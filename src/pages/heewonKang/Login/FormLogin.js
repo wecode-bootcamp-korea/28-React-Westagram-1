@@ -8,11 +8,7 @@ export default function FormLogin() {
   const [disableValue, setDisableValue] = useState(true);
 
   const goToMain = () => {
-    if (!disableValue) {
-      navigate('/Main-won');
-    } else {
-      alert('아이디 또는 비밀번호가 틀렸어요 🙋🏻‍♀️');
-    }
+    if (!disableValue) navigate('/Main-won');
   };
 
   const handleInput = event => {
