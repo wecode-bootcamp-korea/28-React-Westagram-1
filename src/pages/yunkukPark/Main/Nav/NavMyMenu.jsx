@@ -1,7 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-function NavMyMenu() {
+function NavMyMenu(props) {
+  const { isClick, myMenuButton, setIsClick } = props;
+
+  const handleDropdown = event => {
+    if (!isClick) return;
+    if (event.target !== myMenuButton.current) {
+      setIsClick(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', event => {
+      handleDropdown(event);
+    });
+
+    return () => {
+      document.removeEventListener('click', event => {
+        handleDropdown(event);
+      });
+    };
+  }, []);
+
   return (
     <>
       <div className="my-menu-layer" />

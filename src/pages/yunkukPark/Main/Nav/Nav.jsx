@@ -7,14 +7,6 @@ const Nav = () => {
   const handleClick = () => setIsClick(!isClick);
   const myMenuButton = useRef();
 
-  //TODO: 버그 발견 console을 찍어보면 여러개 찍힘 & document를 찍으면 click이 계속해서 true로 남아있음 기능 동작은 잘됨
-  document.addEventListener('click', event => {
-    if (!isClick) return;
-    if (event.target !== myMenuButton.current) {
-      setIsClick(false);
-    }
-  });
-
   return (
     <nav className="global-nav-bar">
       <div className="global-nav-wrapper">
@@ -46,7 +38,13 @@ const Nav = () => {
                 ref={myMenuButton}
               />
             </button>
-            {isClick && <NavMyMenu />}
+            {isClick && (
+              <NavMyMenu
+                isClick={isClick}
+                myMenuButton={myMenuButton}
+                setIsClick={setIsClick}
+              />
+            )}
           </div>
         </div>
       </div>
