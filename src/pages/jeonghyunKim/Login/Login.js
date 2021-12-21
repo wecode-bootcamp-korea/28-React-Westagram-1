@@ -16,11 +16,29 @@ function Login(props) {
   }, []);
 
   const checkInputValidate = () => {
-    if (inputIDValue.includes('@') && inputPWValue.length > 5) {
+    if (inputIDValue.includes('@') && inputPWValue.length >= 5) {
+      setValidateWhether(false);
       return true;
     } else {
+      setValidateWhether(true);
       return false;
     }
+  };
+
+  const inputHandler = event => {
+    const { name, value } = event.target;
+    switch (name) {
+      case 'inputID':
+        setInputID(value);
+        break;
+      case 'inputPW':
+        setInputPW(value);
+        break;
+      default:
+        return;
+    }
+
+    checkInputValidate();
   };
 
   const handleResize = () => {
@@ -30,10 +48,6 @@ function Login(props) {
       ? imgBox.classList.add('hide')
       : imgBox.classList.remove('hide');
   };
-
-  useEffect(() => {
-    checkInputValidate() ? setValidateWhether(false) : setValidateWhether(true);
-  }, [inputIDValue, inputPWValue]);
 
   const loginFunc = () => {
     if (checkInputValidate()) navigate('/main-hyun');
@@ -69,21 +83,23 @@ function Login(props) {
             <header>Westagram</header>
             <input
               className="inputID"
+              name="inputID"
               maxLength="75"
               type="text"
               required
               placeholder="전화번호, 사용자 이름 또는 이메일"
               value={inputIDValue}
-              onChange={e => setInputID(e.target.value)}
+              onChange={inputHandler}
               onKeyPress={enterLoginValidate}
             />
             <input
               className="inputPW"
+              name="inputPW"
               type="password"
               required
               placeholder="비밀번호"
               value={inputPWValue}
-              onChange={e => setInputPW(e.target.value)}
+              onChange={inputHandler}
               onKeyPress={enterLoginValidate}
             />
             <button
