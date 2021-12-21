@@ -99,14 +99,13 @@ body,
                     color: #fff;
                     font-weight: 600;
                     transition: opacity 0.4s;
-                    pointer-events: none;
-                    opacity: 0.3;
-                  }
-
-                  .active_login {
                     opacity: 1;
-                    pointer-events: all;
                     cursor: pointer;
+
+                    &:disabled {
+                      opacity: 0.3;
+                      cursor: inherit;
+                    }
                   }
                 }
               }

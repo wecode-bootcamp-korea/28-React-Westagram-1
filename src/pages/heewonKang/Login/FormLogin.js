@@ -1,41 +1,33 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function FormLogin() {
   const navigate = useNavigate();
   const [idValue, setId] = useState('');
   const [pwValue, setPw] = useState('');
+  const [disableValue, setDisableValue] = useState(true);
 
-  // 막혔어요 ^^..
   const goToMain = () => {
-    if (handleIdInput && handlePwInput) {
+    if (!disableValue) {
       navigate('/Main-won');
     } else {
       alert('아이디 또는 비밀번호가 틀렸어요 🙋🏻‍♀️');
     }
   };
 
-  const handleIdInput = event => {
-    const { value } = event.target;
-    setId(value);
-    const loginBtn = document.querySelector('#login_btn');
-    if (value.includes('@') && pwValue.length > 5) {
-      loginBtn.classList.add('active_login');
-    } else {
-      loginBtn.classList.remove('active_login');
-    }
+  const handleInput = event => {
+    const { id, value } = event.target;
+    if (id === 'login_id') setId(value);
+    if (id === 'login_pw') setPw(value);
   };
 
-  const handlePwInput = event => {
-    const { value } = event.target;
-    setPw(value);
-    const loginBtn = document.querySelector('#login_btn');
-    if (value.length > 5 && idValue.includes('@')) {
-      loginBtn.classList.add('active_login');
+  useEffect(() => {
+    if (idValue.includes('@') && pwValue.length > 5) {
+      setDisableValue(false);
     } else {
-      loginBtn.classList.remove('active_login');
+      setDisableValue(true);
     }
-  };
+  }, [idValue, pwValue]);
 
   return (
     <form>
@@ -45,7 +37,7 @@ export default function FormLogin() {
             id="login_id"
             type="text"
             placeholder="전화번호, 사용자 이름 또는 이메일"
-            onChange={handleIdInput}
+            onChange={handleInput}
           />
         </li>
         <li>
@@ -53,11 +45,11 @@ export default function FormLogin() {
             id="login_pw"
             type="password"
             placeholder="비밀번호"
-            onChange={handlePwInput}
+            onChange={handleInput}
           />
         </li>
         <li className="login_btn">
-          <button id="login_btn" onClick={goToMain}>
+          <button id="login_btn" onClick={goToMain} disabled={disableValue}>
             로그인
           </button>
         </li>
