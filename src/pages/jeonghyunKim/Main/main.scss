@@ -771,3 +771,19 @@ body {
   padding: 0;
   content: '·';
 }
+
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  .mainLeft {
+    max-width: 605px;
+    width: 100%;
+  }
+  .mainRight {
+    position: relative;
+    .sideBar {
+      position: fixed;
+    }
+  }
+}

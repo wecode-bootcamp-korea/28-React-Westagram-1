@@ -15,6 +15,14 @@ function Login(props) {
     };
   }, []);
 
+  const checkInputValidate = () => {
+    if (inputIDValue.includes('@') && inputPWValue.length > 5) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const handleResize = () => {
     const imgBox = document.querySelector('#imgBox');
     if (window.innerWidth <= 735) {
@@ -27,7 +35,7 @@ function Login(props) {
   useEffect(() => {
     const loginBtn = document.querySelector('.loginBtn');
 
-    inputIDValue.includes('@') && inputPWValue.length >= 5
+    checkInputValidate()
       ? (() => {
           loginBtn.style.backgroundColor = 'rgba(var(--d69,0,149,246),1)';
           loginBtn.style.cursor = 'pointer';
@@ -41,12 +49,10 @@ function Login(props) {
   }, [inputIDValue, inputPWValue]);
 
   const loginFunc = () => {
-    if (inputIDValue.includes('@') && inputPWValue.length >= 5) {
-      // 서버로 입력값을 전달한다.
-      // 서버의 응답에 따라 메인 페이지로 이동하거나, alert를 발생시킨다.
-      // window.location.href='main.html'
-      navigate('/main-hyun');
-    }
+    if (checkInputValidate()) navigate('/main-hyun');
+    // 서버로 입력값을 전달한다.
+    // 서버의 응답에 따라 메인 페이지로 이동하거나, alert를 발생시킨다.
+    // window.location.href='main.html'
   };
 
   const enterLoginValidate = event => {
