@@ -22,10 +22,8 @@ function Login(props) {
   const checkInputValidate = () => {
     if (inputIDValue.includes('@') && inputPWValue.length >= 5) {
       setValidateWhether(false);
-      return true;
     } else {
       setValidateWhether(true);
-      return false;
     }
   };
 
@@ -52,7 +50,7 @@ function Login(props) {
   };
 
   const loginFunc = () => {
-    if (checkInputValidate()) navigate('/main-hyun');
+    if (!validateWhether) navigate('/main-hyun');
     // 서버로 입력값을 전달한다.
     // 서버의 응답에 따라 메인 페이지로 이동하거나, alert를 발생시킨다.
     // window.location.href='main.html'
