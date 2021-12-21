@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Recommandation from '../Recommandation/Recommendation';
+import Recommendation from '../Recommendation/Recommendation';
 import UserProfile from '../UserProfile/UserProfile';
 
 const MainRight = () => {
@@ -28,7 +28,7 @@ const MainRight = () => {
   return (
     <aside className="main-right" style={{ left: `${mainRightLeft}px` }}>
       <UserProfile />
-      <Recommandation />
+      <Recommendation />
     </aside>
   );
 };
