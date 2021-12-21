@@ -9,24 +9,15 @@ import MainSideBar from './MainSideBar';
 import './main.scss';
 
 function Main(props) {
-  const [feedData, setFeedData] = useState([
-    [
-      {
-        feedID: 1,
-        feedOwner: 'KJH',
-        feedOwnerLocation: '서울 강서구',
-        feedContentsComment: '하하!',
-      },
-      {
-        feedID: 2,
-        feedOwner: 'PARK',
-        feedOwnerLocation: '서울 강서구',
-        feedContentsComment: '하하!asdfaslkfsjdlfjlaksdfjlkasdjlfkjlsdfj',
-      },
-    ],
-  ]);
+  const [feedData, setFeedData] = useState([]);
 
   useEffect(() => {
+    fetch('http://localhost:3000/data/feedData.json', { method: 'GET' })
+      .then(res => res.json())
+      .then(data => {
+        setFeedData(data);
+      });
+
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -71,9 +62,7 @@ function Main(props) {
           <article id="feedContainer">
             <MainFeedFriends />
             {feedData.map(item => {
-              return item.map(item => {
-                return <FeedComponent key={item.feedOwner} feedItem={item} />;
-              });
+              return <FeedComponent key={item.userName} feedItem={item} />;
             })}
           </article>
           <MainSideBar />

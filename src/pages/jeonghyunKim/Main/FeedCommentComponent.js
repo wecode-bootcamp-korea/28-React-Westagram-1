@@ -11,14 +11,20 @@ export default function FeedCommentComponent({
 }) {
   const likeClick = event => {
     event.preventDefault();
-    event.target.parentNode.classList.toggle('active');
+    const { parentNode } = event.target;
+    parentNode.classList.toggle('active');
   };
 
   const removeComment = event => {
     event.preventDefault();
+    const { parentNode } = event.target;
+    const removeCommentIndex = parseInt(parentNode.getAttribute('name'));
     const removedCommentList = [...commentData];
-    removedCommentList.splice(event.target.parentNode.getAttribute('name'), 1);
-    setCommentData(removedCommentList);
+    const updatedCommentList = removedCommentList.filter(
+      item => item.id !== removeCommentIndex
+    );
+
+    setCommentData(updatedCommentList);
   };
   return (
     <span name={commentKey}>
@@ -36,7 +42,7 @@ export default function FeedCommentComponent({
           icon={faHeart}
           onClick={likeClick}
         />
-      )}{' '}
+      )}
       <span id="removeBtn" onClick={removeComment}>
         삭제
       </span>

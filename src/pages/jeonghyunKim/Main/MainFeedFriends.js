@@ -34,18 +34,20 @@ export default function MainFeedFriends(props) {
 
   const friendsFeedScroll = event => {
     const ulWidth = document.querySelector('#friendsFeedUl').scrollWidth;
-    const scrollEndPos = ulWidth - event.target.clientWidth;
-    const scrollLeft = Math.floor(event.target.scrollLeft);
+    const { clientWidth, scrollLeft } = event.target;
+
+    const targetScrollEndPos = ulWidth - clientWidth;
+    const targetScrollLeft = Math.floor(scrollLeft);
     const prevBtn = document.querySelector('#friendsFeedPrev');
     const nextBtn = document.querySelector('#friendsFeedNext');
 
-    if (scrollLeft === 0) {
+    if (targetScrollLeft === 0) {
       prevBtn.style.visibility = 'hidden';
       nextBtn.style.visibility = 'visible';
-    } else if (scrollLeft === scrollEndPos) {
+    } else if (targetScrollLeft === targetScrollEndPos) {
       prevBtn.style.visibility = 'visible';
       nextBtn.style.visibility = 'hidden';
-    } else if (scrollLeft > 0 && scrollLeft < scrollEndPos) {
+    } else if (targetScrollLeft > 0 && scrollLeft < targetScrollEndPos) {
       prevBtn.style.visibility = 'visible';
       nextBtn.style.visibility = 'visible';
     }

@@ -38,7 +38,7 @@ export default function FeedComponent({ feedItem }) {
   useEffect(() => {
     const feedContentsReduce = async () => {
       const feedContentsCommentBody = document.getElementsByName(
-        'feedContentsCommentBody' + feedItem.feedID
+        'feedContentsCommentBody' + feedItem.id
       )[0];
 
       let temp = [];
@@ -58,7 +58,7 @@ export default function FeedComponent({ feedItem }) {
       await setFeedOriginState();
     };
     feedContentsReduce();
-  }, [feedItem.feedID]);
+  }, [feedItem.id]);
 
   useEffect(() => {
     for (let i = 0; i < feedImgDotContainerRef.current.children.length; i++) {
@@ -75,23 +75,24 @@ export default function FeedComponent({ feedItem }) {
   const feedExtendContents = event => {
     event.preventDefault();
     const extendBtn = document.getElementsByName(
-      'feedExtendContents' + feedItem.feedID
+      'feedExtendContents' + feedItem.id
     )[0];
 
     extendBtn.style.display = 'none';
     const feedContentsCommentBody = document.getElementsByName(
-      'feedContentsCommentBody' + feedItem.feedID
+      'feedContentsCommentBody' + feedItem.id
     )[0];
     feedContentsCommentBody.innerHTML = feedOriginContent;
   };
 
   const onChangeFeedComment = event => {
     event.preventDefault();
+    const { value } = event.target;
     const inputCommentsSubmitBtn = document.getElementsByName(
-      'inputCommentsSubmitBtn' + feedItem.feedID
+      'inputCommentsSubmitBtn' + feedItem.id
     )[0];
 
-    if (event.target.value.replace(/(^\s*)|(\s*$)/gi, '')) {
+    if (value.replace(/(^\s*)|(\s*$)/gi, '')) {
       inputCommentsSubmitBtn.style.opacity = 1;
       inputCommentsSubmitBtn.style.cursor = 'pointer';
     } else {
@@ -109,10 +110,10 @@ export default function FeedComponent({ feedItem }) {
   const addFeedComment = event => {
     event.preventDefault();
     const inputCommentsSubmitBtn = document.getElementsByName(
-      'inputCommentsSubmitBtn' + feedItem.feedID
+      'inputCommentsSubmitBtn' + feedItem.id
     )[0];
     const inputCommentsTextArea = document.getElementsByName(
-      'inputCommentsTextarea' + feedItem.feedID
+      'inputCommentsTextarea' + feedItem.id
     )[0];
 
     let inputComments = inputCommentsTextArea.value.replace(/\n/g, '');
@@ -137,10 +138,9 @@ export default function FeedComponent({ feedItem }) {
   };
 
   const checkFeedImgPosition = event => {
-    feedImgUlRef.current.style.scrollLeft = event.target.scrollLeft;
-    setFeedImgDotPosition(
-      Math.floor(Math.floor(event.target.scrollLeft) / 603)
-    );
+    const { scrollLeft } = event.target;
+    feedImgUlRef.current.style.scrollLeft = scrollLeft;
+    setFeedImgDotPosition(Math.floor(Math.floor(scrollLeft) / 603));
   };
 
   const feedImgPrev = event => {
@@ -178,8 +178,8 @@ export default function FeedComponent({ feedItem }) {
         <div id="feedProfileInfo">
           <div id="feedProfileImg" />
           <div id="feedProfileDetail">
-            <a href="#!">{feedItem.feedOwner}</a>
-            <a href="#!">{feedItem.feedOwnerLocation}</a>
+            <a href="#!">{feedItem.userName}</a>
+            <a href="#!">{feedItem.userLocation}</a>
           </div>
         </div>
         <div id="feedProfileBtn">
@@ -258,17 +258,17 @@ export default function FeedComponent({ feedItem }) {
       <section id="feedContents">
         <div id="feedContentsBox">
           <span id="feedContentsComment">
-            <span id="feedContentsBold">{feedItem.feedOwner}</span>
+            <span id="feedContentsBold">{feedItem.userName}</span>
             <span
               id="feedContentsCommentBody"
-              name={'feedContentsCommentBody' + feedItem.feedID}
+              name={'feedContentsCommentBody' + feedItem.id}
             >
-              {feedItem.feedContentsComment}
+              {feedItem.feedComment}
             </span>
           </span>
           <button
             id="feedExtendContents"
-            name={'feedExtendContents' + feedItem.feedID}
+            name={'feedExtendContents' + feedItem.id}
             onClick={feedExtendContents}
           >
             더 보기
@@ -276,7 +276,7 @@ export default function FeedComponent({ feedItem }) {
         </div>
       </section>
       <section id="feedComments">
-        <div id="feedCommentsBox" name={'feedCommentsBox' + feedItem.feedID}>
+        <div id="feedCommentsBox" name={'feedCommentsBox' + feedItem.id}>
           {commentData.length < 3 ? null : viewAllCommentFlag ? (
             <div className="feedCommentsViewHideBtn" onClick={hideComments}>
               Hide Comments
@@ -295,7 +295,7 @@ export default function FeedComponent({ feedItem }) {
             .map((item, index) => {
               return (
                 <FeedCommentComponent
-                  feedID={feedItem.feedID}
+                  id={feedItem.id}
                   key={index}
                   commentKey={item.id}
                   commentEach={item}
@@ -319,7 +319,7 @@ export default function FeedComponent({ feedItem }) {
           <div id="inputCommentsType">
             <textarea
               id="inputCommentsTextarea"
-              name={'inputCommentsTextarea' + feedItem.feedID}
+              name={'inputCommentsTextarea' + feedItem.id}
               placeholder="댓글 달기..."
               onChange={onChangeFeedComment}
               onKeyPress={enterFeedComment}
@@ -328,7 +328,7 @@ export default function FeedComponent({ feedItem }) {
           <div id="inputCommentsSubmit">
             <button
               id="inputCommentsSubmitBtn"
-              name={'inputCommentsSubmitBtn' + feedItem.feedID}
+              name={'inputCommentsSubmitBtn' + feedItem.id}
               onClick={addFeedComment}
             >
               게시
