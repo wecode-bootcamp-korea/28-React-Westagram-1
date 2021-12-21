@@ -1,39 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import './Main.scss';
 import '../../../styles/common.scss';
 import '../../../styles/index.scss';
 import myImg from '../../../assets/images/myImg.jpeg';
+import MainNav from './MainNav';
+// import Comment from './Comment';
 // Import {FontAwesomeIcon} from ""
 
-// export default function Main(props) {
-//   return <></>;
-// }
-
 export default function Main(props) {
+  const [, setCommentText] = useState('');
+  // const Comment = React.Component => {
+
+  // }
+
+  const addComment = event => {
+    setCommentText {value} = event.target;
+    const submit_reply = document.querySelector('.submitBtn');
+  };
+  // ?????????????????????
+
+  addComment = () => {
+    const setCommentText = this.state.commentText;
+    // ???????????????
+    this.setState({ newReply: target.value });
+    this.setState({});
+  };
+
+  // const submitClick = event => {
+  //   event.preventDefault();
+  // };
+
   return (
-    <main>
-      <header>
-        <nav>
-          <div className="nav_wrap">
-            <div className="logo_box">
-              <h1 className="logo">Westagram</h1>
-            </div>
-            <div className="search_box">
-              <input
-                type="text"
-                id="search"
-                className="fontawesome"
-                placeholder="&#xf002; 검색"
-              />
-            </div>
-            <div className="icons_box">
-              <i className="far fa-compass" />
-              <i className="far fa-heart" />
-              <i className="far fa-user" />
-            </div>
-          </div>
-        </nav>
-      </header>
+    <main className="main">
+      <MainNav />
       <div className="mainWrap">
         <section>
           <div className="story_box">
@@ -160,7 +160,8 @@ export default function Main(props) {
                         <p>내용내용내용내용</p>
                       </div>
                       <div className="post_reply">
-                        <ul className="reply_wrap" />
+                        <ul className="reply_wrap">
+                        </ul>
                       </div>
                       <div className="post_created_at">
                         <p>42분 전</p>
@@ -168,10 +169,16 @@ export default function Main(props) {
                     </div>
                     <div className="post_reply_wrap">
                       <textarea
-                        placeholder="댓글 달기..."
                         className="write_reply"
+                        placeholder="댓글 달기..."
+                        onChange={this.addComment}
+                        onKeyPress={this.enterPress}
+                        // value={}
                       />
-                      <button className="submit_reply" disabled>
+                      <button
+                        className="submit_reply"
+                        onClick={this.submitClick}
+                      >
                         게시
                       </button>
                     </div>
@@ -179,7 +186,7 @@ export default function Main(props) {
                 </div>
               </div>
             </article>
-            <article>
+            {/* <article>
               <div className="post_wrap">
                 <div className="post_header">
                   <div className="post_account">
@@ -244,8 +251,8 @@ export default function Main(props) {
                   </div>
                 </div>
               </div>
-            </article>
-            <article>
+            </article> */}
+            {/* <article>
               <div className="post_wrap">
                 <div className="post_header">
                   <div className="post_account">
@@ -310,7 +317,7 @@ export default function Main(props) {
                   </div>
                 </div>
               </div>
-            </article>
+            </article> */}
           </div>
         </section>
         <aside>
@@ -343,7 +350,7 @@ export default function Main(props) {
                     />
                   </div>
                   <div className="recommend_id">
-                    <a href="#!">아이디</a>
+                    <a href="#!">rlaydtjs</a>
                     <p>회원님을 위한 추천</p>
                   </div>
                   <div>
@@ -361,7 +368,61 @@ export default function Main(props) {
                     />
                   </div>
                   <div className="recommend_id">
-                    <a href="#!">아이디</a>
+                    <a href="#!">rlaydtjs</a>
+                    <p>회원님을 위한 추천</p>
+                  </div>
+                  <div>
+                    <button className="change_account_btn follow_btn">
+                      팔로우
+                    </button>
+                  </div>
+                </div>
+                <div className="aside_recommend_account">
+                  <div className="recommend_profile">
+                    <img
+                      src={myImg}
+                      className="recommend_photo"
+                      alt="내 프로필"
+                    />
+                  </div>
+                  <div className="recommend_id">
+                    <a href="#!">rlaydtjs</a>
+                    <p>회원님을 위한 추천</p>
+                  </div>
+                  <div>
+                    <button className="change_account_btn follow_btn">
+                      팔로우
+                    </button>
+                  </div>
+                </div>
+                <div className="aside_recommend_account">
+                  <div className="recommend_profile">
+                    <img
+                      src={myImg}
+                      className="recommend_photo"
+                      alt="내 프로필"
+                    />
+                  </div>
+                  <div className="recommend_id">
+                    <a href="#!">rlaydtjs</a>
+                    <p>회원님을 위한 추천</p>
+                  </div>
+                  <div>
+                    <button className="change_account_btn follow_btn">
+                      팔로우
+                    </button>
+                  </div>
+                </div>
+                <div className="aside_recommend_account">
+                  <div className="recommend_profile">
+                    <img
+                      src={myImg}
+                      className="recommend_photo"
+                      alt="내 프로필"
+                    />
+                  </div>
+                  <div className="recommend_id">
+                    <a href="#!">rlaydtjs</a>
                     <p>회원님을 위한 추천</p>
                   </div>
                   <div>

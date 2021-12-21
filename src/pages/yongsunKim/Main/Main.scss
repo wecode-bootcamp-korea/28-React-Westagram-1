@@ -1,14 +1,17 @@
-// @import url('http://fonts.cdnfonts.com/css/billabong');
-// font-family : 'Billabong', sans-serif
-
 html,
-main {
+body {
+  width: 100%;
   height: 100%;
   margin: 0;
+}
+
+main.main {
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  background-color: #fafafa;
 }
 
 a {
@@ -25,7 +28,7 @@ p {
   margin: 0;
 }
 
-main {
+.main {
   header {
     height: 50px;
     nav {
@@ -50,6 +53,7 @@ main {
         .logo_box {
           max-width: 360px;
           width: 100%;
+          text-align: left;
           .h1 {
             font-family: 'Lobster', cursive;
             font-size: 1.6rem;
@@ -81,16 +85,16 @@ main {
     }
   }
   .mainWrap {
+    position: relative;
     width: 100%;
-    padding-top: 30px;
+    margin-top: 20px;
+    padding-top: 70px;
     display: flex;
-    flex-direction: row;
     justify-items: flex-start;
     justify-content: center;
     section {
       width: 642px;
       padding-right: 28px;
-      position: relative;
       .story_box {
         width: 100%;
         height: 118px;
@@ -118,22 +122,22 @@ main {
               :last-child {
                 margin-right: 10px;
               }
-            }
-            .story_border {
-              width: 60px;
-              height: 60px;
-              border-radius: 50%;
-              background-color: #fff;
-              justify-content: center;
-              align-items: center;
-              line-height: 60px;
+              .story_border {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                background-color: #fff;
+                justify-content: center;
+                align-items: center;
+                line-height: 60px;
+              }
             }
           }
         }
         ul.story {
           li.story_list {
             .story_border {
-              img.story_profle {
+              img.story_profile {
                 width: 56px;
                 height: 56px;
                 border: 1px solid #dbdbdb;
@@ -141,6 +145,8 @@ main {
                 vertical-align: middle;
               }
               a {
+                z-index: 10000;
+                color: black;
                 max-width: 76px;
                 font-size: 0.7rem;
                 overflow: hidden;
@@ -153,10 +159,11 @@ main {
       }
     }
     .post_box {
+      // margin-top: 300px;
       article {
         margin-bottom: 24px;
         width: 100%;
-        height: auto;
+        // height: auto;
         border: 1px solid #efefef;
         background-color: #fff;
         .post_wrap {
@@ -194,15 +201,13 @@ main {
           width: 100%;
           height: 100%;
           .post_photo_wrap {
-            height: 20px;
             overflow: hidden;
-            position: relative;
             .post_photo_container {
               display: flex;
               img.post_photos {
                 width: inherit;
-                max-width: 100%;
-                height: 50%;
+                width: 100%;
+                height: 80%;
                 display: block;
               }
             }
@@ -278,12 +283,13 @@ main {
     }
   }
   aside {
+    // position: fixed;
     width: 293px;
     height: 400px;
-    top: 0;
+    right: 40px;
     .aside_wrap {
-      position: absolute;
-      top: 15%;
+      position: fixed;
+      top: 10%;
       width: inherit;
       .aside_account {
         margin-top: 16px;
@@ -326,11 +332,11 @@ main {
           margin: 0 auto;
           padding: 0;
           padding-left: 8px;
-          background-color: #fff;
           border: 0;
           color: #0095f6;
           font-size: 0.77rem;
           font-weight: 800;
+          text-align: center;
         }
       }
     }
