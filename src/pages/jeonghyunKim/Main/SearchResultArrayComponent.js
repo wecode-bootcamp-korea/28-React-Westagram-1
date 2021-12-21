@@ -1,7 +1,7 @@
-export default function SearchResultArrayComponent(props) {
+export default function SearchResultArrayComponent({ searchResult }) {
   return (
     <>
-      {props.searchResult.map(value => {
+      {searchResult.map(value => {
         return <span key={value.id}>{value.id}</span>;
       })}
     </>
