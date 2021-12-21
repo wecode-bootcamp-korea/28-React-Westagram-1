@@ -1,41 +1,44 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function FormLogin(props) {
+export default function FormLogin() {
   const navigate = useNavigate();
   const [idValue, setId] = useState('');
   const [pwValue, setPw] = useState('');
 
+  // 막혔어요 ^^..
   const goToMain = () => {
-    navigate('/Main-won');
+    if (handleIdInput && handlePwInput) {
+      navigate('/Main-won');
+    } else {
+      alert('아이디 또는 비밀번호가 틀렸어요 🙋🏻‍♀️');
+    }
   };
 
   const handleIdInput = event => {
-    setId(event.target.value);
+    const { value } = event.target;
+    setId(value);
     const loginBtn = document.querySelector('#login_btn');
-    if (event.target.value.includes('@') && pwValue.length > 5) {
-      loginBtn.style.opacity = 1;
-      loginBtn.style.cursor = 'pointer';
+    if (value.includes('@') && pwValue.length > 5) {
+      loginBtn.classList.add('active_login');
     } else {
-      loginBtn.style.opacity = 0.3;
-      loginBtn.style.cursor = 'inherit';
+      loginBtn.classList.remove('active_login');
     }
   };
 
   const handlePwInput = event => {
-    setPw(event.target.value);
+    const { value } = event.target;
+    setPw(value);
     const loginBtn = document.querySelector('#login_btn');
-    if (event.target.value.length > 5 && idValue.includes('@')) {
-      loginBtn.style.opacity = 1;
-      loginBtn.style.cursor = 'pointer';
+    if (value.length > 5 && idValue.includes('@')) {
+      loginBtn.classList.add('active_login');
     } else {
-      loginBtn.style.opacity = 0.3;
-      loginBtn.style.cursor = 'inherit';
+      loginBtn.classList.remove('active_login');
     }
   };
 
   return (
-    <form action="" method="post">
+    <form>
       <ul>
         <li>
           <input
@@ -43,7 +46,6 @@ export default function FormLogin(props) {
             type="text"
             placeholder="전화번호, 사용자 이름 또는 이메일"
             onChange={handleIdInput}
-            value={idValue}
           />
         </li>
         <li>
@@ -52,7 +54,6 @@ export default function FormLogin(props) {
             type="password"
             placeholder="비밀번호"
             onChange={handlePwInput}
-            value={pwValue}
           />
         </li>
         <li className="login_btn">

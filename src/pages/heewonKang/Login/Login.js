@@ -1,7 +1,7 @@
 import FormLogin from './FormLogin';
 import './Login.scss';
 
-export default function Login(props) {
+export default function Login() {
   return (
     <div className="login_body">
       <div id="container" className="login_container">
