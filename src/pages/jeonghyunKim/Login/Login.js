@@ -15,6 +15,10 @@ function Login(props) {
     };
   }, []);
 
+  useEffect(() => {
+    checkInputValidate();
+  }, [inputIDValue, inputPWValue]);
+
   const checkInputValidate = () => {
     if (inputIDValue.includes('@') && inputPWValue.length >= 5) {
       setValidateWhether(false);
@@ -37,8 +41,6 @@ function Login(props) {
       default:
         return;
     }
-
-    checkInputValidate();
   };
 
   const handleResize = () => {
