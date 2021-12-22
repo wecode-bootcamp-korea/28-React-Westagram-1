@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.scss';
 
-const Login = () => {
-  const API_URL = 'https://westagram-signup.herokuapp.com/login';
-
-  // 들어와야할 값 4가지 email, name, username, password
+const SignUp = () => {
+  const API_URL = 'https://westagram-signup.herokuapp.com/signup';
 
   const navigate = useNavigate();
   const [id, setId] = useState('');
@@ -49,9 +47,14 @@ const Login = () => {
     }
   };
 
-  const goToMain = () => {
-    const isValided = validateLogin();
-    if (isValided) {
+  const goToLogin = () => {
+    // const isValided = validateLogin();
+    navigate('/login-kuk');
+  };
+
+  const doSignup = () => {
+    const isValid = validateLogin();
+    if (isValid) {
       fetch(API_URL, {
         method: 'POST',
         body: JSON.stringify({
@@ -62,15 +65,10 @@ const Login = () => {
         .then(res => res.json())
         .then(data => {
           const { message, token } = data;
-          if (message === 'invalid user input') {
-            alert('꺼져 이방인');
-            return;
+          if (message === 'signup success') {
+            goToLogin();
           }
-
-          if (message === 'login success') {
-            localStorage.setItem('user_token', token);
-            navigate('/main-kuk');
-          }
+          if (message !== 'signup success') alert('꺼져');
         });
     }
   };
@@ -105,16 +103,16 @@ const Login = () => {
             }}
             value={password}
             onKeyDown={event => {
-              if (event.code === 'Enter') goToMain();
+              if (event.code === 'Enter') doSignup();
             }}
           />
           <button
             className="login-button"
             type="button"
             disabled={buttonSwitch}
-            onClick={goToMain}
+            onClick={doSignup}
           >
-            로그인
+            회원가입
           </button>
         </div>
 
@@ -124,4 +122,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
