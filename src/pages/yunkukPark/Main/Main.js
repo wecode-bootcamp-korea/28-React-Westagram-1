@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Main.scss';
 import Nav from './Nav/Nav';
 import MainLeft from './MainLeft/MainLeft';
@@ -9,8 +9,8 @@ const Main = () => {
   const USER_INFO_URL = 'https://westagram-signup.herokuapp.com/profile';
   const userToken = localStorage.getItem('user_token');
   const navigate = useNavigate();
+  const [userName, setUserName] = useState('');
 
-  // Validate Effect
   useEffect(() => {
     fetch(USER_INFO_URL, {
       method: 'GET',
@@ -19,22 +19,28 @@ const Main = () => {
       },
     })
       .then(res => res.json())
-      .then(data => {
-        if (!data.id) {
-          alert('꺼져 이방인!');
-          navigate('/login-kuk');
-        }
-      });
-  }, [userToken, navigate]);
+      .then(data => setUserName(data.username));
+  }, [userToken]);
+
+  const doKickAss = path => {
+    navigate(path);
+    alert('가라 이방인');
+  };
+
+  if (userToken) {
+    return (
+      <div className="home-container">
+        <Nav />
+        <main>
+          <MainLeft userName={userName} />
+          <MainRight userName={userName} />
+        </main>
+      </div>
+    );
+  }
 
   return (
-    <div className="home-container">
-      <Nav />
-      <main>
-        <MainLeft />
-        <MainRight />
-      </main>
-    </div>
+    <div className="home-container">가라 이방인{doKickAss('/login-kuk')}</div>
   );
 };
 
