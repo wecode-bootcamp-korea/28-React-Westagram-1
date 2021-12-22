@@ -31,7 +31,7 @@ export default function Login(props) {
 
   const btnClick = event => {
     event.preventDefault();
-    navigate('/main');
+    navigate('/main-sun');
   };
 
   return (

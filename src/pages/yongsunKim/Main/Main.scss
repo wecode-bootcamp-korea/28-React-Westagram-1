@@ -31,6 +31,7 @@ p {
 .main {
   header {
     height: 50px;
+
     nav {
       background-color: #fff;
       border-bottom: 1px solid #dbdbdb;
@@ -39,6 +40,7 @@ p {
       left: 0;
       right: 0;
       z-index: 3;
+
       .nav_wrap {
         width: 100%;
         max-width: 975px;
@@ -50,20 +52,24 @@ p {
         align-items: center;
         justify-content: space-evenly;
         position: relative;
+
         .logo_box {
           max-width: 360px;
           width: 100%;
           text-align: left;
+
           .h1 {
             font-family: 'Lobster', cursive;
             font-size: 1.6rem;
             color: #000;
           }
         }
+
         .search_box {
           width: 100%;
           max-width: 268px;
           height: 36px;
+
           input#search.fontawesome {
             width: 100%;
             height: 100%;
@@ -74,6 +80,7 @@ p {
             font-family: FontAwesome;
           }
         }
+
         .icons_box {
           width: 100%;
           max-width: 360px;
@@ -84,6 +91,7 @@ p {
       }
     }
   }
+
   .mainWrap {
     position: relative;
     width: 100%;
@@ -92,9 +100,11 @@ p {
     display: flex;
     justify-items: flex-start;
     justify-content: center;
+
     section {
       width: 642px;
       padding-right: 28px;
+
       .story_box {
         width: 100%;
         height: 118px;
@@ -102,13 +112,16 @@ p {
         border: 1px solid #dbdbdb;
         padding: 16px 0;
         background-color: #fff;
+
         .story_wrap {
           overflow: hidden;
+
           ul {
             height: 84px;
             display: flex;
             flex-direction: row;
             position: relative;
+
             li.story_list {
               min-width: 80px;
               height: 100%;
@@ -116,12 +129,15 @@ p {
               display: flex;
               flex-direction: column;
               justify-content: space-between;
+
               :first-child {
                 margin-left: 10px;
               }
+
               :last-child {
                 margin-right: 10px;
               }
+
               .story_border {
                 width: 60px;
                 height: 60px;
@@ -134,6 +150,7 @@ p {
             }
           }
         }
+
         ul.story {
           li.story_list {
             .story_border {
@@ -144,6 +161,7 @@ p {
                 border-radius: 75%;
                 vertical-align: middle;
               }
+
               a {
                 z-index: 10000;
                 color: black;
@@ -158,14 +176,15 @@ p {
         }
       }
     }
+
     .post_box {
-      // margin-top: 300px;
       article {
         margin-bottom: 24px;
         width: 100%;
         // height: auto;
         border: 1px solid #efefef;
         background-color: #fff;
+
         .post_wrap {
           .post_header {
             height: 60px;
@@ -173,6 +192,7 @@ p {
             vertical-align: middle;
             display: flex;
             justify-content: space-between;
+
             .post_account {
               img.post_profile {
                 width: 32px;
@@ -180,6 +200,7 @@ p {
                 border-radius: 50%;
                 vertical-align: middle;
               }
+
               a {
                 margin-left: 14px;
                 vertical-align: middle;
@@ -188,6 +209,7 @@ p {
                 color: #262626;
               }
             }
+
             .post_info {
               vertical-align: middle;
               justify-content: center;
@@ -197,13 +219,17 @@ p {
             }
           }
         }
+
         .post_body {
           width: 100%;
           height: 100%;
+
           .post_photo_wrap {
             overflow: hidden;
+
             .post_photo_container {
               display: flex;
+
               img.post_photos {
                 width: inherit;
                 width: 100%;
@@ -212,6 +238,7 @@ p {
               }
             }
           }
+
           .post_footer {
             .post_icons_wrap {
               width: 100%;
@@ -222,40 +249,49 @@ p {
               justify-items: center;
               vertical-align: middle;
             }
+
             .post_content_wrap {
               padding-left: 16px;
               padding-right: 16px;
+
               .post_likes {
                 text-align: left;
                 height: 27px;
                 font-size: 0.875rem;
                 font-weight: 600;
               }
+
               .post_content {
                 text-align: left;
+
                 a {
                   font-size: 0.8rem;
                   font-weight: 600;
                 }
+
                 p {
                   display: inline;
                   font-size: 0.8rem;
                 }
               }
+
               .post_created_at {
                 text-align: left;
                 padding: 8px 0 20px 0;
+
                 p {
                   font-size: 0.6rem;
                   color: #8e8e8e;
                 }
               }
             }
+
             .post_reply_wrap {
               padding: 5px 16px;
               border-top: 1px solid #efefef;
               display: flex;
               vertical-align: middle;
+
               textarea.write_reply {
                 resize: none;
                 width: 100%;
@@ -270,6 +306,7 @@ p {
                 font-family: inherit;
                 font-size: 0.88rem;
               }
+
               button.submit_reply {
                 min-width: 40px;
                 color: rgba(0, 149, 246, 0.3);
@@ -282,20 +319,24 @@ p {
       }
     }
   }
+
   aside {
     // position: fixed;
     width: 293px;
     height: 400px;
     right: 40px;
+
     .aside_wrap {
       position: fixed;
       top: 10%;
       width: inherit;
+
       .aside_account {
         margin-top: 16px;
         display: flex;
         align-items: center;
         vertical-align: middle;
+
         .aside_profile {
           width: 55px;
           height: 55px;
@@ -304,6 +345,7 @@ p {
           border-radius: 50%;
           justify-content: center;
           align-items: center;
+
           .account_photo {
             width: 55px;
             height: 55px;
@@ -311,8 +353,10 @@ p {
             vertical-align: middle;
           }
         }
+
         .aside_id {
           width: 195px;
+
           p {
             text-align: left;
             font-size: 0.8rem;
@@ -328,6 +372,7 @@ p {
             }
           }
         }
+
         button.change_account_btn {
           margin: 0 auto;
           padding: 0;
@@ -340,6 +385,7 @@ p {
         }
       }
     }
+
     .aside_recommend {
       .aside_recommend_header {
         height: 35px;
@@ -348,63 +394,77 @@ p {
         vertical-align: middle;
         line-height: 52px;
         font-weight: 700;
+
         span:first-child {
           font-size: 0.85rem;
           color: #8e8e8e;
         }
+
         span:last-child {
           font-size: 0.77rem;
           color: #262626;
         }
       }
+
       .aside_recommend_body {
         padding: 12px 0 12px 6px;
+
         .aside_recommend_account {
           display: flex;
           align-items: center;
           padding: 4px 0;
+
           .recommend_profile {
             width: 44px;
             height: 40px;
             display: flex;
             align-items: center;
+
             .recommend_photo {
               width: 32px;
               height: 32px;
               border-radius: 50%;
             }
           }
+
           .recommend_id {
             text-align: left;
             width: 200px;
             font-size: 0.74rem;
+
             a {
               font-weight: 600;
               margin-bottom: 4px;
             }
+
             p {
               text-align: left;
               color: #8e8e8e;
             }
           }
+
           .change_account_btn {
             padding-left: 4px;
           }
         }
       }
+
       .aside_recomment_footer {
         .aside_tags {
           margin-bottom: 20px;
           padding-right: 6px;
           color: #c7c7c7;
+
           li {
             font-size: 0.7rem;
             display: inline;
+
             a {
               color: #c7c7c7;
             }
           }
         }
+
         .copyright {
           font-size: 0.7rem;
           color: #c7c7c7;

@@ -1,35 +1,43 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
 import './Main.scss';
+import MainNav from './MainNav';
+import Comment from './Comment';
 import '../../../styles/common.scss';
 import '../../../styles/index.scss';
 import myImg from '../../../assets/images/myImg.jpeg';
-import MainNav from './MainNav';
-// import Comment from './Comment';
-// Import {FontAwesomeIcon} from ""
 
-export default function Main(props) {
-  const [, setCommentText] = useState('');
-  // const Comment = React.Component => {
+const Main = props => {
+  const [writeReply, setWriteReply] = useState('');
+  const [comment, setComment] = useState([
+    {
+      id: 1,
+      name: 'rlaydtjs',
+      comment: writeReply,
+    },
+  ]);
 
-  // }
-
-  const addComment = event => {
-    setCommentText {value} = event.target;
-    const submit_reply = document.querySelector('.submitBtn');
-  };
-  // ?????????????????????
-
-  addComment = () => {
-    const setCommentText = this.state.commentText;
-    // ???????????????
-    this.setState({ newReply: target.value });
-    this.setState({});
+  const handleComment = e => {
+    const { value } = e.target;
+    setWriteReply(value);
   };
 
-  // const submitClick = event => {
-  //   event.preventDefault();
-  // };
+  const enterPress = e => {
+    if (e.key === 'Enter') submitComment();
+  };
+
+  const submitComment = () => {
+    setComment(current => {
+      const newReply = [...current];
+      const newComment = {
+        id: newReply.length++,
+        name: 'rlaydtjs',
+        comment: writeReply,
+      };
+      newReply.push(newComment);
+      setWriteReply('');
+      return newReply;
+    });
+  };
 
   return (
     <main className="main">
@@ -159,10 +167,9 @@ export default function Main(props) {
                         <a href="#!">아이디</a>
                         <p>내용내용내용내용</p>
                       </div>
-                      <div className="post_reply">
-                        <ul className="reply_wrap">
-                        </ul>
-                      </div>
+                      {comment.map((item, index) => (
+                        <Comment key={index} comment_reply_wrap={item} />
+                      ))}
                       <div className="post_created_at">
                         <p>42분 전</p>
                       </div>
@@ -171,14 +178,13 @@ export default function Main(props) {
                       <textarea
                         className="write_reply"
                         placeholder="댓글 달기..."
-                        onChange={this.addComment}
-                        onKeyPress={this.enterPress}
-                        // value={}
+                        onKeyPress={e => {
+                          enterPress(e);
+                        }}
+                        onChange={handleComment}
+                        value={writeReply}
                       />
-                      <button
-                        className="submit_reply"
-                        onClick={this.submitClick}
-                      >
+                      <button className="submit_reply" onClick={submitComment}>
                         게시
                       </button>
                     </div>
@@ -186,138 +192,6 @@ export default function Main(props) {
                 </div>
               </div>
             </article>
-            {/* <article>
-              <div className="post_wrap">
-                <div className="post_header">
-                  <div className="post_account">
-                    <img src={myImg} className="post_profile" alt="프사" />
-                    <a href="#!">rlaydtjs</a>
-                  </div>
-                  <button className="post_info">
-                    <i className="fas fa-ellipsis-h" />
-                  </button>
-                </div>
-                <div className="post_body">
-                  <div className="post_photo_wrap">
-                    <div className="post_photo_container">
-                      <img src={myImg} className="post_photos" alt="사진1" />
-                    </div>
-                  </div>
-                  <div className="post_footer">
-                    <div className="post_icons_wrap">
-                      <div className="post_icons_box1">
-                        <button className="post_icons_btn">
-                          <i className="far fa-heart" />
-                        </button>
-                        <button className="post_icons_btn">
-                          <i className="far fa-comment" />
-                        </button>
-                        <button className="post_icons_btn">
-                          <i className="far fa-paper-plane" />
-                        </button>
-                      </div>
-                      <div className="post_icons_box2">
-                        <button className="post_icons_btn">
-                          <i className="far fa-bookmark" />
-                        </button>
-                      </div>
-                    </div>
-                    <div className="post_content_wrap">
-                      <div className="post_likes">
-                        <p>좋아요 2000개</p>
-                      </div>
-                      <div className="post_content">
-                        <a href="#!">아이디</a>
-                        <p>내용내용내용내용</p>
-                        <a href="#!">아이디</a>
-                        <p>내용내용내용내용</p>
-                      </div>
-                      <div className="post_reply">
-                        <ul className="reply_wrap" />
-                      </div>
-                      <div className="post_created_at">
-                        <p>42분 전</p>
-                      </div>
-                    </div>
-                    <div className="post_reply_wrap">
-                      <textarea
-                        placeholder="댓글 달기..."
-                        className="write_reply"
-                      />
-                      <button className="submit_reply" disabled>
-                        게시
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </article> */}
-            {/* <article>
-              <div className="post_wrap">
-                <div className="post_header">
-                  <div className="post_account">
-                    <img src={myImg} className="post_profile" alt="프사" />
-                    <a href="#!">rlaydtjs</a>
-                  </div>
-                  <button className="post_info">
-                    <i className="fas fa-ellipsis-h" />
-                  </button>
-                </div>
-                <div className="post_body">
-                  <div className="post_photo_wrap">
-                    <div className="post_photo_container">
-                      <img src={myImg} className="post_photos" alt="사진1" />
-                    </div>
-                  </div>
-                  <div className="post_footer">
-                    <div className="post_icons_wrap">
-                      <div className="post_icons_box1">
-                        <button className="post_icons_btn">
-                          <i className="far fa-heart" />
-                        </button>
-                        <button className="post_icons_btn">
-                          <i className="far fa-comment" />
-                        </button>
-                        <button className="post_icons_btn">
-                          <i className="far fa-paper-plane" />
-                        </button>
-                      </div>
-                      <div className="post_icons_box2">
-                        <button className="post_icons_btn">
-                          <i className="far fa-bookmark" />
-                        </button>
-                      </div>
-                    </div>
-                    <div className="post_content_wrap">
-                      <div className="post_likes">
-                        <p>좋아요 2000개</p>
-                      </div>
-                      <div className="post_content">
-                        <a href="#!">아이디</a>
-                        <p>내용내용내용내용</p>
-                        <a href="#!">아이디</a>
-                        <p>내용내용내용내용</p>
-                      </div>
-                      <div className="post_reply">
-                        <ul className="reply_wrap" />
-                      </div>
-                      <div className="post_created_at">
-                        <p>42분 전</p>
-                      </div>
-                    </div>
-                    <div className="post_reply_wrap">
-                      <textarea
-                        placeholder="댓글 달기..."
-                        className="write_reply"
-                      />
-                      <button className="submit_reply" disabled>
-                        게시
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </article> */}
           </div>
         </section>
         <aside>
@@ -478,4 +352,6 @@ export default function Main(props) {
       </div>
     </main>
   );
-}
+};
+
+export default Main;
