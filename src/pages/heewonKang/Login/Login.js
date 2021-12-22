@@ -1,4 +1,5 @@
 import FormLogin from './FormLogin';
+// import FormLogin from './SignUp';
 import './Login.scss';
 
 export default function Login() {

@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import NavWon from '../Nav-won';
 import UsersStory from './UsersStory';
 import Feed from './Feed';

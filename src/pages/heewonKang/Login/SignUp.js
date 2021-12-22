@@ -7,6 +7,26 @@ export default function FormLogin() {
   const [pwValue, setPw] = useState('');
   const [disableValue, setDisableValue] = useState(true);
 
+  const goToMain = () => {
+    // if (!disableValue) navigate('/Main-won');
+    fetch('http://10.58.5.56:8080/users/signup', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: 'heewoni',
+        email: idValue,
+        password: pwValue,
+      }),
+    })
+      .then(response => response.json())
+      .then(result => {
+        if (result.message === 'SUCCESS') {
+          alert('환영합니다');
+          // this.history.push('/Main-won');
+        }
+      });
+    navigate('/Main-won');
+  };
+
   const handleInput = event => {
     const { id, value } = event.target;
     if (id === 'login_id') setId(value);
@@ -20,30 +40,6 @@ export default function FormLogin() {
       setDisableValue(true);
     }
   }, [idValue, pwValue]);
-
-  const goToMain = () => {
-    fetch('http://10.58.5.56:8080/users/signin', {
-      method: 'POST',
-      body: JSON.stringify({
-        email: idValue,
-        password: pwValue,
-      }),
-    })
-      .then(response => response.json())
-      .then(result => {
-        if (result.message === 'SUCCESS') {
-          alert(`${idValue}님 반갑습니다!`);
-          localStorage.setItem('user', result.token);
-          navigate('/Main-won');
-        }
-        if (result.message === 'USER_DOES_NOT_EXIST') {
-          alert('아이디가 틀렸거나 존재하지 않는 회원입니다.');
-        }
-        if (result.message === 'PASSWORD_ERROR') {
-          alert('비밀번호가 틀렸어요.');
-        }
-      });
-  };
 
   return (
     <form method="POST">
@@ -65,12 +61,7 @@ export default function FormLogin() {
           />
         </li>
         <li className="login_btn">
-          <button
-            type="button"
-            id="login_btn"
-            onClick={goToMain}
-            disabled={disableValue}
-          >
+          <button id="login_btn" onClick={goToMain} disabled={disableValue}>
             로그인
           </button>
         </li>
