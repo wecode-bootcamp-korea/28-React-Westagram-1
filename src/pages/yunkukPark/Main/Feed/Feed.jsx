@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import CommentInput from './CommentInput';
-import FeedDesc from './FeedDesc';
+import FeedDesc from './FeedFooter';
 
 const Feed = props => {
   const { userName, userAvatar, feedImg, content, likeHit, comments } = props;

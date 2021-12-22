@@ -1,5 +1,6 @@
 import React from 'react';
 
+// TODO: map으로 리팩터 하기
 const Footer = () => {
   return (
     <footer className="global-footer">

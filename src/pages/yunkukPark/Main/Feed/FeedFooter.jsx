@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CommentList from './CommentList';
 
-const FeedDesc = props => {
+const FeedFooter = props => {
   const { userName, content, comments, onDeleteButtonClick } = props;
   const [isListOpen, setIsListOpen] = useState(false);
 
@@ -12,6 +12,10 @@ const FeedDesc = props => {
         <dd className="feed-content">{content}</dd>
       </dl>
       <ul className="feed-comment-list">
+        {
+          //TODO: filter => map  으로 해보기
+        }
+
         {comments.map((comment, idx) => {
           return isListOpen ? (
             <CommentList
@@ -45,4 +49,4 @@ const FeedDesc = props => {
   );
 };
 
-export default FeedDesc;
+export default FeedFooter;
