@@ -25,7 +25,7 @@ function Login(props) {
   };
 
   const checkInputValidate = () => {
-    if (inputID.includes('@') && inputID.length >= 6 && inputPW.length >= 6) {
+    if (inputID.length >= 6 && inputPW.length >= 6) {
       setDisabledValue(false);
     } else {
       setDisabledValue(true);
@@ -55,17 +55,18 @@ function Login(props) {
   };
 
   const loginFunc = () => {
-    fetch('http://172.20.10.3:8000/users/login', {
+    fetch('https://westagram-signup.herokuapp.com/login', {
       method: 'POST',
       body: JSON.stringify({
-        email: inputID,
+        id: inputID,
         password: inputPW,
       }),
     })
       .then(res => res.json())
       .then(result => {
-        if (result.message) {
-          navigate('main-hyun');
+        if (result.message === 'login success') {
+          localStorage.setItem('token', result.token);
+          navigate('/main-hyun');
         } else {
           alert('로그인 정보가 일치하지 않습니다.');
           inputValueInit();
@@ -88,7 +89,7 @@ function Login(props) {
   };
 
   const userRegisterFunc = () => {
-    // register page로 라우팅한다.
+    navigate('/register-hyun');
   };
 
   return (

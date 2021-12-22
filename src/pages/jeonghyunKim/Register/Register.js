@@ -30,7 +30,7 @@ export default function Register(props) {
   };
 
   const checkInputValidate = () => {
-    inputID.includes('@') && inputID.length >= 6 && inputPW.length >= 6
+    inputID.length >= 6 && inputPW.length >= 6
       ? setDisabledValue(false)
       : setDisabledValue(true);
   };
@@ -40,19 +40,19 @@ export default function Register(props) {
     // let body = {id:, pw:}
     // if state true -> route to login
     // if state false -> operate alert and value init
-    fetch('http://172.20.10.3:8000/users/signup', {
+    fetch('https://westagram-signup.herokuapp.com/signup', {
       method: 'POST',
       body: JSON.stringify({
-        name: '홍길동',
-        email: inputID,
+        id: inputID,
         password: inputPW,
-        phonenumber: '12345678',
-        gender: 'man',
       }),
     })
       .then(res => res.json())
       .then(result => {
-        console.log(result);
+        if (result.message === 'signup success') {
+          alert('회원가입 성공! 로그인 페이지로 이동합니다.');
+          navigate('/login-hyun');
+        }
       });
 
     inputValueInit();
@@ -61,6 +61,12 @@ export default function Register(props) {
   const inputValueInit = () => {
     setInputID('');
     setInputPW('');
+  };
+
+  const enterRegisterValidate = event => {
+    if (event.key === 'Enter') {
+      registerSubmit();
+    }
   };
 
   return (
@@ -75,6 +81,7 @@ export default function Register(props) {
               placeholder="아이디"
               value={inputID}
               onChange={inputHandler}
+              onKeyPress={enterRegisterValidate}
               required
             />
             <input
@@ -83,6 +90,7 @@ export default function Register(props) {
               placeholder="비밀번호"
               value={inputPW}
               onChange={inputHandler}
+              onKeyPress={enterRegisterValidate}
               required
             />
             <span>비밀번호는 최소 8자리, 최대 25자리로 구성되며</span>

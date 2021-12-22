@@ -117,14 +117,27 @@ export default function MainNavBar(props) {
 
   const navViewProfile = event => {
     event.preventDefault();
-    const floatingArea = document.querySelector('#navBtnsFloatingArea');
+    /*const floatingArea = document.querySelector('#navBtnsFloatingArea');
     if (floatingArea.children.length === 0) {
       ReactDOM.render(<span>profile option area</span>, floatingArea);
     }
     document.querySelector('#navBtnsFloatingBox').classList.add('active');
     document.querySelector('#hideContainer').classList.add('active');
     document.querySelector('#navBtnsArrowDiv').style.transform =
-      'translateX(9.4em) rotate(45deg)';
+      'translateX(9.4em) rotate(45deg)';*/
+    const userToken = localStorage.getItem('token');
+    fetch('https://westagram-signup.herokuapp.com/profile', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: userToken,
+      },
+    })
+      .then(res => res.json())
+      .then(result => {
+        if (result.message === 'jwt is invalid') alert('토큰 정보 오류');
+        else alert(result.username + '님 안녕하세요!');
+      });
   };
   return (
     <article id="navContainer">
