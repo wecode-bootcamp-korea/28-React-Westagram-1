@@ -48,7 +48,6 @@ const SignUp = () => {
   };
 
   const goToLogin = () => {
-    // const isValided = validateLogin();
     navigate('/login-kuk');
   };
 
@@ -64,7 +63,7 @@ const SignUp = () => {
       })
         .then(res => res.json())
         .then(data => {
-          const { message, token } = data;
+          const { message } = data;
           if (message === 'signup success') {
             goToLogin();
           }
