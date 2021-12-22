@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function MainSideBar(props) {
   return (
-    <article id="sideWrapper">
+    <article id="sideWrapper" className="active">
       <section id="sideContainer">
         <section id="profileSwap">
           <div id="profileSwapBox">
@@ -64,20 +64,20 @@ export default function MainSideBar(props) {
           </div>
         </section>
         <section id="sideFooter">
-          <div id="sideFooterTextBar">
-            <span id="sideFooterPartText">소개</span>
-            <span id="sideFooterPartText">도움말</span>
-            <span id="sideFooterPartText">홍보 센터</span>
-            <span id="sideFooterPartText">API</span>
-            <span id="sideFooterPartTextEnd">채용 정보</span>
+          <div className="sideFooterTextBar">
+            <span className="sideFooterPartText">소개</span>
+            <span className="sideFooterPartText">도움말</span>
+            <span className="sideFooterPartText">홍보 센터</span>
+            <span className="sideFooterPartText">API</span>
+            <span className="sideFooterPartTextEnd">채용 정보</span>
           </div>
-          <div id="sideFooterTextBar">
-            <span id="sideFooterPartText">개인정보처리방침</span>
-            <span id="sideFooterPartText">약관</span>
-            <span id="sideFooterPartText">위치</span>
-            <span id="sideFooterPartText">인기 계정</span>
-            <span id="sideFooterPartText">해시태그</span>
-            <span id="sideFooterPartTextEnd">언어</span>
+          <div className="sideFooterTextBar">
+            <span className="sideFooterPartText">개인정보처리방침</span>
+            <span className="sideFooterPartText">약관</span>
+            <span className="sideFooterPartText">위치</span>
+            <span className="sideFooterPartText">인기 계정</span>
+            <span className="sideFooterPartText">해시태그</span>
+            <span className="sideFooterPartTextEnd">언어</span>
           </div>
           <div id="sideFooterBottom">
             <span>© 2021 WESTAGRAM FROM KJH</span>

@@ -16,15 +16,14 @@ import {
 import FeedCommentComponent from './FeedCommentComponent';
 
 export default function FeedComponent({ feedItem }) {
-  const [feedOriginContent, setFeedOriginContent] = useState();
+  const [inputComment, setInputComment] = useState();
+  const [submitBtnStatus, setSubmitBtnStatus] = useState(true);
   const [commentData, setCommentData] = useState([]);
-  const [feedImgDotPosition, setFeedImgDotPosition] = useState(0);
   const [viewAllCommentFlag, setViewAllCommentFlag] = useState(false);
   const [feedImgPaths] = useState(feedItem.feedImgPaths.split(','));
+  const [imgPosition, setImgPosition] = useState(0);
 
-  const feedImgDotContainerRef = useRef();
-
-  const feedImgUlRef = useRef();
+  const contentsCommentBodyRef = useRef();
 
   useEffect(() => {
     fetch('http://localhost:3000/data/commentData.json', {
@@ -36,70 +35,11 @@ export default function FeedComponent({ feedItem }) {
       });
   }, []);
 
-  useEffect(() => {
-    const feedContentsReduce = async () => {
-      const feedContentsCommentBody = document.getElementsByName(
-        'feedContentsCommentBody' + feedItem.id
-      )[0];
-
-      let temp = [];
-
-      const feedLoopWork = () => {
-        temp.push(feedContentsCommentBody.innerHTML);
-        const reduceCommentString =
-          feedContentsCommentBody.innerHTML.slice(0, 10).trim() + '...';
-        feedContentsCommentBody.innerHTML = reduceCommentString;
-      };
-
-      const setFeedOriginState = () => {
-        setFeedOriginContent(temp[0]);
-      };
-
-      await feedLoopWork();
-      await setFeedOriginState();
-    };
-    feedContentsReduce();
-  }, [feedItem.id]);
-
-  useEffect(() => {
-    for (let i = 0; i < feedImgDotContainerRef.current.children.length; i++) {
-      if (feedImgDotPosition === i) {
-        feedImgDotContainerRef.current.children[i].children[0].style.color =
-          'rgba(var(--d69,0,149,246),1)';
-      } else {
-        feedImgDotContainerRef.current.children[i].children[0].style.color =
-          '#adadad';
-      }
-    }
-  }, [feedImgDotPosition]);
-
-  const feedExtendContents = event => {
-    event.preventDefault();
-    const extendBtn = document.getElementsByName(
-      'feedExtendContents' + feedItem.id
-    )[0];
-
-    extendBtn.style.display = 'none';
-    const feedContentsCommentBody = document.getElementsByName(
-      'feedContentsCommentBody' + feedItem.id
-    )[0];
-    feedContentsCommentBody.innerHTML = feedOriginContent;
-  };
-
   const onChangeFeedComment = event => {
     event.preventDefault();
     const { value } = event.target;
-    const inputCommentsSubmitBtn = document.getElementsByName(
-      'inputCommentsSubmitBtn' + feedItem.id
-    )[0];
-
-    if (value.replace(/(^\s*)|(\s*$)/gi, '')) {
-      inputCommentsSubmitBtn.style.opacity = 1;
-      inputCommentsSubmitBtn.style.cursor = 'pointer';
-    } else {
-      inputCommentsSubmitBtn.style.opacity = 0.3;
-      inputCommentsSubmitBtn.style.cursor = 'inherit';
-    }
+    setInputComment(value);
+    value.length > 0 ? setSubmitBtnStatus(false) : setSubmitBtnStatus(true);
   };
 
   const enterFeedComment = event => {
@@ -110,59 +50,24 @@ export default function FeedComponent({ feedItem }) {
 
   const addFeedComment = event => {
     event.preventDefault();
-    const inputCommentsSubmitBtn = document.getElementsByName(
-      'inputCommentsSubmitBtn' + feedItem.id
-    )[0];
-    const inputCommentsTextArea = document.getElementsByName(
-      'inputCommentsTextarea' + feedItem.id
-    )[0];
 
-    let inputComments = inputCommentsTextArea.value.replace(/\n/g, '');
+    let inputCommentReplace = inputComment.replace(/\n/g, '');
 
-    if (inputComments.length > 0) {
+    if (inputCommentReplace.length) {
       setCommentData(current => {
-        const obj = {
+        const newComment = {
           id: commentData.length + 1,
           userName: 'test1',
-          content: inputComments,
+          content: inputCommentReplace,
           isLiked: false,
         };
-        const newList = [...current, obj];
+        const newList = [...current, newComment];
         return newList;
       });
     }
 
-    inputCommentsTextArea.focus();
-    inputCommentsTextArea.value = null;
-    inputCommentsSubmitBtn.style.opacity = 0.3;
-    inputCommentsSubmitBtn.style.cursor = 'inherit';
-  };
-
-  const checkFeedImgPosition = event => {
-    const { scrollLeft } = event.target;
-    feedImgUlRef.current.style.scrollLeft = scrollLeft;
-    setFeedImgDotPosition(Math.floor(Math.floor(scrollLeft) / 603));
-  };
-
-  const feedImgPrev = event => {
-    event.preventDefault();
-    if (parseInt(feedImgUlRef.current.style.scrollLeft) - 603 > 0) {
-      feedImgUlRef.current.scrollLeft =
-        parseInt(feedImgUlRef.current.style.scrollLeft) - 605;
-    } else {
-    }
-  };
-
-  const feedImgNext = event => {
-    event.preventDefault();
-    if (
-      parseInt(feedImgUlRef.current.scrollLeft) + 606 >=
-      feedImgUlRef.current.scrollWidth
-    ) {
-    } else {
-      feedImgUlRef.current.scrollLeft =
-        parseInt(feedImgUlRef.current.style.scrollLeft) + 605;
-    }
+    setInputComment('');
+    setSubmitBtnStatus(true);
   };
 
   const viewAllComments = () => {
@@ -171,6 +76,29 @@ export default function FeedComponent({ feedItem }) {
 
   const hideComments = () => {
     setViewAllCommentFlag(false);
+  };
+
+  const moveImg = event => {
+    event.preventDefault();
+    const {
+      target: { name },
+    } = event;
+    switch (name) {
+      case 'imgLeftBtn':
+        imgPosition > 0 ? setImgPosition(imgPosition - 1) : setImgPosition(0);
+        break;
+      case 'imgRightBtn':
+        imgPosition <= feedImgPaths.length - 2
+          ? setImgPosition(imgPosition + 1)
+          : setImgPosition(feedImgPaths.length - 1);
+        break;
+      default:
+    }
+  };
+
+  const extendFeedContent = event => {
+    contentsCommentBodyRef.current.classList.add('active');
+    event.target.style.display = 'none';
   };
 
   return (
@@ -190,16 +118,14 @@ export default function FeedComponent({ feedItem }) {
         </div>
       </header>
       <section id="feedImgContainer">
-        <section
-          id="feedImg"
-          ref={feedImgUlRef}
-          onScroll={checkFeedImgPosition}
-          style={{ scrollLeft: 0 }}
-        >
+        <section id="feedImg">
           <ul>
             {feedImgPaths.map((item, index) => {
               return (
-                <li key={index}>
+                <li
+                  key={index}
+                  style={{ transform: `translateX(-${imgPosition * 605}px)` }}
+                >
                   <img src={item} alt="dummyImage" />
                 </li>
               );
@@ -207,17 +133,23 @@ export default function FeedComponent({ feedItem }) {
           </ul>
         </section>
         <section id="feedImgBtns">
-          <button onClick={feedImgPrev}>
-            <FontAwesomeIcon icon={faChevronLeft} />
+          <button name="imgLeftBtn" onClick={moveImg}>
+            <FontAwesomeIcon
+              icon={faChevronLeft}
+              style={{ pointerEvents: 'none' }}
+            />
           </button>
-          <button onClick={feedImgNext}>
-            <FontAwesomeIcon icon={faChevronRight} />
+          <button name="imgRightBtn" onClick={moveImg}>
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              style={{ pointerEvents: 'none' }}
+            />
           </button>
         </section>
-        <section id="feedImgDot" ref={feedImgDotContainerRef}>
+        <section id="feedImgDot">
           {feedImgPaths.map((item, index) => {
             return (
-              <div id="feedImgLengthDot" key={index}>
+              <div className="feedImgLengthDot" key={index}>
                 <FontAwesomeIcon id="faCircle" icon={faCircle} />
               </div>
             );
@@ -246,24 +178,17 @@ export default function FeedComponent({ feedItem }) {
         <div id="feedContentsBox">
           <span id="feedContentsComment">
             <span id="feedContentsBold">{feedItem.userName}</span>
-            <span
-              id="feedContentsCommentBody"
-              name={'feedContentsCommentBody' + feedItem.id}
-            >
+            <span id="feedContentsCommentBody" ref={contentsCommentBodyRef}>
               {feedItem.feedComment}
             </span>
           </span>
-          <button
-            id="feedExtendContents"
-            name={'feedExtendContents' + feedItem.id}
-            onClick={feedExtendContents}
-          >
+          <button id="feedExtendContents" onClick={extendFeedContent}>
             더 보기
           </button>
         </div>
       </section>
       <section id="feedComments">
-        <div id="feedCommentsBox" name={'feedCommentsBox' + feedItem.id}>
+        <div id="feedCommentsBox">
           {commentData.length < 3 ? null : viewAllCommentFlag ? (
             <div className="feedCommentsViewHideBtn" onClick={hideComments}>
               Hide Comments
@@ -306,17 +231,17 @@ export default function FeedComponent({ feedItem }) {
           <div id="inputCommentsType">
             <textarea
               id="inputCommentsTextarea"
-              name={'inputCommentsTextarea' + feedItem.id}
               placeholder="댓글 달기..."
               onChange={onChangeFeedComment}
               onKeyPress={enterFeedComment}
+              value={inputComment}
             />
           </div>
           <div id="inputCommentsSubmit">
             <button
               id="inputCommentsSubmitBtn"
-              name={'inputCommentsSubmitBtn' + feedItem.id}
               onClick={addFeedComment}
+              disabled={submitBtnStatus}
             >
               게시
             </button>

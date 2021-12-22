@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ReactDOM from 'react-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -18,7 +17,7 @@ export default function MainNavBar(props) {
   const [searchResultArr, setSearchResultArr] = useState([]);
   const [searchInput, setSearchInput] = useState('');
 
-  const [memberID, setMemberID] = useState([
+  const [memberID] = useState([
     { id: 'wecode', desc: '>wecode | 위코드' },
     { id: 'westudy', desc: '>wecode | 위코드 스터디' },
     { id: 'KJH', desc: 'leit_motif' },
@@ -29,6 +28,10 @@ export default function MainNavBar(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
+    renderSearchResultArr();
+  }, [searchInput]);
+
+  const renderSearchResultArr = () => {
     if (searchInput.length > 2) {
       const result = memberID.filter(member =>
         member.id.toLowerCase().includes(searchInput.toLowerCase())
@@ -37,7 +40,7 @@ export default function MainNavBar(props) {
     } else {
       setSearchResultArr([]);
     }
-  }, [searchInput]);
+  };
 
   const getSearchedResult = event => {
     event.preventDefault();
@@ -48,8 +51,8 @@ export default function MainNavBar(props) {
     event.preventDefault();
     const searchIcon = document.querySelector('#searchIcon');
     const searchResultBox = document.querySelector('#searchResultBox');
-    searchIcon.style.display = 'none';
-    searchResultBox.style.display = 'block';
+    searchIcon.classList.add('hide');
+    searchResultBox.classList.add('active');
     event.target.style.paddingLeft = '12px';
   };
 
@@ -57,8 +60,8 @@ export default function MainNavBar(props) {
     event.preventDefault();
     const searchIcon = document.querySelector('#searchIcon');
     const searchResultBox = document.querySelector('#searchResultBox');
-    searchIcon.style.display = 'inline';
-    searchResultBox.style.display = 'none';
+    searchIcon.classList.remove('hide');
+    searchResultBox.classList.remove('active');
     event.target.style.paddingLeft = '30px';
   };
 
@@ -69,62 +72,22 @@ export default function MainNavBar(props) {
 
   const navDirectMessage = event => {
     event.preventDefault();
-    const floatingArea = document.querySelector('#navBtnsFloatingArea');
-    if (floatingArea.children.length === 0) {
-      ReactDOM.render(<span>new Direct message area</span>, floatingArea);
-    }
-    document.querySelector('#navBtnsFloatingBox').classList.add('active');
-    document.querySelector('#hideContainer').classList.add('active');
-    document.querySelector('#navBtnsArrowDiv').style.transform =
-      'translateX(1.8em) rotate(45deg)';
   };
 
   const navNewPost = event => {
     event.preventDefault();
-    const floatingArea = document.querySelector('#navBtnsFloatingArea');
-    if (floatingArea.children.length === 0) {
-      ReactDOM.render(<span>new Post area</span>, floatingArea);
-    }
-    document.querySelector('#navBtnsFloatingBox').classList.add('active');
-    document.querySelector('#hideContainer').classList.add('active');
-    document.querySelector('#navBtnsArrowDiv').style.transform =
-      'translateX(3.7em) rotate(45deg)';
   };
 
   const navTripFeeds = event => {
     event.preventDefault();
-    const floatingArea = document.querySelector('#navBtnsFloatingArea');
-    if (floatingArea.children.length === 0) {
-      ReactDOM.render(<span>trip Feeds area</span>, floatingArea);
-    }
-    document.querySelector('#navBtnsFloatingBox').classList.add('active');
-    document.querySelector('#hideContainer').classList.add('active');
-    document.querySelector('#navBtnsArrowDiv').style.transform =
-      'translateX(5.5em) rotate(45deg)';
   };
 
   const navViewLikes = event => {
     event.preventDefault();
-    const floatingArea = document.querySelector('#navBtnsFloatingArea');
-    if (floatingArea.children.length === 0) {
-      ReactDOM.render(<span>view Favorite posts area</span>, floatingArea);
-    }
-    document.querySelector('#navBtnsFloatingBox').classList.add('active');
-    document.querySelector('#hideContainer').classList.add('active');
-    document.querySelector('#navBtnsArrowDiv').style.transform =
-      'translateX(7.46em) rotate(45deg)';
   };
 
   const navViewProfile = event => {
     event.preventDefault();
-    /*const floatingArea = document.querySelector('#navBtnsFloatingArea');
-    if (floatingArea.children.length === 0) {
-      ReactDOM.render(<span>profile option area</span>, floatingArea);
-    }
-    document.querySelector('#navBtnsFloatingBox').classList.add('active');
-    document.querySelector('#hideContainer').classList.add('active');
-    document.querySelector('#navBtnsArrowDiv').style.transform =
-      'translateX(9.4em) rotate(45deg)';*/
     const userToken = localStorage.getItem('token');
     fetch('https://westagram-signup.herokuapp.com/profile', {
       method: 'GET',
@@ -145,7 +108,7 @@ export default function MainNavBar(props) {
         <header>
           <span onClick={navGoMain}>Westagram</span>
         </header>
-        <section id="navRowBarSearch">
+        <section id="navRowBarSearch" className="active">
           <div id="navRowBarSearchInput">
             <FontAwesomeIcon icon={faSearch} id="searchIcon" />
             <input

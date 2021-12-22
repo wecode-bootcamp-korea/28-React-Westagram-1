@@ -11,16 +11,6 @@ body {
   display: none;
 }
 
-#mainContainer {
-  width: 100%;
-  min-height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: stretch;
-  background-color: rgba(var(--b3f, 250, 250, 250), 1);
-}
-
 #hideContainer {
   position: fixed;
   width: 100%;
@@ -34,6 +24,13 @@ body {
 }
 
 #mainContainer {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  background-color: rgba(var(--b3f, 250, 250, 250), 1);
   #navContainer {
     width: 100%;
     height: 60px;
@@ -64,6 +61,7 @@ body {
 
       #navRowBarSearch {
         align-self: center;
+        display: none;
         #navRowBarSearchInput {
           #mainSearchInput {
             width: 18.3vw;
@@ -85,6 +83,11 @@ body {
             color: #8d8d8d;
             top: 0px;
             left: 25px;
+            display: inline;
+          }
+
+          #searchIcon.hide {
+            display: none;
           }
         }
 
@@ -135,6 +138,14 @@ body {
             }
           }
         }
+
+        #searchResultBox.active {
+          display: block;
+        }
+      }
+
+      #navRowBarSearch.active {
+        display: inline-block;
       }
 
       #navBtns {
@@ -215,7 +226,7 @@ body {
       width: 100%;
       margin-right: 28px;
 
-      #friendsFeed {
+      #storyBar {
         background: rgba(var(--d87, 255, 255, 255), 1);
         border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
         border-radius: 3px;
@@ -223,8 +234,7 @@ body {
         padding: 2px 0;
         overflow-x: scroll;
         scroll-behavior: smooth;
-
-        #friendsFeedUl {
+        #storyUl {
           display: flex;
           flex-direction: row;
           list-style-type: none;
@@ -234,7 +244,7 @@ body {
             margin-right: 18px;
             text-align: center;
 
-            #friendImgBorder {
+            #storyImgBorder {
               border-radius: 50%;
               border: 3px solid transparent;
               width: 58px;
@@ -246,7 +256,7 @@ body {
               display: flex;
               justify-content: center;
 
-              #friendImg {
+              #storyImg {
                 width: 52px;
                 height: 55px;
                 background-image: url('../assets/images/jh_profile.jpg');
@@ -259,7 +269,7 @@ body {
         }
       }
 
-      #friendsFeedsBtnArea {
+      #storyBtnArea {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -276,13 +286,21 @@ body {
           border-radius: 10px;
         }
 
-        #friendsFeedPrev {
+        #storyPrev {
           visibility: hidden;
           cursor: pointer;
         }
 
-        #friendsFeedNext {
+        #storyPrev.active {
+          visibility: visible;
+        }
+
+        #storyNext {
+          visibility: hidden;
           cursor: pointer;
+        }
+        #storyNext.active {
+          visibility: visible;
         }
       }
 
@@ -353,8 +371,7 @@ body {
             background-color: rgba(var(--d87, 255, 255, 255), 1);
             margin: 0;
             padding: 0;
-            overflow-x: scroll;
-            scroll-behavior: smooth;
+            overflow: hidden;
             ul {
               display: flex;
               flex-direction: row;
@@ -362,9 +379,11 @@ body {
               height: 100%;
               margin: 0;
               padding: 0;
+
               li {
                 width: 605px;
                 height: 100%;
+                transition: 0.5s ease-in-out;
                 img {
                   width: 100%;
                   height: 100%;
@@ -380,6 +399,7 @@ body {
             position: absolute;
             width: 100%;
             top: 50%;
+            z-index: 1;
             button:nth-child(1) {
               background: none;
               border: none;
@@ -398,11 +418,16 @@ body {
             display: flex;
             flex-direction: row;
             justify-content: center;
-            #feedImgLengthDot {
+
+            .feedImgLengthDot {
               margin: 0px 5px;
+              color: #adadad;
               #faCircle {
                 font-size: 7px;
               }
+            }
+            .feedImgLengthDot.active {
+              color: blue;
             }
           }
         }
@@ -475,10 +500,27 @@ body {
 
           #feedContentsBox {
             font-size: 14px;
+            display: flex;
+            flex-direction: row;
+            #feedContentsComment {
+              display: flex;
+              #feedContentsBold {
+                align-self: center;
+                font-weight: 600;
+                margin-right: 10px;
+              }
 
-            #feedContentsBold {
-              font-weight: 600;
-              margin-right: 10px;
+              #feedContentsCommentBody {
+                align-self: center;
+                width: 60px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+              }
+              #feedContentsCommentBody.active {
+                text-overflow: inherit;
+                overflow: inherit;
+              }
             }
 
             #feedExtendContents {
@@ -571,219 +613,213 @@ body {
                 font-size: 14px;
                 font-weight: 600;
                 color: rgba(var(--d69, 0, 149, 246), 1);
-                opacity: 0.3;
+                opacity: 1;
                 padding: 0;
                 margin: 0;
-                cursor: inherit;
+
+                &:disabled {
+                  opacity: 0.3;
+                }
               }
             }
           }
         }
       }
-    } ///
-  }
-}
-
-#mainContainer #bodyContainer #sideWrapper {
-  position: relative;
-  top: 53px;
-
-  #sideContainer {
-    position: fixed;
-
-    #profileSwap #profileSwapBox {
-      display: flex;
-      flex-direction: row;
-
-      #profileImg {
-        width: 57px;
-        height: 60px;
-        background-image: url('../assets/images/jh_profile.jpg');
-        background-size: 59px 67px;
-        border-radius: 50%;
-        cursor: pointer;
-      }
-
-      #profileInfo {
-        margin-left: 25px;
-        align-self: center;
-        flex-basis: 170px;
-
-        a {
-          text-decoration: none;
-          display: block;
-        }
-
-        a:nth-child(1) {
-          color: rgba(var(--i1d, 38, 38, 38), 1);
-        }
-
-        a:nth-child(2) {
-          font-size: 14px;
-          color: rgba(var(--f52, 142, 142, 142), 1);
-        }
-      }
-
-      #profileSwapBtn {
-        width: 30px;
-        height: 30px;
-        background-color: rgba(var(--b3f, 250, 250, 250), 1);
-        border: none;
-        font-size: 12px;
-        font-weight: 600;
-        color: rgba(var(--d69, 0, 149, 246), 1);
-        align-self: center;
-        margin-left: 20px;
-        padding: 0;
-        cursor: pointer;
-      }
     }
+    #sideWrapper {
+      position: relative;
+      top: 53px;
+      display: none;
+      #sideContainer {
+        position: fixed;
 
-    #recommendFriends {
-      margin-top: 18px;
-
-      #recommendTextBar {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 4px 4px;
-
-        span {
-          font-size: 14px;
-          font-weight: 600;
-          color: rgba(var(--f52, 142, 142, 142), 1);
-        }
-
-        a {
-          font-size: 12px;
-          font-weight: 600;
-          text-decoration: none;
-          color: black;
-        }
-      }
-    }
-
-    #recommendFriendList {
-      padding-top: 8px;
-      padding-left: 5px;
-
-      ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-
-        #recommendFriendListTag {
+        #profileSwap #profileSwapBox {
           display: flex;
           flex-direction: row;
-          margin-bottom: 12px;
 
-          .recommendFriendInfo {
-            margin-left: 14px;
+          #profileImg {
+            width: 57px;
+            height: 60px;
+            background-image: url('../assets/images/jh_profile.jpg');
+            background-size: 59px 67px;
+            border-radius: 50%;
+            cursor: pointer;
+          }
 
-            span {
+          #profileInfo {
+            margin-left: 25px;
+            align-self: center;
+            flex-basis: 170px;
+
+            a {
+              text-decoration: none;
               display: block;
             }
 
-            .recommendFriendID {
-              font-size: 14px;
-              font-weight: 600;
+            a:nth-child(1) {
+              color: rgba(var(--i1d, 38, 38, 38), 1);
             }
 
-            .followOrNot {
-              width: 210px;
-              font-size: 12px;
+            a:nth-child(2) {
+              font-size: 14px;
               color: rgba(var(--f52, 142, 142, 142), 1);
-              margin-top: 3px;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              white-space: nowrap;
+            }
+          }
+
+          #profileSwapBtn {
+            width: 30px;
+            height: 30px;
+            background-color: rgba(var(--b3f, 250, 250, 250), 1);
+            border: none;
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(var(--d69, 0, 149, 246), 1);
+            align-self: center;
+            margin-left: 20px;
+            padding: 0;
+            cursor: pointer;
+          }
+        }
+
+        #recommendFriends {
+          margin-top: 18px;
+
+          #recommendTextBar {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 4px 4px;
+
+            span {
+              font-size: 14px;
+              font-weight: 600;
+              color: rgba(var(--f52, 142, 142, 142), 1);
+            }
+
+            a {
+              font-size: 12px;
+              font-weight: 600;
+              text-decoration: none;
+              color: black;
             }
           }
         }
 
-        #recommendFriendListTag:nth-child(1) .recommendFriendImg {
-          width: 30px;
-          height: 30px;
-          background-image: url('../assets/images/jh_profile.jpg');
-          background-size: 32px 34px;
-          border-radius: 50%;
-          cursor: pointer;
+        #recommendFriendList {
+          padding-top: 8px;
+          padding-left: 5px;
+
+          ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+
+            #recommendFriendListTag {
+              display: flex;
+              flex-direction: row;
+              margin-bottom: 12px;
+
+              .recommendFriendInfo {
+                margin-left: 14px;
+
+                span {
+                  display: block;
+                }
+
+                .recommendFriendID {
+                  font-size: 14px;
+                  font-weight: 600;
+                }
+
+                .followOrNot {
+                  width: 210px;
+                  font-size: 12px;
+                  color: rgba(var(--f52, 142, 142, 142), 1);
+                  margin-top: 3px;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                }
+              }
+            }
+
+            #recommendFriendListTag:nth-child(1) .recommendFriendImg {
+              width: 30px;
+              height: 30px;
+              background-image: url('../assets/images/jh_profile.jpg');
+              background-size: 32px 34px;
+              border-radius: 50%;
+              cursor: pointer;
+            }
+
+            #recommendFriendListTag:nth-child(2) .recommendFriendImg {
+              width: 30px;
+              height: 30px;
+              background-image: url('../assets/images/peach.jpg');
+              background-size: 32px 34px;
+              border-radius: 50%;
+              cursor: pointer;
+            }
+
+            #recommendFriendListTag:nth-child(3) .recommendFriendImg {
+              width: 30px;
+              height: 30px;
+              background-image: url('../assets/images/cafe_photos.jpg');
+              background-size: 32px 34px;
+              border-radius: 50%;
+              cursor: pointer;
+            }
+
+            #recommendFriendListTag:nth-child(4) .recommendFriendImg {
+              width: 30px;
+              height: 30px;
+              background-image: url('../assets/images/unsplash_instagram.png');
+              background-size: 32px 34px;
+              border-radius: 50%;
+              cursor: pointer;
+            }
+
+            #recommendFriendListTag:nth-child(5) .recommendFriendImg {
+              width: 30px;
+              height: 30px;
+              background-image: url('../assets/images/peach.jpg');
+              background-size: 32px 34px;
+              border-radius: 50%;
+              cursor: pointer;
+            }
+          }
         }
 
-        #recommendFriendListTag:nth-child(2) .recommendFriendImg {
-          width: 30px;
-          height: 30px;
-          background-image: url('../assets/images/peach.jpg');
-          background-size: 32px 34px;
-          border-radius: 50%;
-          cursor: pointer;
-        }
+        #sideFooter {
+          font-size: 11px;
+          color: rgba(var(--edc, 199, 199, 199), 1);
+          padding: 20px 4px;
 
-        #recommendFriendListTag:nth-child(3) .recommendFriendImg {
-          width: 30px;
-          height: 30px;
-          background-image: url('../assets/images/cafe_photos.jpg');
-          background-size: 32px 34px;
-          border-radius: 50%;
-          cursor: pointer;
-        }
+          .sideFooterTextBar {
+            margin-bottom: 4px;
+            .sideFooterPartText::after {
+              font-size: 10px;
+              margin-left: 3px;
+              padding: 0;
+              content: '·';
+            }
+          }
 
-        #recommendFriendListTag:nth-child(4) .recommendFriendImg {
-          width: 30px;
-          height: 30px;
-          background-image: url('../assets/images/unsplash_instagram.png');
-          background-size: 32px 34px;
-          border-radius: 50%;
-          cursor: pointer;
-        }
-
-        #recommendFriendListTag:nth-child(5) .recommendFriendImg {
-          width: 30px;
-          height: 30px;
-          background-image: url('../assets/images/peach.jpg');
-          background-size: 32px 34px;
-          border-radius: 50%;
-          cursor: pointer;
+          #sideFooterBottom {
+            font-size: 10px;
+            margin-top: 20px;
+          }
         }
       }
     }
-
-    #sideFooter {
-      font-size: 11px;
-      color: rgba(var(--edc, 199, 199, 199), 1);
-      padding: 20px 4px;
-
-      #sideFooterTextBar {
-        margin-bottom: 4px;
-      }
-
-      #sideFooterBottom {
-        font-size: 10px;
-        margin-top: 20px;
-      }
+    #sideWrapper.active {
+      display: block;
     }
   }
-}
-
-#sideFooterPartText::after {
-  font-size: 10px;
-  margin-left: 3px;
-  padding: 0;
-  content: '·';
-}
-
-main {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  .mainLeft {
-    max-width: 605px;
-    width: 100%;
+  #bodyContainer.reduce {
+    margin-left: 7vw;
   }
-  .mainRight {
-    position: relative;
-    .sideBar {
-      position: fixed;
-    }
+  #bodyContainer.minimum {
+    margin-left: 0vw;
   }
 }

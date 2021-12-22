@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 
 import MainNavBar from './MainNavBar';
-import MainFeedFriends from './MainFeedFriends';
+import MainStories from './MainStories';
 import FeedComponent from './FeedComponent';
 import MainSideBar from './MainSideBar';
 
@@ -30,45 +29,36 @@ function Main(props) {
     const searchBar = document.querySelector('#navRowBarSearch');
 
     if (window.innerWidth <= 627) {
-      searchBar.style.display = 'none';
+      searchBar.classList.remove('active');
     } else {
-      searchBar.style.display = 'inline-block';
+      searchBar.classList.add('active');
+      bodyContainer.classList.remove('reduce');
+
       if (window.innerWidth <= 1001 && window.innerWidth > 690) {
-        sideWrapper.style.display = 'none';
-        bodyContainer.style.marginLeft = '7vw';
+        sideWrapper.classList.remove('active');
+        bodyContainer.classList.add('reduce');
+        bodyContainer.classList.remove('minimum');
       } else if (window.innerWidth <= 690) {
-        bodyContainer.style.marginLeft = '0vw';
+        bodyContainer.classList.remove('reduce');
+        bodyContainer.classList.add('minimum');
       } else {
-        bodyContainer.style.marginLeft = '0px';
-        sideWrapper.style.display = 'block';
+        sideWrapper.classList.add('active');
       }
     }
   };
-
-  const removeNavActive = event => {
-    event.preventDefault();
-    document.querySelector('#navBtnsFloatingBox').classList.remove('active');
-    document.querySelector('#hideContainer').classList.remove('active');
-    const floatingArea = document.querySelector('#navBtnsFloatingArea');
-    ReactDOM.unmountComponentAtNode(floatingArea);
-  };
-
   return (
-    <>
-      <article id="hideContainer" onClick={removeNavActive} />
-      <main id="mainContainer">
-        <MainNavBar />
-        <article id="bodyContainer">
-          <article id="feedContainer">
-            <MainFeedFriends />
-            {feedData.map(item => {
-              return <FeedComponent key={item.userName} feedItem={item} />;
-            })}
-          </article>
-          <MainSideBar />
+    <main id="mainContainer">
+      <MainNavBar />
+      <article id="bodyContainer">
+        <article id="feedContainer">
+          <MainStories />
+          {feedData.map(item => {
+            return <FeedComponent key={item.userName} feedItem={item} />;
+          })}
         </article>
-      </main>
-    </>
+        <MainSideBar />
+      </article>
+    </main>
   );
 }
 
