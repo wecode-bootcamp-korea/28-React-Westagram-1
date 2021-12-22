@@ -3,12 +3,14 @@
     "id": 1,
     "userName": "KJH",
     "userLocation": "서울 강서구",
-    "feedComment": "하하!"
+    "feedComment": "하하!",
+    "feedImgPaths": "images/jeonghyunKim/images/cafe_photos.jpg,images/jeonghyunKim/images/peach.jpg"
   },
   {
     "id": 2,
     "userName": "PARK",
     "userLocation": "서울 강서구",
-    "feedComment": "하하!asdfaslkfsjdlfjlaksdfjlkasdjlfkjlsdfj"
+    "feedComment": "하하!asdfaslkfsjdlfjlaksdfjlkasdjlfkjlsdfj",
+    "feedImgPaths": "images/jeonghyunKim/images/cafe_photos.jpg,images/jeonghyunKim/images/peach.jpg,images/jeonghyunKim/images/unsplash_instagram.png"
   }
 ]

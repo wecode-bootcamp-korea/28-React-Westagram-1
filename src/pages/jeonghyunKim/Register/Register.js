@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Register.scss';
 
 export default function Register(props) {
   const [inputID, setInputID] = useState('');
   const [inputPW, setInputPW] = useState('');
   const [disabledValue, setDisabledValue] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     checkInputValidate();
@@ -27,7 +30,7 @@ export default function Register(props) {
   };
 
   const checkInputValidate = () => {
-    inputID.includes('@') && inputPW.length >= 5
+    inputID.includes('@') && inputID.length >= 6 && inputPW.length >= 6
       ? setDisabledValue(false)
       : setDisabledValue(true);
   };
@@ -37,6 +40,21 @@ export default function Register(props) {
     // let body = {id:, pw:}
     // if state true -> route to login
     // if state false -> operate alert and value init
+    fetch('http://172.20.10.3:8000/users/signup', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: '홍길동',
+        email: inputID,
+        password: inputPW,
+        phonenumber: '12345678',
+        gender: 'man',
+      }),
+    })
+      .then(res => res.json())
+      .then(result => {
+        console.log(result);
+      });
+
     inputValueInit();
   };
 
@@ -67,6 +85,8 @@ export default function Register(props) {
               onChange={inputHandler}
               required
             />
+            <span>비밀번호는 최소 8자리, 최대 25자리로 구성되며</span>
+            <span> 숫자+영어대/소문자+특수문자로 구성되어야합니다.</span>
             <button onClick={registerSubmit} disabled={disabledValue}>
               회원가입
             </button>

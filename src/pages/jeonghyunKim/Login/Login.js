@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import './login.scss';
 
 function Login(props) {
-  const [inputIDValue, setInputID] = useState('');
-  const [inputPWValue, setInputPW] = useState('');
-  const [validateWhether, setValidateWhether] = useState(true);
+  const [inputID, setInputID] = useState('');
+  const [inputPW, setInputPW] = useState('');
+  const [disabledValue, setDisabledValue] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,13 +17,18 @@ function Login(props) {
 
   useEffect(() => {
     checkInputValidate();
-  }, [inputIDValue, inputPWValue]);
+  }, [inputID, inputPW]);
+
+  const inputValueInit = () => {
+    setInputID('');
+    setInputPW('');
+  };
 
   const checkInputValidate = () => {
-    if (inputIDValue.includes('@') && inputPWValue.length >= 5) {
-      setValidateWhether(false);
+    if (inputID.includes('@') && inputID.length >= 6 && inputPW.length >= 6) {
+      setDisabledValue(false);
     } else {
-      setValidateWhether(true);
+      setDisabledValue(true);
     }
   };
 
@@ -50,10 +55,22 @@ function Login(props) {
   };
 
   const loginFunc = () => {
-    if (!validateWhether) navigate('/main-hyun');
-    // 서버로 입력값을 전달한다.
-    // 서버의 응답에 따라 메인 페이지로 이동하거나, alert를 발생시킨다.
-    // window.location.href='main.html'
+    fetch('http://172.20.10.3:8000/users/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: inputID,
+        password: inputPW,
+      }),
+    })
+      .then(res => res.json())
+      .then(result => {
+        if (result.message) {
+          navigate('main-hyun');
+        } else {
+          alert('로그인 정보가 일치하지 않습니다.');
+          inputValueInit();
+        }
+      });
   };
 
   const enterLoginValidate = event => {
@@ -88,7 +105,7 @@ function Login(props) {
               type="text"
               required
               placeholder="전화번호, 사용자 이름 또는 이메일"
-              value={inputIDValue}
+              value={inputID}
               onChange={inputHandler}
               onKeyPress={enterLoginValidate}
             />
@@ -98,14 +115,14 @@ function Login(props) {
               type="password"
               required
               placeholder="비밀번호"
-              value={inputPWValue}
+              value={inputPW}
               onChange={inputHandler}
               onKeyPress={enterLoginValidate}
             />
             <button
               className="loginBtn"
               onClick={loginFunc}
-              disabled={validateWhether}
+              disabled={disabledValue}
             >
               로그인
             </button>
