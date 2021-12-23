@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Register.scss';
 
+import FetchUser from '../config/fetchUserConfig.json';
+
 export default function Register(props) {
   const [inputID, setInputID] = useState('');
   const [inputPW, setInputPW] = useState('');
@@ -40,7 +42,7 @@ export default function Register(props) {
     // let body = {id:, pw:}
     // if state true -> route to login
     // if state false -> operate alert and value init
-    fetch('https://westagram-signup.herokuapp.com/signup', {
+    fetch(FetchUser.FETCH_USER_REGISTER, {
       method: 'POST',
       body: JSON.stringify({
         id: inputID,

@@ -1,15 +1,17 @@
 [
   {
     "id": 1,
-    "userName": "KJH",
+    "userName": "lIlIlIlI",
+    "userImg": "images/jeonghyunKim/images/jh_profile.jpg",
     "userLocation": "서울 강서구",
     "feedComment": "하하!",
     "feedImgPaths": "images/jeonghyunKim/images/peach.jpg,images/jeonghyunKim/images/cafe_photos.jpg"
   },
   {
     "id": 2,
-    "userName": "PARK",
-    "userLocation": "서울 강서구",
+    "userName": "kakao_apeach",
+    "userImg": "images/jeonghyunKim/images/peach.jpg",
+    "userLocation": "판교",
     "feedComment": "하하!asdfaslkfsjdlfjlaksdfjlkasdjlfkjlsdfj",
     "feedImgPaths": "images/jeonghyunKim/images/cafe_photos.jpg,images/jeonghyunKim/images/peach.jpg,images/jeonghyunKim/images/unsplash_instagram.png"
   }

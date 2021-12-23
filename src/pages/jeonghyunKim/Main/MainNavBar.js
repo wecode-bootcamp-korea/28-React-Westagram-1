@@ -13,19 +13,26 @@ import {
 
 import SearchResultArrayComponent from './SearchResultArrayComponent';
 
+import FetchData from '../config/fetchDataConfig.json';
+import FetchUser from '../config/fetchUserConfig.json';
+
+import './styles/mainNav.scss';
+
 export default function MainNavBar(props) {
   const [searchResultArr, setSearchResultArr] = useState([]);
   const [searchInput, setSearchInput] = useState('');
 
-  const [memberID] = useState([
-    { id: 'wecode', desc: '>wecode | 위코드' },
-    { id: 'westudy', desc: '>wecode | 위코드 스터디' },
-    { id: 'KJH', desc: 'leit_motif' },
-    { id: 'abcdefg', desc: 'alphabet' },
-    { id: 'lovepet', desc: 'love_pet' },
-  ]);
+  const [memberID, setMemberID] = useState([]);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch(FetchData.FETCH_MEMBER_DATA)
+      .then(res => res.json())
+      .then(data => {
+        setMemberID(data);
+      });
+  }, []);
 
   useEffect(() => {
     renderSearchResultArr();
@@ -89,7 +96,7 @@ export default function MainNavBar(props) {
   const navViewProfile = event => {
     event.preventDefault();
     const userToken = localStorage.getItem('token');
-    fetch('https://westagram-signup.herokuapp.com/profile', {
+    fetch(FetchUser.FETCH_USER_PROFILE, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

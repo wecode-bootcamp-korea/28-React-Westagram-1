@@ -5,13 +5,14 @@ import MainStories from './MainStories';
 import FeedComponent from './FeedComponent';
 import MainSideBar from './MainSideBar';
 
-import './main.scss';
+import FetchData from '../config/fetchDataConfig.json';
+import './styles/main.scss';
 
 function Main(props) {
   const [feedData, setFeedData] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/data/feedData.json', { method: 'GET' })
+    fetch(FetchData.FETCH_FEED_DATA, { method: 'GET' })
       .then(res => res.json())
       .then(data => {
         setFeedData(data);

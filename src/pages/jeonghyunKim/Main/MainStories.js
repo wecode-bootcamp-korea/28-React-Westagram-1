@@ -6,11 +6,15 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 
+import FetchData from '../config/fetchDataConfig.json';
+
+import './styles/mainStories.scss';
+
 export default function MainStories(props) {
   const [stories, setStories] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/data/storyData.json')
+    fetch(FetchData.FETCH_STORY_DATA)
       .then(res => res.json())
       .then(data => {
         setStories(data);
@@ -67,7 +71,10 @@ export default function MainStories(props) {
             return (
               <li key={item.id}>
                 <div id="storyImgBorder">
-                  <div id="storyImg" />
+                  <div
+                    id="storyImg"
+                    style={{ backgroundImage: `url(${item.imgPath})` }}
+                  />
                 </div>
                 <span>friends{item.id}</span>
               </li>

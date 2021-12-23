@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './login.scss';
 
+import FetchUser from '../config/fetchUserConfig.json';
+
 function Login(props) {
   const [inputID, setInputID] = useState('');
   const [inputPW, setInputPW] = useState('');
@@ -55,7 +57,7 @@ function Login(props) {
   };
 
   const loginFunc = () => {
-    fetch('https://westagram-signup.herokuapp.com/login', {
+    fetch(FetchUser.FETCH_USER_LOGIN, {
       method: 'POST',
       body: JSON.stringify({
         id: inputID,

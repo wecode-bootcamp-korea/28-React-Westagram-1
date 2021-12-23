@@ -1,6 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+import FetchData from '../config/fetchDataConfig.json';
+
+import './styles/mainSidebar.scss';
 
 export default function MainSideBar(props) {
+  const [followData, setFollowData] = useState([]);
+
+  useEffect(() => {
+    fetch(FetchData.FETCH_FOLLOW_DATA)
+      .then(res => res.json())
+      .then(data => {
+        setFollowData(data);
+      });
+  }, []);
+
   return (
     <article id="sideWrapper" className="active">
       <section id="sideContainer">
@@ -21,45 +35,30 @@ export default function MainSideBar(props) {
           </div>
           <div id="recommendFriendList">
             <ul>
-              <li id="recommendFriendListTag">
-                <div className="recommendFriendImg" />
-                <div className="recommendFriendInfo">
-                  <span className="recommendFriendID">friends1</span>
-                  <div className="followOrNot">
-                    abcdefghijklmnop님 외 n명이 팔로우합니다.
-                  </div>
-                </div>
-              </li>
-              <li id="recommendFriendListTag">
-                <div className="recommendFriendImg" />
-                <div className="recommendFriendInfo">
-                  <span className="recommendFriendID">friends2</span>
-                  <div className="followOrNot">회원님을 팔로우합니다.</div>
-                </div>
-              </li>
-              <li id="recommendFriendListTag">
-                <div className="recommendFriendImg" />
-                <div className="recommendFriendInfo">
-                  <span className="recommendFriendID">friends3</span>
-                  <div className="followOrNot">
-                    strong_strawberry님 외 n명이 팔로우합니다.
-                  </div>
-                </div>
-              </li>
-              <li id="recommendFriendListTag">
-                <div className="recommendFriendImg" />
-                <div className="recommendFriendInfo">
-                  <span className="recommendFriendID">friends4</span>
-                  <div className="followOrNot">회원님을 팔로우합니다.</div>
-                </div>
-              </li>
-              <li id="recommendFriendListTag">
-                <div className="recommendFriendImg" />
-                <div className="recommendFriendInfo">
-                  <span className="recommendFriendID">friends5</span>
-                  <div className="followOrNot">회원님을 팔로우합니다.</div>
-                </div>
-              </li>
+              {followData.map((item, index) => {
+                if (item.id <= 5) {
+                  const followMessage =
+                    item.followNumber > 0
+                      ? `${item.userName}님 외 ${item.followNumber}명이 팔로우합니다.`
+                      : '회원님을 팔로우합니다.';
+                  return (
+                    <li key={item.id} id="recommendFriendListTag">
+                      <div
+                        className="recommendFriendImg"
+                        style={{
+                          backgroundImage: `url(${item.imgPath})`,
+                        }}
+                      />
+                      <div className="recommendFriendInfo">
+                        <span className="recommendFriendID">
+                          {item.userName}
+                        </span>
+                        <div className="followOrNot">{followMessage}</div>
+                      </div>
+                    </li>
+                  );
+                }
+              })}
             </ul>
           </div>
         </section>

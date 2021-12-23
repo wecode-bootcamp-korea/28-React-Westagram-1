@@ -15,6 +15,10 @@ import {
 
 import FeedCommentComponent from './FeedCommentComponent';
 
+import FetchData from '../config/fetchDataConfig.json';
+
+import './styles/feedComponent.scss';
+
 export default function FeedComponent({ feedItem }) {
   const [inputComment, setInputComment] = useState();
   const [submitBtnStatus, setSubmitBtnStatus] = useState(true);
@@ -22,11 +26,9 @@ export default function FeedComponent({ feedItem }) {
   const [viewAllCommentFlag, setViewAllCommentFlag] = useState(false);
   const [feedImgPaths] = useState(feedItem.feedImgPaths.split(','));
   const [imgPosition, setImgPosition] = useState(0);
-
   const contentsCommentBodyRef = useRef();
-
   useEffect(() => {
-    fetch('http://localhost:3000/data/commentData.json', {
+    fetch(FetchData.FETCH_COMMENT_DATA, {
       method: 'GET',
     })
       .then(res => res.json())
@@ -105,7 +107,10 @@ export default function FeedComponent({ feedItem }) {
     <section id="feeds">
       <header id="feedProfile">
         <div id="feedProfileInfo">
-          <div id="feedProfileImg" />
+          <div
+            id="feedProfileImg"
+            style={{ backgroundImage: `url(${feedItem.userImg})` }}
+          />
           <div id="feedProfileDetail">
             <a href="#!">{feedItem.userName}</a>
             <a href="#!">{feedItem.userLocation}</a>
