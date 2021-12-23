@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Footer from '../Footer/Footer';
 import RecommnadationList from './RecommendationList';
 
 const Recommendation = () => {
@@ -50,7 +49,6 @@ const Recommendation = () => {
           return <RecommnadationList key={key} {...otherprops} />;
         })}
       </ul>
-      <Footer />
     </section>
   );
 };

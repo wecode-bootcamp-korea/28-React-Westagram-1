@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Footer from '../Footer/Footer';
 import Recommendation from '../Recommendation/Recommendation';
 import UserProfile from '../UserProfile/UserProfile';
 
@@ -28,6 +29,7 @@ const MainRight = () => {
     <aside className="main-right" style={{ left: `${mainRightLeft}px` }}>
       <UserProfile />
       <Recommendation />
+      <Footer />
     </aside>
   );
 };
