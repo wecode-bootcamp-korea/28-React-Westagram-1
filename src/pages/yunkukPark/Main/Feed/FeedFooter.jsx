@@ -12,10 +12,6 @@ const FeedFooter = props => {
         <dd className="feed-content">{content}</dd>
       </dl>
       <ul className="feed-comment-list">
-        {
-          //TODO: filter => map  으로 해보기
-        }
-
         {comments.map((comment, idx) => {
           return isListOpen ? (
             <CommentList
