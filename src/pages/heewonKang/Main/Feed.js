@@ -2,20 +2,10 @@ import { useState, useEffect } from 'react';
 import Comment from './Comment';
 
 export default function Feed() {
+  const [feedList, setFeedList] = useState([]);
+  const [comment, setComment] = useState([]);
   const [inputComment, setInputComment] = useState('');
   const [disabledPost, setDisabledPost] = useState(true);
-  const [comment, setComment] = useState([
-    {
-      id: 1,
-      name: 'gmldnjslzzang',
-      comment: '우와 멋지다 💃🏻',
-    },
-    {
-      id: 2,
-      name: 'leejungglee',
-      comment: '✨',
-    },
-  ]);
 
   useEffect(() => {
     if (inputComment.length) {
@@ -44,28 +34,19 @@ export default function Feed() {
     setInputComment('');
   };
 
-  const userFeedContent = [
-    {
-      id: 1,
-      name: 'kangheewon',
-      feedImgs:
-        'https://images.unsplash.com/photo-1633113212875-8ecf30ad2e81?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-      desc: 'hello heeney world~',
-    },
-    {
-      id: 2,
-      name: 'taeyeonss',
-      feedImgs:
-        'https://images.unsplash.com/photo-1633113212875-8ecf30ad2e81?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-      desc: '멋지쥬?',
-    },
-  ];
+  useEffect(() => {
+    fetch('http://localhost:3000/dataHeewon/commentData.json')
+      .then(res => res.json())
+      .then(data => {
+        setFeedList(data);
+      });
+  }, []);
 
   return (
     <section>
-      {userFeedContent.map(feed => {
+      {feedList.map(feed => {
         return (
-          <article key={feed.id} className="user_feed">
+          <article key={feed.feedId} className="user_feed">
             <header>
               <section className="user_profile">
                 <div>
@@ -80,7 +61,7 @@ export default function Feed() {
             </header>
             <ul className="feed_imgs">
               <li>
-                <img src={feed.feedImgs} alt="feed_img1" />
+                <img src={feed.feedImg} alt="feed_img1" />
               </li>
             </ul>
             <ul className="feed_img_dots">
@@ -110,11 +91,15 @@ export default function Feed() {
                 <span>{feed.desc}</span>
               </div>
               <a href="#!" className="more_comment">
-                댓글 <b>{comment.length}개</b> 모두 보기
+                댓글 <b>{feed.comment.length}개</b> 모두 보기
               </a>
               <ul className="comment_list">
-                {comment.map((item, index) => (
-                  <Comment key={index} commentItem={item} />
+                {feed.comment.map(item => (
+                  <Comment
+                    key={item.id}
+                    userName={item.name}
+                    content={item.content}
+                  />
                 ))}
               </ul>
               <time className="before_post">1일 전</time>
@@ -129,7 +114,6 @@ export default function Feed() {
                 placeholder="댓글 달기..."
                 onKeyPress={commentEnter}
                 onChange={handleComment}
-                value={inputComment}
               />
               <button
                 className="post_comment_btn"
