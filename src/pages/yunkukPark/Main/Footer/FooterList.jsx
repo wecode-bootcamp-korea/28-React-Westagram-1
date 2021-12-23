@@ -1,10 +1,11 @@
 import React from 'react';
 
-const FooterList = () => {
+const FooterList = props => {
+  const { content, linkUrl } = props;
   return (
     <li className="global-footer-item">
-      <a target="blank" href="https://about.instagram.com/">
-        소개
+      <a target="blank" href={linkUrl}>
+        {content}
       </a>
     </li>
   );

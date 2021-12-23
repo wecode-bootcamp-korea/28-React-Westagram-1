@@ -19,7 +19,6 @@ const MainRight = () => {
   useEffect(() => {
     handleLayout();
     window.addEventListener('resize', handleLayout);
-
     return () => {
       window.removeEventListener('resize', handleLayout);
     };
