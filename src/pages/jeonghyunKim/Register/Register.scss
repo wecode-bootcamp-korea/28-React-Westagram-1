@@ -53,13 +53,14 @@ body {
 
           &:disabled {
             background-color: rgba(var(--d69, 0, 149, 246), 0.3);
+            pointer-events: none;
           }
         }
 
-        span{
-          font-size:11px;
-          color:#adadad;
-          display:flex;
+        span {
+          font-size: 11px;
+          color: #adadad;
+          display: flex;
           justify-content: center;
         }
       }

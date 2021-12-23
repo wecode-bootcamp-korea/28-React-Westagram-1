@@ -51,9 +51,18 @@ export default function Register(props) {
     })
       .then(res => res.json())
       .then(result => {
-        if (result.message === 'signup success') {
-          alert('회원가입 성공! 로그인 페이지로 이동합니다.');
-          navigate('/login-hyun');
+        switch (result.message) {
+          case 'signup success':
+            alert('회원가입 성공! 로그인 페이지로 이동합니다.');
+            navigate('/login-hyun');
+            break;
+          case 'user already exist':
+            alert('이미 가입한 유저입니다.');
+            break;
+          case 'invalid user input':
+            alert('부적절한 입력입니다. 입력 규칙을 확인해주세요.');
+            break;
+          default:
         }
       });
 
@@ -66,7 +75,7 @@ export default function Register(props) {
   };
 
   const enterRegisterValidate = event => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && !disabledValue) {
       registerSubmit();
     }
   };

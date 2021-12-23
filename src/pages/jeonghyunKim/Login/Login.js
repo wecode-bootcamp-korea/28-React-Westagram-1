@@ -77,7 +77,7 @@ function Login(props) {
   };
 
   const enterLoginValidate = event => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && !disabledValue) {
       loginFunc();
     }
   };
