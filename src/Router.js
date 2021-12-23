@@ -7,6 +7,7 @@ import MainYongsun from './pages/yongsunKim/Main/Main';
 
 import LoginJeonghyun from './pages/jeonghyunKim/Login/Login';
 import MainJeonghyun from './pages/jeonghyunKim/Main/Main';
+import RegisterJeonghyun from './pages/jeonghyunKim/Register/Register';
 
 import LoginYunkuk from './pages/yunkukPark/Login/Login';
 import MainYunkuk from './pages/yunkukPark/Main/Main';
@@ -23,6 +24,7 @@ function Router() {
 
         <Route path="/login-hyun" element={<LoginJeonghyun />} />
         <Route path="/main-hyun" element={<MainJeonghyun />} />
+        <Route path="/register-hyun" element={<RegisterJeonghyun />} />
 
         <Route path="/login-kuk" element={<LoginYunkuk />} />
         <Route path="/main-kuk" element={<MainYunkuk />} />

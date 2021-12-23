@@ -1,0 +1,326 @@
+#feedContainer {
+  max-width: 605px;
+  width: 100%;
+  margin-right: 28px;
+
+  #feeds {
+    background: rgba(var(--d87, 255, 255, 255), 1);
+    border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+    margin-bottom: 100px;
+    position: relative;
+    #feedProfile {
+      display: flex;
+      flex-direction: row;
+      background-color: rgba(var(--d87, 255, 255, 255), 1);
+      border-bottom: 1px solid rgba(var(--ce3, 239, 239, 239), 1);
+      padding: 14px 4px 14px 16px;
+
+      #feedProfileInfo {
+        display: flex;
+        flex-direction: row;
+        flex-basis: 550px;
+
+        #feedProfileImg {
+          width: 42px;
+          height: 42px;
+          background-size: 42px 42px;
+          border-radius: 50%;
+        }
+
+        #feedProfileDetail {
+          margin-left: 14px;
+
+          a:nth-child(1) {
+            font-weight: 600;
+          }
+
+          a:nth-child(2) {
+            font-size: 12px;
+          }
+        }
+
+        #feedProfileDetail a {
+          display: block;
+          text-decoration: none;
+          color: rgba(var(--i1d, 38, 38, 38), 1);
+        }
+      }
+
+      #feedProfileBtn {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+
+        a {
+          color: rgba(var(--i1d, 38, 38, 38), 1);
+          text-decoration: none;
+        }
+      }
+    }
+
+    #feedImgContainer {
+      position: relative;
+
+      #feedImg {
+        display: flex;
+        position: relative;
+        max-width: 2420px;
+        height: 550px;
+        background-color: rgba(var(--d87, 255, 255, 255), 1);
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        ul {
+          display: flex;
+          flex-direction: row;
+          list-style-type: none;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+
+          li {
+            width: 605px;
+            height: 100%;
+            transition: 0.5s ease-in-out;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: scale-down;
+            }
+          }
+        }
+      }
+
+      #feedImgBtns {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        z-index: 1;
+        button:nth-child(1) {
+          background: none;
+          border: none;
+          cursor: pointer;
+          margin-left: 30px;
+        }
+        button:nth-child(2) {
+          background: none;
+          border: none;
+          cursor: pointer;
+          margin-right: 30px;
+        }
+      }
+
+      #feedImgDot {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        .feedImgLengthDot {
+          margin: 0px 5px;
+          color: #adadad;
+          #faCircle {
+            font-size: 7px;
+          }
+        }
+        .feedImgLengthDot.active {
+          color: #0095f6;
+        }
+      }
+    }
+
+    #feedBtns {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0 15px;
+
+      #feedOptionBtns #feedOptionBtnEach {
+        font-size: 24px;
+        font-weight: 300;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+
+      #feedScrapBtn #feedOptionScrapBtn {
+        font-size: 28px;
+        font-weight: 300;
+        cursor: pointer;
+      }
+    }
+
+    #feedLikes {
+      display: flex;
+      flex-direction: row;
+      margin-top: 18px;
+      padding: 0 15px;
+
+      #feedLikesImg {
+        display: inline-block;
+      }
+
+      #feedLikesImg:nth-child(1) {
+        width: 20px;
+        height: 20px;
+        background-image: url('../../assets/images/jh_profile.jpg');
+        background-size: 20px 20px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        margin-right: -9px;
+        z-index: 2;
+      }
+
+      #feedLikesImg:nth-child(2) {
+        width: 20px;
+        height: 20px;
+        background-image: url('../../assets/images/peach.jpg');
+        background-size: 20px 20px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+      #feedLikesCount {
+        font-size: 14px;
+        margin-left: 15px;
+
+        #feedLikesCountBold {
+          font-weight: 600;
+        }
+      }
+    }
+
+    #feedContents {
+      margin-top: 8px;
+      margin-left: 14px;
+      margin-right: 14px;
+
+      #feedContentsBox {
+        font-size: 14px;
+        display: flex;
+        flex-direction: row;
+        #feedContentsComment {
+          display: flex;
+          #feedContentsBold {
+            align-self: center;
+            font-weight: 600;
+            margin-right: 10px;
+          }
+
+          #feedContentsCommentBody {
+            align-self: center;
+            width: 60px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+          #feedContentsCommentBody.active {
+            text-overflow: inherit;
+            overflow: inherit;
+          }
+        }
+
+        #feedExtendContents {
+          background-color: #fff;
+          border: none;
+          cursor: pointer;
+          font-size: 14px;
+          color: rgba(var(--f52, 142, 142, 142), 1);
+        }
+      }
+    }
+
+    #feedContentsTime {
+      color: rgba(var(--f52, 142, 142, 142), 1);
+      font-size: 11px;
+      margin-top: 5px;
+      margin-left: 15px;
+      margin-bottom: 15px;
+    }
+
+    #feedCommentsBox {
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      margin-top: 5px;
+      margin-left: 15px;
+
+      .feedCommentsViewHideBtn {
+        color: rgba(var(--f52, 142, 142, 142), 1);
+      }
+
+      #removeBtn {
+        float: right;
+        font-size: 12px;
+        color: #adadad;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+
+      .commentLikeBtn {
+        float: right;
+        margin-top: 2px;
+        margin-right: 20px;
+        cursor: pointer;
+      }
+
+      .commentLikeBtn.active {
+        color: red;
+      }
+
+      #feedCommentsBold {
+        font-weight: 600;
+        margin-right: 10px;
+      }
+    }
+
+    #inputComments {
+      border-top: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+      margin-top: 5px;
+      padding: 15px;
+      #inputCommentsBox {
+        display: flex;
+        flex-direction: row;
+
+        #inputCommentsEmojiBtn #inputCommentsEmojiSmile {
+          font-size: 20px;
+        }
+
+        #inputCommentsType {
+          font-size: 14px;
+          margin-left: 13px;
+
+          textarea {
+            width: 500px;
+            height: 18px !important;
+            line-height: 18px;
+            font-size: inherit;
+            border: none;
+            overflow: hidden;
+            resize: none;
+            outline: none;
+          }
+        }
+
+        #inputCommentsSubmit {
+          #inputCommentsSubmitBtn {
+            width: 30px;
+            background-color: #fff;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(var(--d69, 0, 149, 246), 1);
+            opacity: 1;
+            padding: 0;
+            margin: 0;
+
+            &:disabled {
+              opacity: 0.3;
+            }
+          }
+        }
+      }
+    }
+  }
+}

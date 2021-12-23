@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "userName": "lililili_jh",
+    "imgPath": "images/jeonghyunKim/images/jh_profile.jpg",
+    "followNumber": 2
+  },
+  {
+    "id": 2,
+    "userName": "kakao_apeach",
+    "imgPath": "images/jeonghyunKim/images/peach.jpg",
+    "followNumber": 0
+  },
+  {
+    "id": 3,
+    "userName": "cafe_",
+    "imgPath": "images/jeonghyunKim/images/cafe_photos.jpg",
+    "followNumber": 5
+  },
+  {
+    "id": 4,
+    "userName": "inging",
+    "imgPath": "images/jeonghyunKim/images/unsplash_instagram.png",
+    "followNumber": 0
+  },
+  {
+    "id": 5,
+    "userName": "kakao_apeach2",
+    "imgPath": "images/jeonghyunKim/images/peach.jpg",
+    "followNumber": 0
+  }
+]

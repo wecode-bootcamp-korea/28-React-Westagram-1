@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "userName": "friends",
+    "imgPath": "images/jeonghyunKim/images/jh_profile.jpg"
+  },
+  {
+    "id": 2,
+    "userName": "friends",
+    "imgPath": "images/jeonghyunKim/images/peach.jpg"
+  },
+  {
+    "id": 3,
+    "userName": "friends",
+    "imgPath": "images/jeonghyunKim/images/cafe_photos.jpg"
+  },
+  {
+    "id": 4,
+    "userName": "friends",
+    "imgPath": "images/jeonghyunKim/images/unsplash_instagram.png"
+  },
+  {
+    "id": 5,
+    "userName": "friends",
+    "imgPath": "images/jeonghyunKim/images/peach.jpg"
+  },
+  {
+    "id": 6,
+    "userName": "friends",
+    "imgPath": "images/jeonghyunKim/images/jh_profile.jpg"
+  },
+  {
+    "id": 7,
+    "userName": "friends",
+    "imgPath": "images/jeonghyunKim/images/unsplash_instagram.png"
+  },
+  {
+    "id": 8,
+    "userName": "friends",
+    "imgPath": "images/jeonghyunKim/images/jh_profile.jpg"
+  },
+  {
+    "id": 9,
+    "userName": "friends",
+    "imgPath": "images/jeonghyunKim/images/cafe_photos.jpg"
+  },
+  {
+    "id": 10,
+    "userName": "friends",
+    "imgPath": "images/jeonghyunKim/images/peach.jpg"
+  },
+  {
+    "id": 11,
+    "userName": "friends",
+    "imgPath": "images/jeonghyunKim/images/unsplash_instagram.png"
+  },
+  {
+    "id": 12,
+    "userName": "friends",
+    "imgPath": "images/jeonghyunKim/images/jh_profile.jpg"
+  }
+]

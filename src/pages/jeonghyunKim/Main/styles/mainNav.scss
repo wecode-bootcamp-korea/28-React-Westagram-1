@@ -1,0 +1,182 @@
+#navContainer {
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: rgba(var(--d87, 255, 255, 255), 1);
+  border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+  z-index: 10001;
+
+  #navRowBar {
+    max-width: 935px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    header {
+      align-self: center;
+      font-size: 34px;
+      flex: 1 0 127px;
+      font-family: 'Billabong', sans-serif;
+
+      span {
+        cursor: pointer;
+      }
+    }
+
+    #navRowBarSearch {
+      align-self: center;
+      display: none;
+      #navRowBarSearchInput {
+        #mainSearchInput {
+          width: 18.3vw;
+          height: 36px;
+          background: rgba(var(--b3f, 250, 250, 250), 1);
+          color: rgba(var(--f52, 142, 142, 142), 1);
+          border: solid 1px rgba(var(--b6a, 219, 219, 219), 1);
+          border-radius: 3px;
+          font-size: 14px;
+          font-weight: 300;
+          cursor: text;
+          padding-left: 30px;
+          transition: 0.3s ease;
+        }
+
+        #searchIcon {
+          position: relative;
+          font-size: 12px;
+          color: #8d8d8d;
+          top: 0px;
+          left: 25px;
+          display: inline;
+        }
+
+        #searchIcon.hide {
+          display: none;
+        }
+      }
+
+      #searchResultBox {
+        position: absolute;
+        top: 45px;
+        width: 18.3vw;
+        height: 100%;
+        min-height: 180px;
+        display: none;
+
+        #searchArrowDiv {
+          position: relative;
+          width: 14px;
+          height: 14px;
+          top: 10px;
+          left: 50%;
+          background: rgba(var(--d87, 255, 255, 255), 1);
+          box-shadow: 0 0 5px 1px rgba(var(--jb7, 0, 0, 0), 0.0975);
+          border: 1px solid rgba(var(--f23, 255, 255, 255), 1);
+          transform: rotate(45deg);
+          z-index: 2;
+        }
+
+        #searchResult {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          width: 105%;
+          height: 100%;
+          background: rgba(var(--d87, 255, 255, 255), 1);
+          box-shadow: 0 0 5px 1px rgba(var(--jb7, 0, 0, 0), 0.0975);
+          border-radius: 6px;
+          transition: 0.3s ease;
+          z-index: 2;
+          margin: 0;
+          padding: 0;
+
+          span {
+            border-bottom: 1px solid #adadad;
+            padding: 3px 0;
+            padding-left: 10px;
+            margin-bottom: 3px;
+          }
+
+          span:hover {
+            background-color: #ededed;
+          }
+        }
+      }
+
+      #searchResultBox.active {
+        display: block;
+      }
+    }
+
+    #navRowBarSearch.active {
+      display: inline-block;
+    }
+
+    #navBtns {
+      align-self: center;
+      flex: 1 0 127px;
+      font-size: 25px;
+
+      #navBtnsBox {
+        display: flex;
+        flex-direction: column;
+
+        #navBtnsArea {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+
+          #navBtnsAreaEach {
+            margin-right: 23px;
+            cursor: pointer;
+          }
+
+          #profileImg {
+            width: 28px;
+            height: 28px;
+            background-image: url('../../assets/images/jh_profile.jpg');
+            background-size: 30px 30px;
+            border-radius: 50%;
+            cursor: pointer;
+          }
+        }
+
+        #navBtnsFloatingBox {
+          display: flex;
+          flex-direction: column;
+          align-self: flex-end;
+          position: absolute;
+          visibility: hidden;
+
+          #navBtnsArrowDiv {
+            position: relative;
+            width: 14px;
+            height: 14px;
+            top: 35px;
+            background: rgba(var(--d87, 255, 255, 255), 1);
+            box-shadow: 0 0 5px 1px rgba(var(--jb7, 0, 0, 0), 0.0975);
+            border: 1px solid rgba(var(--f23, 255, 255, 255), 1);
+            transform: rotate(45deg);
+          }
+
+          #navBtnsFloatingArea {
+            position: relative;
+            top: 25px;
+            width: 256px;
+            background: rgba(var(--d87, 255, 255, 255), 1);
+            box-shadow: 0 0 5px 1px rgba(var(--jb7, 0, 0, 0), 0.0975);
+            border-radius: 6px;
+            padding: 4px 4px 4px 10px;
+          }
+        }
+
+        #navBtnsFloatingBox.active {
+          visibility: visible;
+        }
+      }
+    }
+  }
+}
