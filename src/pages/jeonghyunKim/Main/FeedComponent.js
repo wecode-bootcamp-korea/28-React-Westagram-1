@@ -148,8 +148,10 @@ export default function FeedComponent({ feedItem }) {
         </section>
         <section id="feedImgDot">
           {feedImgPaths.map((item, index) => {
+            const activeDot = index === imgPosition ? 'active' : null;
+
             return (
-              <div className="feedImgLengthDot" key={index}>
+              <div className={`feedImgLengthDot ${activeDot}`} key={index}>
                 <FontAwesomeIcon id="faCircle" icon={faCircle} />
               </div>
             );
@@ -183,7 +185,7 @@ export default function FeedComponent({ feedItem }) {
             </span>
           </span>
           <button id="feedExtendContents" onClick={extendFeedContent}>
-            더 보기
+            {feedItem.feedComment.length > 5 ? '더 보기' : null}
           </button>
         </div>
       </section>
