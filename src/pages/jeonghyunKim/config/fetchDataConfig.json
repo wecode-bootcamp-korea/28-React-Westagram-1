@@ -1,7 +1,0 @@
-{
-  "FETCH_COMMENT_DATA": "http://localhost:3000/data/commentData.json",
-  "FETCH_FEED_DATA": "http://localhost:3000/data/feedData.json",
-  "FETCH_STORY_DATA": "http://localhost:3000/data/storyData.json",
-  "FETCH_FOLLOW_DATA": "http://localhost:3000/data/followData.json",
-  "FETCH_MEMBER_DATA": "http://localhost:3000/data/memberData.json"
-}

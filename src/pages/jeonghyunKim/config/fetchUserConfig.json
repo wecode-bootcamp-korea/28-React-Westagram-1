@@ -1,5 +1,0 @@
-{
-  "FETCH_USER_LOGIN": "https://westagram-signup.herokuapp.com/login",
-  "FETCH_USER_REGISTER": "https://westagram-signup.herokuapp.com/signup",
-  "FETCH_USER_PROFILE": "https://westagram-signup.herokuapp.com/profile"
-}
