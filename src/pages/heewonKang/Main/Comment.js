@@ -1,9 +1,10 @@
-export default function Comment(commentItem) {
-  const { id, userName, content } = commentItem;
+export default function Comment({ commentInfo }) {
+  const { name, content } = commentInfo;
+
   return (
-    <li key={id}>
+    <li>
       <div className="user_desc">
-        <em>{userName}</em>
+        <em>{name}</em>
         <span>{content}</span>
       </div>
       <button>

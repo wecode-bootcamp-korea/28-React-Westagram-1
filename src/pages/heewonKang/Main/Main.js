@@ -1,6 +1,6 @@
 import NavWon from '../Nav-won';
 import UsersStory from './UsersStory';
-import Feed from './Feed';
+import Feeds from './Feeds';
 import Aside from './Aside';
 import './Main.scss';
 
@@ -12,7 +12,7 @@ export default function Main(props) {
         <div className="main_wrap">
           <section className="feed_wrap">
             <UsersStory />
-            <Feed />
+            <Feeds />
           </section>
           <Aside />
         </div>
