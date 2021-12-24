@@ -1,0 +1,42 @@
+[
+  {
+    "feedId": 1,
+    "name": "kangheewon",
+    "userImg": "https://images.unsplash.com/photo-1617198420518-e2b79c2cdbb2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80",
+    "feedImg": "https://images.unsplash.com/photo-1633113212875-8ecf30ad2e81?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
+    "desc": "hello world 🌏",
+    "likeCount": 19970,
+    "comments": [
+      {
+        "id": 1,
+        "name": "zzangzzang",
+        "content": "5555555ohohoh"
+      },
+      {
+        "id": 2,
+        "name": "dlwlrmas",
+        "content": "🔥"
+      }
+    ]
+  },
+  {
+    "feedId": 2,
+    "name": "taeyeonss",
+    "userImg": "https://images.unsplash.com/photo-1640058909746-a1c76cd29962?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
+    "feedImg": "https://images.unsplash.com/photo-1640092710255-112074b85581?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
+    "desc": "빤짝",
+    "likeCount": 1202,
+    "comments": [
+      {
+        "id": 1,
+        "name": "miyayeah",
+        "content": "초대해줘"
+      },
+      {
+        "id": 2,
+        "name": "leejunglee",
+        "content": "멜클멜클멜클 ✨"
+      }
+    ]
+  }
+]

@@ -1,0 +1,154 @@
+@import '../../../styles/index.scss';
+
+body,
+#container {
+  width: 100%;
+  height: 100%;
+  background-color: $background;
+}
+
+.login_body {
+  min-height: 100vh;
+  overflow: hidden;
+
+  .login_container {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+
+    main.login_main {
+      margin: 32px auto;
+      max-width: 350px;
+      width: 100%;
+      background-color: #fff;
+      border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+
+      article {
+        color: #262626;
+        color: rgba(var(--i1d, 38, 38, 38), 1);
+        max-width: 350px;
+        border-radius: 1px;
+
+        /* || login_wrap : 로고, 로그인, 비밀번호 안내 영역 */
+        .wrap_box {
+          margin: 0 40px 10px;
+          padding: 10px 0;
+
+          .logo {
+            margin: 22px auto 12px;
+            line-height: 1.5;
+            font-size: 62px;
+            text-align: center;
+          }
+
+          .login_form {
+            width: 100%;
+            margin: 36px 0px 10px;
+
+            form {
+              ul {
+                li {
+                  width: 100%;
+
+                  &:not(li.login_btn) {
+                    margin: 0 auto 6px;
+                    border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+                    border-radius: 3px;
+                    display: flex;
+                    height: 36px;
+                  }
+
+                  input {
+                    width: calc(100% - 8px);
+                    height: 100%;
+                    background: rgba(var(--b3f, 250, 250, 250), 1);
+                    font-size: 15px;
+                    padding: 9px 0 9px 8px;
+                    border: none;
+                    line-height: 36px;
+
+                    &::placeholder {
+                      font-size: 12px;
+                      height: 100%;
+                      /* background-color: yellow; */
+                      text-transform: uppercase;
+                      position: relative;
+                      bottom: 3px;
+                    }
+                  }
+
+                  &::after {
+                    content: '';
+                    height: 100%;
+                    width: 8px;
+                    background: rgba(var(--b3f, 250, 250, 250), 1);
+                  }
+                }
+
+                /* 로그인 버튼 */
+                .login_btn {
+                  margin: 8px auto;
+                  display: inline-block;
+
+                  button {
+                    width: 100%;
+                    text-align: center;
+                    background-color: #0095f6;
+                    border-radius: 4px;
+                    padding: 5px 9px;
+                    color: #fff;
+                    font-weight: 600;
+                    transition: opacity 0.4s;
+                    opacity: 1;
+                    cursor: pointer;
+
+                    &:disabled {
+                      opacity: 0.3;
+                      cursor: inherit;
+                    }
+                  }
+                }
+              }
+
+              /* || or_line : 또는 라인 */
+              .or_line {
+                width: 100%;
+                font-size: 13px;
+                font-weight: 600;
+                line-height: 15px;
+                color: rgba(var(--f52, 142, 142, 142), 1);
+                display: flex;
+                align-items: center;
+                padding: 10px 0 18px;
+
+                & > i {
+                  margin: 0px 18px;
+                  flex-grow: 1;
+                }
+
+                &::before,
+                &::after {
+                  content: '';
+                  height: 1px;
+                  width: 39%;
+                  background-color: rgba(var(--b38, 219, 219, 219), 1);
+                }
+              }
+
+              /* || 비밀번호를 잊으셨나요? */
+              .forget_pw_link {
+                color: #00376b;
+                color: rgba(var(--fe0, 0, 55, 107), 1);
+                font-size: 12px;
+                line-height: 16px;
+                margin-top: 12px;
+                text-align: center;
+                display: block;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
