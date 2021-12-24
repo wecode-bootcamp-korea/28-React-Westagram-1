@@ -1,79 +1,66 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { api } from 'config';
 import './Login.scss';
 
 const Login = () => {
-  const API_URL = 'https://westagram-signup.herokuapp.com/login';
-
-  // 들어와야할 값 4가지 email, name, username, password
-
   const navigate = useNavigate();
-  const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
-  const [buttonSwitch, setButtonSwitch] = useState(true);
+  const [formInput, setFormInput] = useState({
+    id: '',
+    password: '',
+  });
 
   const handleInput = event => {
-    const {
-      target: { name, value },
-    } = event;
-    if (name === 'user-id') setId(value);
-    if (name === 'user-password') setPassword(value);
-
-    handleButton(id, password);
-  };
-
-  const handleButton = (id, password) => {
-    const isFilled = !(!id || !password);
-    setButtonSwitch(!isFilled);
+    const { name, value } = event.target;
+    setFormInput({ ...formInput, [name]: value });
   };
 
   const validateLogin = () => {
     return validateId() && validatePassword();
-  };
 
-  const validateId = () => {
-    if (id.indexOf('@') === -1) {
-      alert('님 아이디에 @ 안씀');
-      return false;
-    }
-    return true;
-  };
+    function validateId() {
+      const isValidId = formInput.id.indexOf('@') !== -1;
 
-  const validatePassword = () => {
-    if (password.length > 5) {
-      return true;
+      return isValidId ? true : false;
     }
-    if (password.length <= 5) {
-      alert('님 비밀번호 5글자 이상 아님?');
-      return false;
+
+    function validatePassword() {
+      const isValidPassword = formInput.password.length > 5;
+
+      return isValidPassword ? true : false;
     }
   };
 
-  const goToMain = () => {
-    const isValided = validateLogin();
-    if (isValided) {
-      fetch(API_URL, {
+  const submitLoginForm = () => {
+    const isValid = validateLogin();
+    const { id, password } = formInput;
+
+    if (isValid) {
+      fetch(api.login, {
         method: 'POST',
-        body: JSON.stringify({
-          id: id,
-          password: password,
-        }),
+        body: JSON.stringify({ id, password }),
       })
         .then(res => res.json())
         .then(data => {
           const { message, token } = data;
-          if (message === 'invalid user input') {
-            alert('꺼져 이방인');
+          if (message !== 'login success') {
+            alert('로그인 정보를 확인해 주세요.');
             return;
           }
 
           if (message === 'login success') {
             localStorage.setItem('user_token', token);
-            navigate('/main-kuk');
+            goToMain();
           }
         });
     }
   };
+
+  const goToMain = () => {
+    navigate('/main-kuk');
+  };
+
+  const isFormValid = validateLogin();
 
   return (
     <div className="login-body">
@@ -85,34 +72,29 @@ const Login = () => {
         <div className="input-group">
           <input
             className="login-input"
-            id="user-id"
-            name="user-id"
+            name="id"
             type="text"
             placeholder="전화번호, 사용자 이름 또는 이메일"
-            onChange={event => {
-              handleInput(event);
-            }}
-            value={id}
+            onChange={handleInput}
+            value={formInput.id}
           />
           <input
             className="login-input"
-            id="user-password"
-            name="user-password"
+            name="password"
             type="password"
             placeholder="비밀번호"
-            onChange={event => {
-              handleInput(event);
-            }}
-            value={password}
+            onChange={handleInput}
+            value={formInput.password}
             onKeyDown={event => {
-              if (event.code === 'Enter') goToMain();
+              if (event.key === 'Enter') submitLoginForm();
             }}
           />
+
           <button
             className="login-button"
             type="button"
-            disabled={buttonSwitch}
-            onClick={goToMain}
+            disabled={!isFormValid}
+            onClick={submitLoginForm}
           >
             로그인
           </button>
