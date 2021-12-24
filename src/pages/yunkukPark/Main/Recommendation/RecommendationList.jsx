@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const RecommendationList = props => {
-  const { avatarImage, userName, recommandState } = props;
+  const { avatarImage, userName, recommendState } = props;
 
   return (
     <li className="recommendation-item">
@@ -15,7 +15,7 @@ const RecommendationList = props => {
         <strong>
           <Link to="#">{userName}</Link>
         </strong>
-        <span>{recommandState}</span>
+        <span>{recommendState}</span>
       </div>
       <button className="button-primary" type="button">
         팔로우

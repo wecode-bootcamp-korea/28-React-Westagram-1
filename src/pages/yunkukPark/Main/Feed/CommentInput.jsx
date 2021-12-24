@@ -1,10 +1,12 @@
 import React, { useRef, useState } from 'react';
 
 const CommentInput = props => {
-  const { onButtonClick, commentLenght } = props;
+  const { onButtonClick, feedComments } = props;
   const [newCommentContent, setNewCommentContent] = useState('');
   const [buttonSwitch, setButtonSwitch] = useState(true);
   const inputRef = useRef();
+
+  const commentLength = feedComments.length;
 
   const onTextChange = e => {
     const inputValue = e.target.value;
@@ -16,7 +18,7 @@ const CommentInput = props => {
     if (!newCommentContent) return;
 
     const newComment = {
-      id: commentLenght + 1,
+      id: commentLength + 1,
       userName: 'hello._.',
       content: newCommentContent,
     };

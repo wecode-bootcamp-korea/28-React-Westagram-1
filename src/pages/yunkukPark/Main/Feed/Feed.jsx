@@ -12,7 +12,6 @@ const Feed = props => {
   });
   const [like, setLike] = useState(false);
   const [feedComments, setFeedComments] = useState(comments);
-  const commentLenght = feedComments.length;
 
   const handleLikeClick = () => {
     setLike(!like);
@@ -20,24 +19,15 @@ const Feed = props => {
   };
 
   const updateLikeHit = () => {
-    let myLikeInfo = { ...likeInfo };
+    const likeHit = like ? likeInfo.hit - 1 : likeInfo.hit + 1;
+    const likeClass = `fa-heart ${like ? 'far' : 'fas is-liked'} `;
+    const likeAnimate = like ? '' : 'like-animation';
 
-    if (!like) {
-      myLikeInfo = {
-        hit: myLikeInfo.hit + 1,
-        class: 'fas fa-heart is-liked',
-        animate: 'like-animation',
-      };
-      setLikeInfo(myLikeInfo);
-    }
-    if (like) {
-      myLikeInfo = {
-        hit: myLikeInfo.hit - 1,
-        class: 'far fa-heart',
-        animate: '',
-      };
-      setLikeInfo(myLikeInfo);
-    }
+    setLikeInfo({
+      hit: likeHit,
+      class: likeClass,
+      animate: likeAnimate,
+    });
   };
 
   const addNewComment = newComment => {
@@ -45,8 +35,7 @@ const Feed = props => {
   };
 
   const deleteComment = comment => {
-    const copyFeedComments = [...feedComments];
-    const comments = copyFeedComments.filter(
+    const comments = [...feedComments].filter(
       feedComment => feedComment.id !== comment.id
     );
     setFeedComments(comments);
@@ -115,7 +104,7 @@ const Feed = props => {
       </section>
       <CommentInput
         onButtonClick={addNewComment}
-        commentLenght={commentLenght}
+        feedComments={feedComments} // 구체적인 형태로 내려주기보단 comment 로 내려주는게 좋다
       />
     </div>
   );
