@@ -12,14 +12,10 @@ function NavMyMenu(props) {
   };
 
   useEffect(() => {
-    document.addEventListener('click', event => {
-      handleDropdown(event);
-    });
+    document.addEventListener('click', handleDropdown);
 
     return () => {
-      document.removeEventListener('click', event => {
-        handleDropdown(event);
-      });
+      document.removeEventListener('click', handleDropdown);
     };
   }, []);
 

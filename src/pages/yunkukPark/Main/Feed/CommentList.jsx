@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
 
 const CommentList = props => {
-  const {
-    onDeleteButtonClick,
-    comment,
-    comment: { userName, content },
-  } = props;
-
+  const { onDeleteButtonClick, comment } = props;
+  const { userName, content } = comment;
   const [isCommentLike, setIsCommentLike] = useState(false);
-  const [likeClass, normalClass] = ['fas is-liked', 'far'];
 
   return (
     <li className="feed-comment-item">
@@ -18,21 +13,9 @@ const CommentList = props => {
       </dl>
       <div>
         <button type="button" onClick={() => setIsCommentLike(!isCommentLike)}>
-          <i
-            className={
-              isCommentLike
-                ? `fa-heart ${likeClass}`
-                : `fa-heart ${normalClass}`
-            }
-          />
+          <i className={`fa-heart ${isCommentLike ? 'fas is-liked' : 'far'}`} />
         </button>
-        <button
-          type="button"
-          onClick={() => {
-            // delete target comment
-            onDeleteButtonClick(comment);
-          }}
-        >
+        <button type="button" onClick={() => onDeleteButtonClick(comment)}>
           <i className="fas fa-times" />
         </button>
       </div>

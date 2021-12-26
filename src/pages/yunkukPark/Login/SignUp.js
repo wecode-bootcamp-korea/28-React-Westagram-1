@@ -2,46 +2,33 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.scss';
 
-const SignUp = () => {
-  const API_URL = 'https://westagram-signup.herokuapp.com/signup';
+const API_URL = 'https://westagram-signup.herokuapp.com/signup';
 
+const SignUp = () => {
   const navigate = useNavigate();
-  const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
-  const [buttonSwitch, setButtonSwitch] = useState(true);
+  const [formInput, setFormInput] = useState({ id: '', password: '' });
+  const isFormFilled = !(!formInput.id || !formInput.password);
 
   const handleInput = event => {
-    const {
-      target: { name, value },
-    } = event;
-    if (name === 'user-id') setId(value);
-    if (name === 'user-password') setPassword(value);
-
-    handleButton(id, password);
-  };
-
-  const handleButton = (id, password) => {
-    const isFilled = !(!id || !password);
-    setButtonSwitch(!isFilled);
+    const { name, value } = event.target;
+    setFormInput({ ...formInput, [name]: value });
   };
 
   const validateLogin = () => {
     return validateId() && validatePassword();
-  };
 
-  const validateId = () => {
-    if (id.indexOf('@') === -1) {
-      alert('님 아이디에 @ 안씀');
+    function validateId() {
+      const isValidId = formInput.id.indexOf('@') === -1;
+      if (isValidId) return true;
+
+      alert('유효한 ID가 아닙니다');
       return false;
     }
-    return true;
-  };
 
-  const validatePassword = () => {
-    if (password.length > 5) {
-      return true;
-    }
-    if (password.length <= 5) {
+    function validatePassword() {
+      const isValidPassword = formInput.password.length > 5;
+      if (isValidPassword) return true;
+
       alert('님 비밀번호 5글자 이상 아님?');
       return false;
     }
@@ -53,20 +40,16 @@ const SignUp = () => {
 
   const doSignup = () => {
     const isValid = validateLogin();
+    const { id, password } = formInput;
     if (isValid) {
       fetch(API_URL, {
         method: 'POST',
-        body: JSON.stringify({
-          id: id,
-          password: password,
-        }),
+        body: JSON.stringify({ id, password }),
       })
         .then(res => res.json())
         .then(data => {
           const { message } = data;
-          if (message === 'signup success') {
-            goToLogin();
-          }
+          if (message === 'signup success') goToLogin();
           if (message !== 'signup success') alert('꺼져');
         });
     }
@@ -81,34 +64,28 @@ const SignUp = () => {
 
         <div className="input-group">
           <input
-            className="login-input"
-            id="user-id"
-            name="user-id"
             type="text"
+            name="id"
+            className="login-input"
             placeholder="전화번호, 사용자 이름 또는 이메일"
-            onChange={event => {
-              handleInput(event);
-            }}
-            value={id}
+            onChange={handleInput()}
+            value={formInput.id}
           />
           <input
-            className="login-input"
-            id="user-password"
-            name="user-password"
             type="password"
+            name="password"
+            className="login-input"
             placeholder="비밀번호"
-            onChange={event => {
-              handleInput(event);
-            }}
-            value={password}
+            onChange={handleInput()}
+            value={formInput.password}
             onKeyDown={event => {
-              if (event.code === 'Enter') doSignup();
+              if (event.key === 'Enter') doSignup();
             }}
           />
           <button
             className="login-button"
             type="button"
-            disabled={buttonSwitch}
+            disabled={!isFormFilled}
             onClick={doSignup}
           >
             회원가입
