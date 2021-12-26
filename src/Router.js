@@ -10,6 +10,7 @@ import MainJeonghyun from './pages/jeonghyunKim/Main/Main';
 
 import LoginYunkuk from './pages/yunkukPark/Login/Login';
 import MainYunkuk from './pages/yunkukPark/Main/Main';
+import SignUpYunkuk from './pages/yunkukPark/Login/SignUp';
 
 function Router() {
   return (
@@ -24,6 +25,7 @@ function Router() {
         <Route path="/login-hyun" element={<LoginJeonghyun />} />
         <Route path="/main-hyun" element={<MainJeonghyun />} />
 
+        <Route path="/signup-kuk" element={<SignUpYunkuk />} />
         <Route path="/login-kuk" element={<LoginYunkuk />} />
         <Route path="/main-kuk" element={<MainYunkuk />} />
       </Routes>

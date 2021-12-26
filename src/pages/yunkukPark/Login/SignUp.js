@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { api } from 'config';
 import './Login.scss';
 
-const Login = () => {
+const API_URL = 'https://westagram-signup.herokuapp.com/signup';
+
+const SignUp = () => {
   const navigate = useNavigate();
-  const [formInput, setFormInput] = useState({
-    id: '',
-    password: '',
-  });
+  const [formInput, setFormInput] = useState({ id: '', password: '' });
+  const isFormFilled = !(!formInput.id || !formInput.password);
 
   const handleInput = event => {
     const { name, value } = event.target;
@@ -19,48 +18,42 @@ const Login = () => {
     return validateId() && validatePassword();
 
     function validateId() {
-      const isValidId = formInput.id.indexOf('@') !== -1;
+      const isValidId = formInput.id.indexOf('@') === -1;
+      if (isValidId) return true;
 
-      return isValidId ? true : false;
+      alert('유효한 ID가 아닙니다');
+      return false;
     }
 
     function validatePassword() {
       const isValidPassword = formInput.password.length > 5;
+      if (isValidPassword) return true;
 
-      return isValidPassword ? true : false;
+      alert('님 비밀번호 5글자 이상 아님?');
+      return false;
     }
   };
 
-  const submitLoginForm = () => {
+  const goToLogin = () => {
+    navigate('/login-kuk');
+  };
+
+  const doSignup = () => {
     const isValid = validateLogin();
     const { id, password } = formInput;
-
     if (isValid) {
-      fetch(api.login, {
+      fetch(API_URL, {
         method: 'POST',
         body: JSON.stringify({ id, password }),
       })
         .then(res => res.json())
         .then(data => {
-          const { message, token } = data;
-          if (message !== 'login success') {
-            alert('로그인 정보를 확인해 주세요.');
-            return;
-          }
-
-          if (message === 'login success') {
-            localStorage.setItem('user_token', token);
-            goToMain();
-          }
+          const { message } = data;
+          if (message === 'signup success') goToLogin();
+          if (message !== 'signup success') alert('꺼져');
         });
     }
   };
-
-  const goToMain = () => {
-    navigate('/main-kuk');
-  };
-
-  const isFormValid = validateLogin();
 
   return (
     <div className="login-body">
@@ -71,32 +64,31 @@ const Login = () => {
 
         <div className="input-group">
           <input
-            className="login-input"
-            name="id"
             type="text"
+            name="id"
+            className="login-input"
             placeholder="전화번호, 사용자 이름 또는 이메일"
-            onChange={handleInput}
+            onChange={handleInput()}
             value={formInput.id}
           />
           <input
-            className="login-input"
-            name="password"
             type="password"
+            name="password"
+            className="login-input"
             placeholder="비밀번호"
-            onChange={handleInput}
+            onChange={handleInput()}
             value={formInput.password}
             onKeyDown={event => {
-              if (event.key === 'Enter') submitLoginForm();
+              if (event.key === 'Enter') doSignup();
             }}
           />
-
           <button
             className="login-button"
             type="button"
-            disabled={!isFormValid}
-            onClick={submitLoginForm}
+            disabled={!isFormFilled}
+            onClick={doSignup}
           >
-            로그인
+            회원가입
           </button>
         </div>
 
@@ -106,4 +98,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
